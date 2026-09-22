@@ -270,7 +270,7 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
     return meta_info
 
 
-def run_full_pipeline(backfill_days: int = 14, target_date: date = None) -> Dict[str, Any]:
+def run_full_pipeline(backfill_days: int = 60, target_date: date = None) -> Dict[str, Any]:
     """Run full pipeline lifecycle."""
     start_time = datetime.now()
     logger.info("==================================================")
@@ -328,7 +328,7 @@ def run_full_pipeline(backfill_days: int = 14, target_date: date = None) -> Dict
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="UrbanPulse End-to-End Lakehouse Pipeline")
-    parser.add_argument("--backfill-days", type=int, default=14, help="Number of historical days to backfill (default 14)")
+    parser.add_argument("--backfill-days", type=int, default=60, help="Number of historical days to backfill (default 60)")
     parser.add_argument("--date", type=str, help="Single target date YYYY-MM-DD")
     args = parser.parse_args()
 

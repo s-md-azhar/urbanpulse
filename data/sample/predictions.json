@@ -3,88 +3,96 @@
     "city": "delhi",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 168.4,
+    "predicted_aqi": 172.4,
     "predicted_category": "Unhealthy",
     "reference_aqi": 172.8,
     "model_version": "v1.0.0",
-    "mae": 0.02,
-    "predicted_at": "2026-09-22T20:22:27.514884Z"
+    "mae": 17.05,
+    "naive_baseline_mae": 19.38,
+    "predicted_at": "2026-09-22T23:32:47.356517+00:00"
   },
   {
     "city": "mumbai",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 95.1,
+    "predicted_aqi": 97.2,
     "predicted_category": "Moderate",
     "reference_aqi": 94.9,
     "model_version": "v1.0.0",
-    "mae": 0.08,
-    "predicted_at": "2026-09-22T20:22:27.681321Z"
+    "mae": 10.6,
+    "naive_baseline_mae": 8.08,
+    "predicted_at": "2026-09-22T23:32:47.836727+00:00"
   },
   {
     "city": "bengaluru",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 51.0,
-    "predicted_category": "Moderate",
+    "predicted_aqi": 47.6,
+    "predicted_category": "Good",
     "reference_aqi": 49.0,
     "model_version": "v1.0.0",
-    "mae": 0.01,
-    "predicted_at": "2026-09-22T20:22:27.834013Z"
+    "mae": 8.06,
+    "naive_baseline_mae": 7.24,
+    "predicted_at": "2026-09-22T23:32:48.349100+00:00"
   },
   {
     "city": "kolkata",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 54.8,
+    "predicted_aqi": 57.8,
     "predicted_category": "Moderate",
     "reference_aqi": 64.0,
     "model_version": "v1.0.0",
-    "mae": 0.12,
-    "predicted_at": "2026-09-22T20:22:27.983630Z"
+    "mae": 15.57,
+    "naive_baseline_mae": 22.83,
+    "predicted_at": "2026-09-22T23:32:48.824243+00:00"
   },
   {
     "city": "chennai",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 88.2,
+    "predicted_aqi": 81.1,
     "predicted_category": "Moderate",
     "reference_aqi": 76.0,
     "model_version": "v1.0.0",
-    "mae": 0.07,
-    "predicted_at": "2026-09-22T20:22:28.143639Z"
+    "mae": 13.08,
+    "naive_baseline_mae": 9.6,
+    "predicted_at": "2026-09-22T23:32:49.288259+00:00"
   },
   {
     "city": "hyderabad",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 72.6,
+    "predicted_aqi": 77.4,
     "predicted_category": "Moderate",
     "reference_aqi": 97.0,
     "model_version": "v1.0.0",
-    "mae": 0.02,
-    "predicted_at": "2026-09-22T20:22:28.302925Z"
+    "mae": 11.85,
+    "naive_baseline_mae": 8.22,
+    "predicted_at": "2026-09-22T23:32:49.744323+00:00"
   },
   {
     "city": "pune",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 59.9,
+    "predicted_aqi": 69.5,
     "predicted_category": "Moderate",
     "reference_aqi": 76.0,
     "model_version": "v1.0.0",
-    "mae": 0.03,
-    "predicted_at": "2026-09-22T20:22:28.446119Z"
+    "mae": 6.7,
+    "naive_baseline_mae": 8.21,
+    "predicted_at": "2026-09-22T23:32:50.272597+00:00"
   },
   {
     "city": "ahmedabad",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 93.4,
+    "predicted_aqi": 95.3,
     "predicted_category": "Moderate",
     "reference_aqi": 113.8,
     "model_version": "v1.0.0",
-    "mae": 0.11,
-    "predicted_at": "2026-09-22T20:22:28.611372Z"
+    "mae": 7.79,
+    "naive_baseline_mae": 10.57,
+    "predicted_at": "2026-09-22T23:32:50.826540+00:00"
   }
 ]

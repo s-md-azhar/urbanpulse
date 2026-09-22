@@ -7,7 +7,7 @@ and writes raw immutable JSON payloads to data/raw/air_quality/{city}/{date}.jso
 import sys
 import json
 import logging
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 from pathlib import Path
 from typing import Dict, Any, Optional
 
@@ -104,15 +104,95 @@ class AirQualityIngestor:
             results[city_key] = self.fetch_city_date(city_key, target_date)
         return results
 
-    def backfill(self, days: int = 14) -> None:
-        """Backfill air quality data for the past N days."""
+    def backfill(self, days: int = 60) -> None:
+        """
+        Backfill historical air quality data for the past N days across all cities.
+        Uses efficient date-range requests and slices into immutable daily JSON files.
+        """
         today = datetime.now().date()
-        logger.info("Starting air quality backfill for past %d days...", days)
-        for i in range(days, 0, -1):
-            past_date = today - timedelta(days=i)
-            logger.info("Backfilling air quality for date: %s", past_date)
-            self.fetch_all_cities(past_date)
-        logger.info("Air quality backfill completed.")
+        start_date = today - timedelta(days=days)
+        end_date = today - timedelta(days=1)
+        start_str = start_date.strftime("%Y-%m-%d")
+        end_str = end_date.strftime("%Y-%m-%d")
+
+        logger.info("Starting historical air quality backfill for past %d days (%s to %s)...", days, start_str, end_str)
+
+        for city_key, city_info in CITIES.items():
+            city_slug = city_key.lower()
+            city_raw_dir = self.raw_dir / city_slug
+            city_raw_dir.mkdir(parents=True, exist_ok=True)
+
+            # Check if any dates in range are missing
+            missing_dates = []
+            cur = start_date
+            while cur <= end_date:
+                d_str = cur.strftime("%Y-%m-%d")
+                if not (city_raw_dir / f"{d_str}.json").exists():
+                    missing_dates.append(d_str)
+                cur += timedelta(days=1)
+
+            if not missing_dates:
+                logger.info("All %d historical air quality files already exist for %s.", days, city_slug)
+                continue
+
+            logger.info("Fetching %d missing air quality days for %s...", len(missing_dates), city_slug)
+            params = {
+                "latitude": city_info["latitude"],
+                "longitude": city_info["longitude"],
+                "hourly": "pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,european_aqi,us_aqi",
+                "timezone": city_info["timezone"],
+                "start_date": start_str,
+                "end_date": end_str,
+            }
+
+            payload = self._fetch_from_endpoint(OPEN_METEO_AIR_QUALITY_URL, params)
+            hourly = payload.get("hourly", {})
+            times = hourly.get("time", [])
+
+            # Group indices by date
+            from collections import defaultdict
+            date_indices = defaultdict(list)
+            for idx, t in enumerate(times):
+                d = t.split("T")[0]
+                date_indices[d].append(idx)
+
+            for d_str, indices in date_indices.items():
+                day_file = city_raw_dir / f"{d_str}.json"
+                if day_file.exists():
+                    continue
+
+                day_payload = {
+                    "latitude": payload.get("latitude"),
+                    "longitude": payload.get("longitude"),
+                    "timezone": payload.get("timezone"),
+                    "hourly": {
+                        "time": [times[i] for i in indices],
+                        "pm10": [hourly.get("pm10", [])[i] for i in indices if i < len(hourly.get("pm10", []))],
+                        "pm2_5": [hourly.get("pm2_5", [])[i] for i in indices if i < len(hourly.get("pm2_5", []))],
+                        "carbon_monoxide": [hourly.get("carbon_monoxide", [])[i] for i in indices if i < len(hourly.get("carbon_monoxide", []))],
+                        "nitrogen_dioxide": [hourly.get("nitrogen_dioxide", [])[i] for i in indices if i < len(hourly.get("nitrogen_dioxide", []))],
+                        "sulphur_dioxide": [hourly.get("sulphur_dioxide", [])[i] for i in indices if i < len(hourly.get("sulphur_dioxide", []))],
+                        "ozone": [hourly.get("ozone", [])[i] for i in indices if i < len(hourly.get("ozone", []))],
+                        "european_aqi": [hourly.get("european_aqi", [])[i] for i in indices if i < len(hourly.get("european_aqi", []))],
+                        "us_aqi": [hourly.get("us_aqi", [])[i] for i in indices if i < len(hourly.get("us_aqi", []))],
+                    },
+                    "_metadata": {
+                        "city": city_slug,
+                        "city_name": city_info["name"],
+                        "target_date": d_str,
+                        "source": "open-meteo-air-quality",
+                        "ingested_at": datetime.now(timezone.utc).isoformat(),
+                    }
+                }
+
+                temp_f = city_raw_dir / f".{d_str}.tmp"
+                with open(temp_f, "w", encoding="utf-8") as f:
+                    json.dump(day_payload, f, indent=2)
+                temp_f.replace(day_file)
+
+            logger.info("Backfill complete for %s air quality.", city_slug)
+
+        logger.info("Historical air quality backfill finished successfully.")
 
     def close(self):
         self.client.close()

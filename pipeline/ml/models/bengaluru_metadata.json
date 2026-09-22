@@ -2,11 +2,15 @@
   "city": "bengaluru",
   "city_name": "Bengaluru",
   "model_type": "HistGradientBoostingRegressor",
-  "training_samples": 13,
-  "mae": 0.01,
-  "naive_baseline_mae": 7.08,
-  "improvement_pct": 99.8,
-  "trained_at": "2026-09-22T20:22:27.828012Z",
+  "split_method": "Chronological (Time-Ordered 80/20)",
+  "total_samples": 59,
+  "train_samples": 47,
+  "test_samples": 12,
+  "train_mae": 0.11,
+  "test_mae": 8.06,
+  "naive_baseline_mae": 7.24,
+  "improvement_over_baseline_pct": 0.0,
+  "trained_at": "2026-09-22T23:32:48.344099+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",
@@ -19,5 +23,6 @@
     "avg_pm10",
     "day_of_week",
     "month"
-  ]
+  ],
+  "target": "target_next_day_aqi (day t+1 US AQI)"
 }

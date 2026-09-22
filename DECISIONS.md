@@ -71,3 +71,22 @@ This document records the architectural, infrastructure, and engineering decisio
   - Zero-maintenance static hosting with global CDN caching on Vercel.
   - Instant page load speeds and 100% uptime.
   - No environment variables or credentials required at build or runtime.
+
+---
+
+## ADR 007: Expanded 60-Day Historical Backfill & Strict Chronological ML Validation
+- **Status:** Accepted
+- **Context:** The initial prototype backfilled only 14 days of data. When engineering lag features ($t-1, t-2, t-3$) and leading target values ($t+1$), a 14-day window yielded only 10–11 labeled observations per city.
+  1. **Sample Starvation:** Evaluating a train/test split on 11 rows meant an 80/20 split left only 2 rows in the test set, creating extreme metric variance.
+  2. **Risk of Random Shuffling Leakage:** Random train/test splits on time-series data leak adjacent-day atmospheric conditions (since weather is autoregressive), producing artificially near-zero MAEs.
+  3. **In-Sample Overfitting:** Evaluating training error on small sample sizes yields illusory perfection (MAE < 0.1) that fails in production.
+- **Decision:**
+  1. Increase the historical backfill window to **60 days** using Open-Meteo's historical archive endpoint (`https://archive-api.open-meteo.com/v1/archive` and historical air quality range queries).
+  2. Enforce a **strict chronological train/test split (80% train on earlier days, 20% test on latest days)** for every city model.
+  3. Evaluate and log genuine **out-of-sample Test MAE** alongside a **naive persistence baseline** ($AQI_{t+1} \approx AQI_t$) evaluated on the exact same held-out test window.
+  4. Train the final production inference artifact on all 60 days to forecast tomorrow ($t+1$).
+- **Consequences:**
+  - Provides ~57 labeled daily observations per city (~46 training days, ~11 out-of-sample test days), creating statistically grounded test metrics.
+  - Eliminates target leakage and temporal lookahead bias completely.
+  - Realistic out-of-sample performance: Test MAE reflects genuine forecasting error on unseen future days.
+

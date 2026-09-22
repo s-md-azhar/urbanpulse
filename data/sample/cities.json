@@ -8,7 +8,7 @@
     "longitude": 72.5714,
     "population_tier": "Tier-2 Industrial Hub",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   },
   {
     "city_id": "9aa8c9aa327377bb73fa11a9b999e37b",
@@ -19,7 +19,7 @@
     "longitude": 77.5946,
     "population_tier": "Tier-1 Tech Hub",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   },
   {
     "city_id": "53481967fe31ef682a32dd2092504908",
@@ -30,7 +30,7 @@
     "longitude": 80.2707,
     "population_tier": "Tier-1 Coastal Hub",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   },
   {
     "city_id": "76597d97e36fb7adda5d26b609a23452",
@@ -41,7 +41,7 @@
     "longitude": 77.209,
     "population_tier": "Tier-1 Megacity",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   },
   {
     "city_id": "6c7e120df929c77ba790d2a76878e388",
@@ -52,7 +52,7 @@
     "longitude": 78.4867,
     "population_tier": "Tier-1 Tech Hub",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   },
   {
     "city_id": "313cd3c79a8f85d4f09c71cb4fa3cf66",
@@ -63,7 +63,7 @@
     "longitude": 88.3639,
     "population_tier": "Tier-1 Metro",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   },
   {
     "city_id": "70ede688a4ff6f69af05559c94e5d156",
@@ -74,7 +74,7 @@
     "longitude": 72.8777,
     "population_tier": "Tier-1 Megacity",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   },
   {
     "city_id": "0009ac14df5c842435e1905cbff04239",
@@ -85,6 +85,6 @@
     "longitude": 73.8567,
     "population_tier": "Tier-2 Emerging Metro",
     "timezone": "Asia/Kolkata",
-    "created_at": "2026-09-23 01:51:58.002859+05:30"
+    "created_at": "2026-09-23 05:02:22.066222+05:30"
   }
 ]
