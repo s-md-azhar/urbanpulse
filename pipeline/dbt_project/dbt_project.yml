@@ -1,0 +1,23 @@
+name: 'urbanpulse'
+version: '1.0.0'
+config-version: 2
+
+profile: 'urbanpulse'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  urbanpulse:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

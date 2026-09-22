@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+env/
+venv/
+ENV/
+
+# DuckDB & Local storage (keep sample committed in data/sample/)
+data/raw/
+data/delta/
+data/gold/
+*.duckdb
+*.duckdb.wal
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Node / Next.js
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+.pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Airflow
+airflow/logs/
+airflow/plugins/
+
+# OS / Environment
+.DS_Store
+Thumbs.db
+.env

@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_city
+    description: "City dimension containing geographic coordinates and categorization"
+    columns:
+      - name: city_id
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+      - name: city
+        description: "Unique city slug"
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_daily_city_metrics
+    description: "Fact table containing daily aggregated weather and pollutant observations with lag features"
+    columns:
+      - name: daily_metric_id
+        description: "Surrogate primary key (md5 of city and metric_date)"
+        tests:
+          - unique
+          - not_null
+      - name: city
+        description: "City identifier"
+        tests:
+          - not_null
+      - name: metric_date
+        description: "Date of metric observation"
+        tests:
+          - not_null
+      - name: avg_us_aqi
+        description: "Daily average US AQI"
+        tests:
+          - not_null
+      - name: aqi_category
+        description: "Standardized EPA AQI category"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Good', 'Moderate', 'Unhealthy for Sensitive Groups', 'Unhealthy', 'Very Unhealthy', 'Hazardous']

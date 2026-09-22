@@ -1,0 +1,46 @@
+{
+  "pipeline_name": "UrbanPulse Lakehouse",
+  "last_refresh_timestamp": "2026-09-22T20:22:28.869504Z",
+  "status": "HEALTHY",
+  "quality_gate_passed": true,
+  "layers": {
+    "raw_landing": {
+      "format": "JSON (Immutable)",
+      "cities_covered": 8
+    },
+    "bronze": {
+      "format": "Delta Lake (ACID Append-Only)",
+      "weather_row_count": 8064,
+      "air_quality_row_count": 8064
+    },
+    "silver": {
+      "format": "Delta Lake (ACID Idempotent Upsert)",
+      "weather_row_count": 2688,
+      "air_quality_row_count": 2688,
+      "primary_key": "(city, date, hour)"
+    },
+    "gold": {
+      "engine": "DuckDB via dbt-duckdb",
+      "marts": [
+        "dim_city",
+        "fct_daily_city_metrics"
+      ],
+      "total_daily_fact_records": 112
+    },
+    "ml_layer": {
+      "model": "HistGradientBoostingRegressor",
+      "target": "Next-Day US AQI",
+      "cities_modeled": 8
+    }
+  },
+  "cities": [
+    "Delhi",
+    "Mumbai",
+    "Bengaluru",
+    "Kolkata",
+    "Chennai",
+    "Hyderabad",
+    "Pune",
+    "Ahmedabad"
+  ]
+}

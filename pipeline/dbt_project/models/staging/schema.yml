@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_weather
+    description: "Cleaned hourly weather observations sourced from Silver Delta table"
+    columns:
+      - name: city
+        description: "City slug identifier"
+        tests:
+          - not_null
+      - name: metric_date
+        description: "Observation date"
+        tests:
+          - not_null
+      - name: metric_hour
+        description: "Observation hour (0-23)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+      - name: temperature_c
+        description: "Air temperature at 2 meters in Celsius"
+        tests:
+          - not_null
+
+  - name: stg_air_quality
+    description: "Cleaned hourly air pollutant observations sourced from Silver Delta table"
+    columns:
+      - name: city
+        description: "City slug identifier"
+        tests:
+          - not_null
+      - name: metric_date
+        description: "Observation date"
+        tests:
+          - not_null
+      - name: metric_hour
+        description: "Observation hour (0-23)"
+        tests:
+          - not_null
+      - name: us_aqi
+        description: "United States Air Quality Index calculation"
+        tests:
+          - not_null

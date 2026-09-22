@@ -1,0 +1,10 @@
+urbanpulse:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', 'data/gold/urbanpulse.duckdb') }}"
+      threads: 4
+      extensions:
+        - parquet
+        - delta

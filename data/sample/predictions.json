@@ -1,0 +1,90 @@
+[
+  {
+    "city": "delhi",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 168.4,
+    "predicted_category": "Unhealthy",
+    "reference_aqi": 172.8,
+    "model_version": "v1.0.0",
+    "mae": 0.02,
+    "predicted_at": "2026-09-22T20:22:27.514884Z"
+  },
+  {
+    "city": "mumbai",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 95.1,
+    "predicted_category": "Moderate",
+    "reference_aqi": 94.9,
+    "model_version": "v1.0.0",
+    "mae": 0.08,
+    "predicted_at": "2026-09-22T20:22:27.681321Z"
+  },
+  {
+    "city": "bengaluru",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 51.0,
+    "predicted_category": "Moderate",
+    "reference_aqi": 49.0,
+    "model_version": "v1.0.0",
+    "mae": 0.01,
+    "predicted_at": "2026-09-22T20:22:27.834013Z"
+  },
+  {
+    "city": "kolkata",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 54.8,
+    "predicted_category": "Moderate",
+    "reference_aqi": 64.0,
+    "model_version": "v1.0.0",
+    "mae": 0.12,
+    "predicted_at": "2026-09-22T20:22:27.983630Z"
+  },
+  {
+    "city": "chennai",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 88.2,
+    "predicted_category": "Moderate",
+    "reference_aqi": 76.0,
+    "model_version": "v1.0.0",
+    "mae": 0.07,
+    "predicted_at": "2026-09-22T20:22:28.143639Z"
+  },
+  {
+    "city": "hyderabad",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 72.6,
+    "predicted_category": "Moderate",
+    "reference_aqi": 97.0,
+    "model_version": "v1.0.0",
+    "mae": 0.02,
+    "predicted_at": "2026-09-22T20:22:28.302925Z"
+  },
+  {
+    "city": "pune",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 59.9,
+    "predicted_category": "Moderate",
+    "reference_aqi": 76.0,
+    "model_version": "v1.0.0",
+    "mae": 0.03,
+    "predicted_at": "2026-09-22T20:22:28.446119Z"
+  },
+  {
+    "city": "ahmedabad",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 93.4,
+    "predicted_category": "Moderate",
+    "reference_aqi": 113.8,
+    "model_version": "v1.0.0",
+    "mae": 0.11,
+    "predicted_at": "2026-09-22T20:22:28.611372Z"
+  }
+]

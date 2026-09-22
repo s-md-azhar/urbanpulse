@@ -1,0 +1,90 @@
+[
+  {
+    "city_id": "a4c92d499541677f0a88f619278a7d77",
+    "city": "ahmedabad",
+    "city_name": "Ahmedabad",
+    "state": "Gujarat",
+    "latitude": 23.0225,
+    "longitude": 72.5714,
+    "population_tier": "Tier-2 Industrial Hub",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  },
+  {
+    "city_id": "9aa8c9aa327377bb73fa11a9b999e37b",
+    "city": "bengaluru",
+    "city_name": "Bengaluru",
+    "state": "Karnataka",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "population_tier": "Tier-1 Tech Hub",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  },
+  {
+    "city_id": "53481967fe31ef682a32dd2092504908",
+    "city": "chennai",
+    "city_name": "Chennai",
+    "state": "Tamil Nadu",
+    "latitude": 13.0827,
+    "longitude": 80.2707,
+    "population_tier": "Tier-1 Coastal Hub",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  },
+  {
+    "city_id": "76597d97e36fb7adda5d26b609a23452",
+    "city": "delhi",
+    "city_name": "Delhi",
+    "state": "National Capital Territory",
+    "latitude": 28.6139,
+    "longitude": 77.209,
+    "population_tier": "Tier-1 Megacity",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  },
+  {
+    "city_id": "6c7e120df929c77ba790d2a76878e388",
+    "city": "hyderabad",
+    "city_name": "Hyderabad",
+    "state": "Telangana",
+    "latitude": 17.385,
+    "longitude": 78.4867,
+    "population_tier": "Tier-1 Tech Hub",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  },
+  {
+    "city_id": "313cd3c79a8f85d4f09c71cb4fa3cf66",
+    "city": "kolkata",
+    "city_name": "Kolkata",
+    "state": "West Bengal",
+    "latitude": 22.5726,
+    "longitude": 88.3639,
+    "population_tier": "Tier-1 Metro",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  },
+  {
+    "city_id": "70ede688a4ff6f69af05559c94e5d156",
+    "city": "mumbai",
+    "city_name": "Mumbai",
+    "state": "Maharashtra",
+    "latitude": 19.076,
+    "longitude": 72.8777,
+    "population_tier": "Tier-1 Megacity",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  },
+  {
+    "city_id": "0009ac14df5c842435e1905cbff04239",
+    "city": "pune",
+    "city_name": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.5204,
+    "longitude": 73.8567,
+    "population_tier": "Tier-2 Emerging Metro",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-09-23 01:51:58.002859+05:30"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "city": "ahmedabad",
+  "city_name": "Ahmedabad",
+  "model_type": "HistGradientBoostingRegressor",
+  "training_samples": 13,
+  "mae": 0.11,
+  "naive_baseline_mae": 9.95,
+  "improvement_pct": 98.9,
+  "trained_at": "2026-09-22T20:22:28.606372Z",
+  "features": [
+    "avg_us_aqi",
+    "lag_1d_aqi",
+    "lag_2d_aqi",
+    "lag_3d_aqi",
+    "avg_temperature_c",
+    "avg_humidity_pct",
+    "avg_wind_speed_kmh",
+    "avg_pm2_5",
+    "avg_pm10",
+    "day_of_week",
+    "month"
+  ]
+}
