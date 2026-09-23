@@ -1,0 +1,133 @@
+{
+  "dataset": [
+    {
+      "city": "ahmedabad",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    },
+    {
+      "city": "bengaluru",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    },
+    {
+      "city": "chennai",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    },
+    {
+      "city": "delhi",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    },
+    {
+      "city": "hyderabad",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    },
+    {
+      "city": "kolkata",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    },
+    {
+      "city": "mumbai",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    },
+    {
+      "city": "pune",
+      "total_days": 60,
+      "labeled_days": 59,
+      "start_date": "2026-07-25",
+      "end_date": "2026-09-22"
+    }
+  ],
+  "winning_config": "depth_3_leaf_3",
+  "params": {
+    "min_samples_leaf": 3,
+    "learning_rate": 0.05,
+    "max_depth": 3,
+    "max_iter": 100
+  },
+  "metrics": {
+    "ahmedabad": {
+      "val_mae": 1.24,
+      "test_mae": 7.2,
+      "base_mae": 10.57,
+      "delta_pct": 31.8,
+      "beats_baseline": true
+    },
+    "bengaluru": {
+      "val_mae": 6.58,
+      "test_mae": 6.22,
+      "base_mae": 7.24,
+      "delta_pct": 14.1,
+      "beats_baseline": true
+    },
+    "chennai": {
+      "val_mae": 9.48,
+      "test_mae": 12.49,
+      "base_mae": 9.6,
+      "delta_pct": -30.1,
+      "beats_baseline": false
+    },
+    "delhi": {
+      "val_mae": 21.36,
+      "test_mae": 17.61,
+      "base_mae": 19.38,
+      "delta_pct": 9.2,
+      "beats_baseline": true
+    },
+    "hyderabad": {
+      "val_mae": 8.12,
+      "test_mae": 12.1,
+      "base_mae": 8.22,
+      "delta_pct": -47.1,
+      "beats_baseline": false
+    },
+    "kolkata": {
+      "val_mae": 21.17,
+      "test_mae": 16.03,
+      "base_mae": 22.83,
+      "delta_pct": 29.8,
+      "beats_baseline": true
+    },
+    "mumbai": {
+      "val_mae": 2.19,
+      "test_mae": 10.69,
+      "base_mae": 8.08,
+      "delta_pct": -32.3,
+      "beats_baseline": false
+    },
+    "pune": {
+      "val_mae": 4.5,
+      "test_mae": 8.08,
+      "base_mae": 8.21,
+      "delta_pct": 1.6,
+      "beats_baseline": true
+    }
+  },
+  "aggregate": {
+    "val_mae": 9.33,
+    "test_mae": 11.3,
+    "base_mae": 11.77,
+    "overall_delta_pct": 3.9,
+    "cities_beating_baseline": 5,
+    "total_cities": 8
+  }
+}

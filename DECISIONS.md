@@ -105,9 +105,10 @@ This document records the architectural, infrastructure, and engineering decisio
   - **Zero Selection Leakage:** Clean separation between training, hyperparameter selection, and test evaluation. Test metrics are now genuine out-of-sample estimates.
   - **Honest Performance Disclosure:**
     - **5 of 8 cities beat the naive persistence baseline:** Kolkata (+29.8% gain, MAE 16.03 vs 22.83), Ahmedabad (+31.8% gain, MAE 7.20 vs 10.57), Bengaluru (+14.1% gain, MAE 6.22 vs 7.24), Delhi (+9.2% gain, MAE 17.61 vs 19.38), and Pune (+1.6% gain, MAE 8.08 vs 8.21).
-    - **3 of 8 cities underperform persistence:** Mumbai (-32.3%, MAE 10.69 vs 8.08), Chennai (-30.1%, MAE 12.49 vs 9.60), and Hyderabad (-48.5%, MAE 12.21 vs 8.22).
+    - **3 of 8 cities underperform persistence:** Mumbai (-32.3%, MAE 10.69 vs 8.08), Chennai (-30.1%, MAE 12.49 vs 9.60), and Hyderabad (-47.1%, MAE 12.10 vs 8.22).
   - **Why Low-Volatility Cities Favor Persistence:** In peninsular and coastal cities during stable meteorological periods, day-over-day AQI drift is minimal ($\Delta < 8$ points). In such low-variance regimes, an 11-feature GBDT trained on small sample sizes suffers from estimation variance that exceeds the modest bias of a 1-line persistence rule. In contrast, in high-volatility continental/industrial hubs (Delhi, Kolkata, Ahmedabad) where weather fronts cause rapid inversions and pollutant trapping, non-linear atmospheric interactions provide substantial predictive signal (+10% to +32% improvement).
-  - **Metric Shift Explanation:** Compared to the preliminary test-leaked run (average MAE 11.08), the leak-free model yields an average test MAE of 11.30 (+4.0% overall improvement over the 11.77 baseline). The slight shift is expected: properly holding out validation data during hyperparameter selection eliminates optimistic test-peeking bias.
+  - **Metric Shift Explanation:** Compared to the preliminary test-leaked run (average MAE 11.08), the leak-free model yields an average test MAE of 11.30 (+3.9% overall improvement over the 11.77 baseline). The slight shift is expected: properly holding out validation data during hyperparameter selection eliminates optimistic test-peeking bias.
+  - **Locked Version Note:** These metrics were recomputed after the Airflow backfill extended the dataset to its full 60-day window, and represent the final, locked version — no further recomputation should happen without an explicit reason.
 
 ---
 

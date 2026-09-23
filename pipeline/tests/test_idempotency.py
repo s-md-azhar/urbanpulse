@@ -58,8 +58,7 @@ def test_idempotent_upsert_zero_duplicates(temp_delta_dir):
     # First upsert (initial write)
     _idempotent_upsert_delta(arrow1, table_path)
 
-    dt1 = DeltaTable(str(table_path))
-    result_df1 = pl.from_arrow(dt1.to_pyarrow_table())
+    result_df1 = pl.read_delta(str(table_path))
     assert len(result_df1) == 24, f"Expected 24 rows, got {len(result_df1)}"
 
     # Batch 2: Rerun on the exact same date and hours with slightly updated temperature (simulating a pipeline rerun/backfill)
@@ -85,8 +84,7 @@ def test_idempotent_upsert_zero_duplicates(temp_delta_dir):
     # Second upsert (the test of idempotency)
     _idempotent_upsert_delta(arrow2, table_path)
 
-    dt2 = DeltaTable(str(table_path))
-    result_df2 = pl.from_arrow(dt2.to_pyarrow_table())
+    result_df2 = pl.read_delta(str(table_path))
 
     # CRITICAL ASSERTION: Total rows must still be EXACTLY 24, not 48!
     assert len(result_df2) == 24, f"IDEMPOTENCY FAILED: Row count doubled to {len(result_df2)} instead of remaining 24."

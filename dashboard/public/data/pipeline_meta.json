@@ -1,6 +1,6 @@
 {
   "pipeline_name": "UrbanPulse Lakehouse",
-  "last_refresh_timestamp": "2026-09-23T11:28:58.184283Z",
+  "last_refresh_timestamp": "2026-09-23T18:37:07.594140Z",
   "status": "HEALTHY",
   "quality_gate_passed": true,
   "layers": {
@@ -10,8 +10,8 @@
     },
     "bronze": {
       "format": "Delta Lake (ACID Append-Only)",
-      "weather_row_count": 123264,
-      "air_quality_row_count": 123264
+      "weather_row_count": 238464,
+      "air_quality_row_count": 238464
     },
     "silver": {
       "format": "Delta Lake (ACID Idempotent Upsert)",

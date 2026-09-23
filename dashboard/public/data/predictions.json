@@ -3,21 +3,7 @@
     "city": "ahmedabad",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 172.3,
-    "predicted_category": "Unhealthy",
-    "reference_aqi": 172.3,
-    "model_version": "v1.0.0",
-    "mae": 12.0,
-    "naive_baseline_mae": 15.0,
-    "delta_vs_baseline_pct": 20.0,
-    "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.084026+00:00"
-  },
-  {
-    "city": "mumbai",
-    "forecast_for_date": "2026-09-23",
-    "reference_date": "2026-09-22",
-    "predicted_aqi": 95.7,
+    "predicted_aqi": 93.6,
     "predicted_category": "Moderate",
     "reference_aqi": 113.8,
     "model_version": "v1.0.0",
@@ -25,7 +11,7 @@
     "naive_baseline_mae": 10.57,
     "delta_vs_baseline_pct": 31.8,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.089657+00:00"
+    "predicted_at": "2026-09-23T18:33:55.094709+00:00"
   },
   {
     "city": "bengaluru",
@@ -39,21 +25,7 @@
     "naive_baseline_mae": 7.24,
     "delta_vs_baseline_pct": 14.1,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.095078+00:00"
-  },
-  {
-    "city": "kolkata",
-    "forecast_for_date": "2026-09-23",
-    "reference_date": "2026-09-22",
-    "predicted_aqi": 63.8,
-    "predicted_category": "Moderate",
-    "reference_aqi": 63.8,
-    "model_version": "v1.0.0",
-    "mae": 12.0,
-    "naive_baseline_mae": 15.0,
-    "delta_vs_baseline_pct": 20.0,
-    "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.100464+00:00"
+    "predicted_at": "2026-09-23T18:33:42.120597+00:00"
   },
   {
     "city": "chennai",
@@ -63,11 +35,11 @@
     "predicted_category": "Moderate",
     "reference_aqi": 76.0,
     "model_version": "v1.0.0",
-    "mae": 12.39,
+    "mae": 12.49,
     "naive_baseline_mae": 9.6,
-    "delta_vs_baseline_pct": -29.1,
+    "delta_vs_baseline_pct": -30.1,
     "beats_baseline": false,
-    "predicted_at": "2026-09-23T16:19:13.844959+00:00"
+    "predicted_at": "2026-09-23T18:33:49.318363+00:00"
   },
   {
     "city": "delhi",
@@ -81,7 +53,7 @@
     "naive_baseline_mae": 19.38,
     "delta_vs_baseline_pct": 9.2,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.105571+00:00"
+    "predicted_at": "2026-09-23T18:33:40.671756+00:00"
   },
   {
     "city": "hyderabad",
@@ -91,11 +63,11 @@
     "predicted_category": "Moderate",
     "reference_aqi": 97.0,
     "model_version": "v1.0.0",
-    "mae": 12.08,
+    "mae": 12.1,
     "naive_baseline_mae": 8.22,
-    "delta_vs_baseline_pct": -46.8,
+    "delta_vs_baseline_pct": -47.1,
     "beats_baseline": false,
-    "predicted_at": "2026-09-23T16:19:22.384274+00:00"
+    "predicted_at": "2026-09-23T18:33:51.721543+00:00"
   },
   {
     "city": "kolkata",
@@ -109,7 +81,21 @@
     "naive_baseline_mae": 22.83,
     "delta_vs_baseline_pct": 29.8,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.110603+00:00"
+    "predicted_at": "2026-09-23T18:33:46.668000+00:00"
+  },
+  {
+    "city": "mumbai",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 96.6,
+    "predicted_category": "Moderate",
+    "reference_aqi": 94.9,
+    "model_version": "v1.0.0",
+    "mae": 10.69,
+    "naive_baseline_mae": 8.08,
+    "delta_vs_baseline_pct": -32.3,
+    "beats_baseline": false,
+    "predicted_at": "2026-09-23T18:33:41.340802+00:00"
   },
   {
     "city": "pune",
@@ -123,20 +109,6 @@
     "naive_baseline_mae": 8.21,
     "delta_vs_baseline_pct": 1.6,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.115643+00:00"
-  },
-  {
-    "city": "ahmedabad",
-    "forecast_for_date": "2026-09-23",
-    "reference_date": "2026-09-22",
-    "predicted_aqi": 114.6,
-    "predicted_category": "Unhealthy for Sensitive Groups",
-    "reference_aqi": 114.6,
-    "model_version": "v1.0.0",
-    "mae": 12.0,
-    "naive_baseline_mae": 15.0,
-    "delta_vs_baseline_pct": 20.0,
-    "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.120926+00:00"
+    "predicted_at": "2026-09-23T18:33:53.951284+00:00"
   }
 ]

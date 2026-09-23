@@ -1,5 +1,7 @@
 # UrbanPulse — Multi-City Weather & Air Quality Intelligence Lakehouse
 
+🔗 **Live Demo:** [placeholder — will be filled in manually]
+
 [![Daily Lakehouse Refresh](https://github.com/s-md-azhar/urbanpulse/actions/workflows/daily_refresh.yml/badge.svg)](https://github.com/s-md-azhar/urbanpulse/actions/workflows/daily_refresh.yml)
 [![Vercel Ready](https://img.shields.io/badge/Vercel-Deployment%20Ready-black?logo=vercel)](https://vercel.com)
 [![Medallion Architecture](https://img.shields.io/badge/Architecture-Medallion%20Delta%20Lake-blue)](https://delta.io)
@@ -155,6 +157,15 @@ The pipeline requires **zero external credentials** and runs out-of-the-box on s
    ```
    Open `http://localhost:3000` to interact with the dashboard.
 
+### Deploying Your Own Instance
+
+The dashboard in `/dashboard` is a static Next.js App Router application configured with `output: 'export'` that consumes precomputed JSON snapshots from `dashboard/public/data/`.
+
+To deploy an instance to Vercel, Netlify, or any static hosting platform:
+1. Fork or import this repository into your hosting provider.
+2. Configure the deployment root directory to `dashboard`.
+3. The build command `npm run build` generates a standalone static export with zero environment variables or serverless compute required.
+
 ---
 
 ## 🐳 Docker & Airflow Orchestration Verification
@@ -199,16 +210,6 @@ If Docker Desktop is installed on your machine, follow these steps to verify Air
    ```bash
    docker compose down
    ```
-
----
-
-## 🌐 Vercel Deployment
-
-The frontend (`/dashboard`) is a static Next.js App Router application configured with `output: 'export'` that reads committed JSON snapshots.
-
-> [!TIP]
-> **Vercel Zero-Config Deployment:**
-> Import this repository into Vercel with root directory set to `/dashboard` — no other configuration, environment variables, or build overrides needed!
 
 ---
 
@@ -264,8 +265,8 @@ Data quality is enforced using **dbt-duckdb** as a hard blocking gate:
 | **Pune** | 47 | 12 | **8.08** | 8.21 | **+1.6%** | Beats persistence | 66.1 | Moderate |
 | **Chennai** | 47 | 12 | **12.49** | 9.60 | **-30.1%** | Underperforms persistence | 75.2 | Moderate |
 | **Mumbai** | 47 | 12 | **10.69** | 8.08 | **-32.3%** | Underperforms persistence | 96.6 | Moderate |
-| **Hyderabad** | 47 | 12 | **12.21** | 8.22 | **-48.5%** | Underperforms persistence | 77.4 | Moderate |
-| **OVERALL** | **47** | **12** | **11.30** | **11.77** | **+4.0%** | **5 of 8 cities beat baseline** | — | — |
+| **Hyderabad** | 47 | 12 | **12.10** | 8.22 | **-47.1%** | Underperforms persistence | 77.2 | Moderate |
+| **OVERALL** | **47** | **12** | **11.30** | **11.77** | **+3.9%** | **5 of 8 cities beat baseline** | — | — |
 
 > [!IMPORTANT]
 > **Unvarnished Empirical Findings & Why Numbers Shifted:**

@@ -31,7 +31,7 @@
     "max_iter": 100,
     "missing_values_strategy": "native_histogram_binning"
   },
-  "trained_at": "2026-09-23T17:01:36.664763+00:00",
+  "trained_at": "2026-09-23T18:33:40.654451+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",

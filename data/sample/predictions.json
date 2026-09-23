@@ -11,7 +11,7 @@
     "naive_baseline_mae": 10.57,
     "delta_vs_baseline_pct": 31.8,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T17:01:56.976420+00:00"
+    "predicted_at": "2026-09-23T18:33:55.094709+00:00"
   },
   {
     "city": "bengaluru",
@@ -25,7 +25,7 @@
     "naive_baseline_mae": 7.24,
     "delta_vs_baseline_pct": 14.1,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T17:01:42.267212+00:00"
+    "predicted_at": "2026-09-23T18:33:42.120597+00:00"
   },
   {
     "city": "chennai",
@@ -39,7 +39,7 @@
     "naive_baseline_mae": 9.6,
     "delta_vs_baseline_pct": -30.1,
     "beats_baseline": false,
-    "predicted_at": "2026-09-23T17:01:48.481990+00:00"
+    "predicted_at": "2026-09-23T18:33:49.318363+00:00"
   },
   {
     "city": "delhi",
@@ -53,7 +53,7 @@
     "naive_baseline_mae": 19.38,
     "delta_vs_baseline_pct": 9.2,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T17:01:36.699895+00:00"
+    "predicted_at": "2026-09-23T18:33:40.671756+00:00"
   },
   {
     "city": "hyderabad",
@@ -67,7 +67,7 @@
     "naive_baseline_mae": 8.22,
     "delta_vs_baseline_pct": -47.1,
     "beats_baseline": false,
-    "predicted_at": "2026-09-23T17:01:50.843513+00:00"
+    "predicted_at": "2026-09-23T18:33:51.721543+00:00"
   },
   {
     "city": "kolkata",
@@ -81,7 +81,7 @@
     "naive_baseline_mae": 22.83,
     "delta_vs_baseline_pct": 29.8,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T17:01:46.037758+00:00"
+    "predicted_at": "2026-09-23T18:33:46.668000+00:00"
   },
   {
     "city": "mumbai",
@@ -95,7 +95,7 @@
     "naive_baseline_mae": 8.08,
     "delta_vs_baseline_pct": -32.3,
     "beats_baseline": false,
-    "predicted_at": "2026-09-23T17:01:39.511539+00:00"
+    "predicted_at": "2026-09-23T18:33:41.340802+00:00"
   },
   {
     "city": "pune",
@@ -109,6 +109,6 @@
     "naive_baseline_mae": 8.21,
     "delta_vs_baseline_pct": 1.6,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T17:01:53.202040+00:00"
+    "predicted_at": "2026-09-23T18:33:53.951284+00:00"
   }
 ]
