@@ -73,9 +73,9 @@ def load_gold_data() -> pd.DataFrame:
             avg_us_aqi,
             max_us_aqi,
             aqi_category,
-            COALESCE(lag_1d_aqi, avg_us_aqi) AS lag_1d_aqi,
-            COALESCE(lag_2d_aqi, lag_1d_aqi, avg_us_aqi) AS lag_2d_aqi,
-            COALESCE(lag_3d_aqi, lag_2d_aqi, avg_us_aqi) AS lag_3d_aqi,
+            lag_1d_aqi,
+            lag_2d_aqi,
+            lag_3d_aqi,
             LEAD(avg_us_aqi, 1) OVER (PARTITION BY city ORDER BY metric_date) AS target_next_day_aqi
         FROM fct_daily_city_metrics
         ORDER BY city, metric_date
@@ -164,7 +164,9 @@ def train_and_forecast_city(
     model_artifact_path = MODELS_DIR / f"{city_key}_aqi_model_v1.joblib"
     joblib.dump(model_to_save, model_artifact_path)
 
-    improvement_pct = max(0.0, (naive_baseline_mae - test_mae) / (naive_baseline_mae + 1e-6) * 100)
+    # Honest evaluation: can be positive (improvement) or negative (underperformed persistence)
+    delta_pct = round(((naive_baseline_mae - test_mae) / (naive_baseline_mae + 1e-6)) * 100, 1)
+    beats_baseline = bool(test_mae < naive_baseline_mae)
 
     metadata = {
         "city": city_key,
@@ -177,7 +179,13 @@ def train_and_forecast_city(
         "train_mae": round(train_mae, 2),
         "test_mae": round(test_mae, 2),
         "naive_baseline_mae": round(naive_baseline_mae, 2),
-        "improvement_over_baseline_pct": round(improvement_pct, 1),
+        "delta_vs_baseline_pct": delta_pct,
+        "beats_baseline": beats_baseline,
+        "performance_summary": (
+            f"Beats persistence baseline by {delta_pct}%"
+            if beats_baseline
+            else f"Underperforms persistence baseline by {abs(delta_pct)}% (low atmospheric volatility / small sample)"
+        ),
         "trained_at": datetime.now(timezone.utc).isoformat(),
         "features": FEATURE_COLS,
         "target": "target_next_day_aqi (day t+1 US AQI)",
@@ -217,6 +225,8 @@ def train_and_forecast_city(
         "model_version": "v1.0.0",
         "mae": round(test_mae, 2),
         "naive_baseline_mae": round(naive_baseline_mae, 2),
+        "delta_vs_baseline_pct": delta_pct,
+        "beats_baseline": beats_baseline,
         "predicted_at": datetime.now(timezone.utc).isoformat(),
     }
 

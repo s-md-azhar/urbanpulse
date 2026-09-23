@@ -74,19 +74,21 @@ This document records the architectural, infrastructure, and engineering decisio
 
 ---
 
-## ADR 007: Expanded 60-Day Historical Backfill & Strict Chronological ML Validation
+## ADR 007: Expanded 60-Day Historical Backfill, Native NaN Warm-Up, & Honest ML Baseline Findings
 - **Status:** Accepted
 - **Context:** The initial prototype backfilled only 14 days of data. When engineering lag features ($t-1, t-2, t-3$) and leading target values ($t+1$), a 14-day window yielded only 10–11 labeled observations per city.
   1. **Sample Starvation:** Evaluating a train/test split on 11 rows meant an 80/20 split left only 2 rows in the test set, creating extreme metric variance.
   2. **Risk of Random Shuffling Leakage:** Random train/test splits on time-series data leak adjacent-day atmospheric conditions (since weather is autoregressive), producing artificially near-zero MAEs.
   3. **In-Sample Overfitting:** Evaluating training error on small sample sizes yields illusory perfection (MAE < 0.1) that fails in production.
+  4. **Warm-Up Row Math:** On 60 historical days with 3-day lags, the first 3 days per city do not have prior lags. Discarding them would drop 3 valuable days per city (leaving only 56 labeled samples).
 - **Decision:**
   1. Increase the historical backfill window to **60 days** using Open-Meteo's historical archive endpoint (`https://archive-api.open-meteo.com/v1/archive` and historical air quality range queries).
-  2. Enforce a **strict chronological train/test split (80% train on earlier days, 20% test on latest days)** for every city model.
-  3. Evaluate and log genuine **out-of-sample Test MAE** alongside a **naive persistence baseline** ($AQI_{t+1} \approx AQI_t$) evaluated on the exact same held-out test window.
-  4. Train the final production inference artifact on all 60 days to forecast tomorrow ($t+1$).
-- **Consequences:**
-  - Provides ~57 labeled daily observations per city (~46 training days, ~11 out-of-sample test days), creating statistically grounded test metrics.
-  - Eliminates target leakage and temporal lookahead bias completely.
-  - Realistic out-of-sample performance: Test MAE reflects genuine forecasting error on unseen future days.
+  2. Enforce a **strict chronological train/test split (80% train on earlier 47 days, 20% test on latest 12 days)** for every city model.
+  3. **Native NaN Warm-Up Handling:** Rather than discarding warm-up rows or using arbitrary imputation, leverage `HistGradientBoostingRegressor`'s native missing-value (`NaN`) binning for days 1–3 lags. This preserves 59 usable labeled observations (only the final day without a target is dropped).
+  4. Evaluate and log genuine **out-of-sample Test MAE** alongside a **naive persistence baseline** ($AQI_{t+1} \approx AQI_t$) evaluated on the exact same held-out test window.
+  5. Train the final production inference artifact on all 59 labeled days to forecast tomorrow ($t+1$).
+- **Consequences & Empirical Findings:**
+  - **Sample Grounding:** Provides 59 labeled daily observations per city (47 training days, 12 out-of-sample test days).
+  - **Honest Performance Disclosure:** **4 of 8 city models underperform the naive persistence baseline**, likely due to the small per-city training set (47 days) and low atmospheric volatility in coastal/peninsular cities (Bengaluru -8%, Mumbai -32%, Chennai -33%, Hyderabad -52%). In contrast, models demonstrate substantial genuine gains (+13% to +32%) specifically in higher-volatility, weather-transition cities (Kolkata +31.5%, Ahmedabad +31.5%, Delhi +17.7%, Pune +13.4%).
+  - **Production Architecture Insight:** On steady-state, low-variance time series with limited historical depth, a simple 1-line persistence heuristic often outperforms gradient boosted trees. A production lakehouse should implement a hybrid routing rule that defaults to persistence for low-volatility regions while dispatching ML models for high-variance regions.
 

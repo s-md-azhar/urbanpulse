@@ -233,18 +233,26 @@ Data quality is enforced using **dbt-duckdb** as a hard blocking gate:
   - Atmospheric predictors (`avg_temperature_c`, `avg_humidity_pct`, `avg_wind_speed_kmh`).
   - Fine/Coarse particulate matter (`avg_pm2_5`, `avg_pm10`).
   - Temporal cyclical markers (`day_of_week`, `month`).
-- **Out-of-Sample Test Metrics (60-day Historical Sample):**
+- **Out-of-Sample Test Metrics (60-day Historical Sample, Strict Chronological Split):**
 
-| City | Train Days | Test Days | Test MAE | Naive Baseline MAE | Improvement over Baseline | Tomorrow's Forecast | Category |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Delhi** | 47 | 12 | **17.05** | 19.38 | **+12.0%** | 172.4 | Unhealthy |
-| **Kolkata** | 47 | 12 | **15.57** | 22.83 | **+31.8%** | 57.8 | Moderate |
-| **Ahmedabad** | 47 | 12 | **7.79** | 10.57 | **+26.3%** | 95.3 | Moderate |
-| **Pune** | 47 | 12 | **6.70** | 8.21 | **+18.4%** | 69.5 | Moderate |
-| **Bengaluru** | 47 | 12 | **8.06** | 7.24 | Baseline competitive | 47.6 | Good |
-| **Mumbai** | 47 | 12 | **10.60** | 8.08 | Baseline competitive | 97.2 | Moderate |
-| **Hyderabad** | 47 | 12 | **11.85** | 8.22 | Baseline competitive | 77.4 | Moderate |
-| **Chennai** | 47 | 12 | **13.08** | 9.60 | Baseline competitive | 81.1 | Moderate |
+| City | Train Days | Test Days | Test MAE | Naive Baseline MAE | Delta vs Baseline | Model vs Persistence | Tomorrow's Forecast | Category |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Kolkata** | 47 | 12 | **15.63** | 22.83 | **+31.5%** | Beats persistence | 58.2 | Moderate |
+| **Ahmedabad** | 47 | 12 | **7.24** | 10.57 | **+31.5%** | Beats persistence | 94.0 | Moderate |
+| **Delhi** | 47 | 12 | **15.96** | 19.38 | **+17.7%** | Beats persistence | 174.3 | Unhealthy |
+| **Pune** | 47 | 12 | **7.11** | 8.21 | **+13.4%** | Beats persistence | 70.2 | Moderate |
+| **Bengaluru** | 47 | 12 | **7.83** | 7.24 | **-8.1%** | Underperforms persistence | 47.9 | Good |
+| **Mumbai** | 47 | 12 | **10.67** | 8.08 | **-32.0%** | Underperforms persistence | 96.6 | Moderate |
+| **Chennai** | 47 | 12 | **12.78** | 9.60 | **-33.1%** | Underperforms persistence | 80.4 | Moderate |
+| **Hyderabad** | 47 | 12 | **12.50** | 8.22 | **-52.0%** | Underperforms persistence | 78.1 | Moderate |
+
+> [!IMPORTANT]
+> **Key Machine Learning Insight & Honest Performance Disclosure:**
+> **4 of 8 city models underperform the naive baseline**, likely due to the small per-city training set (47 days) and low atmospheric volatility in coastal/peninsular cities; models show real gains specifically in higher-volatility, weather-transition cities (Delhi, Kolkata, Ahmedabad, Pune). On steady-state, low-variance series (Bengaluru, Mumbai, Chennai, Hyderabad), small-sample gradient boosting struggles to beat a simple 1-line persistence heuristic ($AQI_{t+1} \approx AQI_t$). In production, a production routing rule should fallback to persistence for low-volatility regions.
+
+> [!NOTE]
+> **Row Math & Warm-Up Handling:**
+> With 60 days of historical data and 3-day lag features, only the final day (Day 60) is dropped due to an unobserved target (Day 61). For the initial 3 warm-up days, unobserved lags are left as native `NaN`. Rather than discarding warm-up rows (which would drop 3 days and reduce labeled rows to 56), `HistGradientBoostingRegressor`'s native missing value (`NaN`) handling is utilized to retain full day-$t$ atmospheric and temporal signals, yielding 59 labeled daily training observations per city.
 
 - **Telemetry & Artifacts:**
   - Versioned model weights saved to `pipeline/ml/models/{city}_aqi_model_v1.joblib`.
