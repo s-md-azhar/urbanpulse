@@ -11,7 +11,7 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.298059+00:00"
+    "predicted_at": "2026-09-23T11:28:58.084026+00:00"
   },
   {
     "city": "mumbai",
@@ -25,7 +25,7 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.302416+00:00"
+    "predicted_at": "2026-09-23T11:28:58.089657+00:00"
   },
   {
     "city": "bengaluru",
@@ -39,7 +39,7 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.306654+00:00"
+    "predicted_at": "2026-09-23T11:28:58.095078+00:00"
   },
   {
     "city": "kolkata",
@@ -53,7 +53,7 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.310874+00:00"
+    "predicted_at": "2026-09-23T11:28:58.100464+00:00"
   },
   {
     "city": "chennai",
@@ -67,7 +67,7 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.314989+00:00"
+    "predicted_at": "2026-09-23T11:28:58.105571+00:00"
   },
   {
     "city": "hyderabad",
@@ -81,7 +81,7 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.319103+00:00"
+    "predicted_at": "2026-09-23T11:28:58.110603+00:00"
   },
   {
     "city": "pune",
@@ -95,7 +95,7 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.323281+00:00"
+    "predicted_at": "2026-09-23T11:28:58.115643+00:00"
   },
   {
     "city": "ahmedabad",
@@ -109,6 +109,6 @@
     "naive_baseline_mae": 15.0,
     "delta_vs_baseline_pct": 20.0,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T08:29:04.327477+00:00"
+    "predicted_at": "2026-09-23T11:28:58.120926+00:00"
   }
 ]
