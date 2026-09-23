@@ -12,7 +12,14 @@
   "delta_vs_baseline_pct": 13.4,
   "beats_baseline": true,
   "performance_summary": "Beats persistence baseline by 13.4%",
-  "trained_at": "2026-09-23T06:52:39.248839+00:00",
+  "hyperparameters": {
+    "random_state": 42,
+    "min_samples_leaf": 4,
+    "learning_rate": 0.08,
+    "max_iter": 100,
+    "missing_values_strategy": "native_histogram_binning"
+  },
+  "trained_at": "2026-09-23T07:30:19.052678+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",

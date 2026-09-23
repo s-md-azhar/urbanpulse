@@ -37,6 +37,16 @@ logger = logging.getLogger("ml_train")
 MODELS_DIR = Path(__file__).resolve().parent / "models"
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
+# Fixed reproducible seed for deterministic training across runs
+RANDOM_STATE = 42
+
+# Small-N tuned hyperparameters for N_train=47:
+# Scikit-learn's default min_samples_leaf=20 collapses splitting on small samples.
+# min_samples_leaf=4 allows capturing real non-linear atmospheric interactions.
+MIN_SAMPLES_LEAF = 4
+LEARNING_RATE = 0.08
+MAX_ITER = 100
+
 # Strict feature set: ALL features are from day t or earlier (t-1, t-2, t-3).
 # Target is day t+1. Absolutely ZERO forward-looking features.
 FEATURE_COLS = [
@@ -122,10 +132,10 @@ def train_and_forecast_city(
 
         # Train evaluation model strictly on the earlier training set
         eval_model = HistGradientBoostingRegressor(
-            max_iter=100,
-            min_samples_leaf=4,
-            learning_rate=0.08,
-            random_state=42,
+            max_iter=MAX_ITER,
+            min_samples_leaf=MIN_SAMPLES_LEAF,
+            learning_rate=LEARNING_RATE,
+            random_state=RANDOM_STATE,
         )
         eval_model.fit(X_train, y_train)
 
@@ -140,10 +150,10 @@ def train_and_forecast_city(
 
         # Train production model on all labeled data up to today for tomorrow's forecast
         prod_model = HistGradientBoostingRegressor(
-            max_iter=100,
-            min_samples_leaf=4,
-            learning_rate=0.08,
-            random_state=42,
+            max_iter=MAX_ITER,
+            min_samples_leaf=MIN_SAMPLES_LEAF,
+            learning_rate=LEARNING_RATE,
+            random_state=RANDOM_STATE,
         )
         prod_model.fit(labeled_df[FEATURE_COLS], labeled_df["target_next_day_aqi"])
         model_to_save = prod_model
@@ -156,7 +166,7 @@ def train_and_forecast_city(
         naive_baseline_mae = 15.0
         train_samples = n_samples
         test_samples = 0
-        model_to_save = HistGradientBoostingRegressor(random_state=42)
+        model_to_save = HistGradientBoostingRegressor(random_state=RANDOM_STATE)
         if n_samples >= 3:
             model_to_save.fit(labeled_df[FEATURE_COLS], labeled_df["target_next_day_aqi"])
 
@@ -186,6 +196,13 @@ def train_and_forecast_city(
             if beats_baseline
             else f"Underperforms persistence baseline by {abs(delta_pct)}% (low atmospheric volatility / small sample)"
         ),
+        "hyperparameters": {
+            "random_state": RANDOM_STATE,
+            "min_samples_leaf": MIN_SAMPLES_LEAF,
+            "learning_rate": LEARNING_RATE,
+            "max_iter": MAX_ITER,
+            "missing_values_strategy": "native_histogram_binning",
+        },
         "trained_at": datetime.now(timezone.utc).isoformat(),
         "features": FEATURE_COLS,
         "target": "target_next_day_aqi (day t+1 US AQI)",

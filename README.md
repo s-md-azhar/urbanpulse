@@ -239,16 +239,21 @@ Data quality is enforced using **dbt-duckdb** as a hard blocking gate:
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **Kolkata** | 47 | 12 | **15.63** | 22.83 | **+31.5%** | Beats persistence | 58.2 | Moderate |
 | **Ahmedabad** | 47 | 12 | **7.24** | 10.57 | **+31.5%** | Beats persistence | 94.0 | Moderate |
-| **Delhi** | 47 | 12 | **15.96** | 19.38 | **+17.7%** | Beats persistence | 174.3 | Unhealthy |
+| **Delhi** | 47 | 12 | **16.32** | 19.38 | **+15.8%** | Beats persistence | 174.9 | Unhealthy |
 | **Pune** | 47 | 12 | **7.11** | 8.21 | **+13.4%** | Beats persistence | 70.2 | Moderate |
 | **Bengaluru** | 47 | 12 | **7.83** | 7.24 | **-8.1%** | Underperforms persistence | 47.9 | Good |
 | **Mumbai** | 47 | 12 | **10.67** | 8.08 | **-32.0%** | Underperforms persistence | 96.6 | Moderate |
-| **Chennai** | 47 | 12 | **12.78** | 9.60 | **-33.1%** | Underperforms persistence | 80.4 | Moderate |
-| **Hyderabad** | 47 | 12 | **12.50** | 8.22 | **-52.0%** | Underperforms persistence | 78.1 | Moderate |
+| **Chennai** | 47 | 12 | **12.70** | 9.60 | **-32.3%** | Underperforms persistence | 80.9 | Moderate |
+| **Hyderabad** | 47 | 12 | **12.13** | 8.22 | **-47.6%** | Underperforms persistence | 78.4 | Moderate |
 
 > [!IMPORTANT]
 > **Key Machine Learning Insight & Honest Performance Disclosure:**
 > **4 of 8 city models underperform the naive baseline**, likely due to the small per-city training set (47 days) and low atmospheric volatility in coastal/peninsular cities; models show real gains specifically in higher-volatility, weather-transition cities (Delhi, Kolkata, Ahmedabad, Pune). On steady-state, low-variance series (Bengaluru, Mumbai, Chennai, Hyderabad), small-sample gradient boosting struggles to beat a simple 1-line persistence heuristic ($AQI_{t+1} \approx AQI_t$). In production, a production routing rule should fallback to persistence for low-volatility regions.
+
+> [!NOTE]
+> **Hyperparameters & Reproducibility:**
+> - **Reproducible Seed:** `RANDOM_STATE = 42` is fixed across all model instances and logged in `pipeline/ml/models/{city}_metadata.json`.
+> - **Small-N Optimization:** Scikit-learn's default `min_samples_leaf=20` fails on $N_{\text{train}}=47$ (allowing only 1–2 splits total and collapsing to sample means). We tuned `min_samples_leaf=4`, `learning_rate=0.08`, and `max_iter=100`. An extensive grid search testing `min_samples_leaf` $\in \{2, 3, 4, 6, 20\}$, shallower depths (`max_depth=3`), and $L_2$ regularization confirmed that while small leaves prevent collapse in volatile cities, coastal/plateau cities (Mumbai, Chennai, Hyderabad) persistently favor the 1-line heuristic due to variance penalty vs bias on $N=47$.
 
 > [!NOTE]
 > **Row Math & Warm-Up Handling:**

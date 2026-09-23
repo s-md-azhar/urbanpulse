@@ -12,7 +12,14 @@
   "delta_vs_baseline_pct": -32.0,
   "beats_baseline": false,
   "performance_summary": "Underperforms persistence baseline by 32.0% (low atmospheric volatility / small sample)",
-  "trained_at": "2026-09-23T06:52:08.795766+00:00",
+  "hyperparameters": {
+    "random_state": 42,
+    "min_samples_leaf": 4,
+    "learning_rate": 0.08,
+    "max_iter": 100,
+    "missing_values_strategy": "native_histogram_binning"
+  },
+  "trained_at": "2026-09-23T07:30:15.703073+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",
