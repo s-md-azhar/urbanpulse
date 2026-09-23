@@ -10,8 +10,8 @@
     },
     "bronze": {
       "format": "Delta Lake (ACID Append-Only)",
-      "weather_row_count": 123264,
-      "air_quality_row_count": 123264
+      "weather_row_count": 134784,
+      "air_quality_row_count": 134784
     },
     "silver": {
       "format": "Delta Lake (ACID Idempotent Upsert)",
