@@ -9,8 +9,8 @@
   "train_val_samples": 47,
   "test_samples": 12,
   "val_mae": 21.36,
-  "train_val_mae": 4.47,
-  "test_mae": 17.59,
+  "train_val_mae": 4.49,
+  "test_mae": 17.61,
   "naive_baseline_mae": 19.38,
   "delta_vs_baseline_pct": 9.2,
   "beats_baseline": true,
@@ -31,7 +31,7 @@
     "max_iter": 100,
     "missing_values_strategy": "native_histogram_binning"
   },
-  "trained_at": "2026-09-23T11:28:58.082784+00:00",
+  "trained_at": "2026-09-23T17:01:36.664763+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",

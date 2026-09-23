@@ -10,11 +10,11 @@
   "test_samples": 12,
   "val_mae": 8.12,
   "train_val_mae": 0.46,
-  "test_mae": 12.21,
+  "test_mae": 12.1,
   "naive_baseline_mae": 8.22,
-  "delta_vs_baseline_pct": -48.5,
+  "delta_vs_baseline_pct": -47.1,
   "beats_baseline": false,
-  "performance_summary": "Underperforms persistence baseline by 48.5% (low atmospheric volatility / small sample)",
+  "performance_summary": "Underperforms persistence baseline by 47.1% (low atmospheric volatility / small sample)",
   "hyperparameter_selection": {
     "method": "Chronological Validation Set Grid Search (Zero Test Peeking)",
     "train_window_days": 39,
@@ -31,7 +31,7 @@
     "max_iter": 100,
     "missing_values_strategy": "native_histogram_binning"
   },
-  "trained_at": "2026-09-23T11:28:58.109546+00:00",
+  "trained_at": "2026-09-23T17:01:50.812473+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",

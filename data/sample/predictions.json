@@ -3,21 +3,7 @@
     "city": "ahmedabad",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 172.3,
-    "predicted_category": "Unhealthy",
-    "reference_aqi": 172.3,
-    "model_version": "v1.0.0",
-    "mae": 12.0,
-    "naive_baseline_mae": 15.0,
-    "delta_vs_baseline_pct": 20.0,
-    "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.084026+00:00"
-  },
-  {
-    "city": "mumbai",
-    "forecast_for_date": "2026-09-23",
-    "reference_date": "2026-09-22",
-    "predicted_aqi": 95.7,
+    "predicted_aqi": 93.6,
     "predicted_category": "Moderate",
     "reference_aqi": 113.8,
     "model_version": "v1.0.0",
@@ -25,7 +11,7 @@
     "naive_baseline_mae": 10.57,
     "delta_vs_baseline_pct": 31.8,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.089657+00:00"
+    "predicted_at": "2026-09-23T17:01:56.976420+00:00"
   },
   {
     "city": "bengaluru",
@@ -39,27 +25,13 @@
     "naive_baseline_mae": 7.24,
     "delta_vs_baseline_pct": 14.1,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.095078+00:00"
-  },
-  {
-    "city": "kolkata",
-    "forecast_for_date": "2026-09-23",
-    "reference_date": "2026-09-22",
-    "predicted_aqi": 63.8,
-    "predicted_category": "Moderate",
-    "reference_aqi": 63.8,
-    "model_version": "v1.0.0",
-    "mae": 12.0,
-    "naive_baseline_mae": 15.0,
-    "delta_vs_baseline_pct": 20.0,
-    "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.100464+00:00"
+    "predicted_at": "2026-09-23T17:01:42.267212+00:00"
   },
   {
     "city": "chennai",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 75.4,
+    "predicted_aqi": 75.2,
     "predicted_category": "Moderate",
     "reference_aqi": 76.0,
     "model_version": "v1.0.0",
@@ -67,7 +39,7 @@
     "naive_baseline_mae": 9.6,
     "delta_vs_baseline_pct": -30.1,
     "beats_baseline": false,
-    "predicted_at": "2026-09-23T16:26:06.386564+00:00"
+    "predicted_at": "2026-09-23T17:01:48.481990+00:00"
   },
   {
     "city": "delhi",
@@ -77,25 +49,25 @@
     "predicted_category": "Unhealthy",
     "reference_aqi": 172.8,
     "model_version": "v1.0.0",
-    "mae": 17.59,
+    "mae": 17.61,
     "naive_baseline_mae": 19.38,
     "delta_vs_baseline_pct": 9.2,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.105571+00:00"
+    "predicted_at": "2026-09-23T17:01:36.699895+00:00"
   },
   {
     "city": "hyderabad",
     "forecast_for_date": "2026-09-23",
     "reference_date": "2026-09-22",
-    "predicted_aqi": 77.4,
+    "predicted_aqi": 77.2,
     "predicted_category": "Moderate",
     "reference_aqi": 97.0,
     "model_version": "v1.0.0",
-    "mae": 12.21,
+    "mae": 12.1,
     "naive_baseline_mae": 8.22,
-    "delta_vs_baseline_pct": -48.5,
+    "delta_vs_baseline_pct": -47.1,
     "beats_baseline": false,
-    "predicted_at": "2026-09-23T16:26:09.399958+00:00"
+    "predicted_at": "2026-09-23T17:01:50.843513+00:00"
   },
   {
     "city": "kolkata",
@@ -109,7 +81,21 @@
     "naive_baseline_mae": 22.83,
     "delta_vs_baseline_pct": 29.8,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.110603+00:00"
+    "predicted_at": "2026-09-23T17:01:46.037758+00:00"
+  },
+  {
+    "city": "mumbai",
+    "forecast_for_date": "2026-09-23",
+    "reference_date": "2026-09-22",
+    "predicted_aqi": 96.6,
+    "predicted_category": "Moderate",
+    "reference_aqi": 94.9,
+    "model_version": "v1.0.0",
+    "mae": 10.69,
+    "naive_baseline_mae": 8.08,
+    "delta_vs_baseline_pct": -32.3,
+    "beats_baseline": false,
+    "predicted_at": "2026-09-23T17:01:39.511539+00:00"
   },
   {
     "city": "pune",
@@ -123,20 +109,6 @@
     "naive_baseline_mae": 8.21,
     "delta_vs_baseline_pct": 1.6,
     "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.115643+00:00"
-  },
-  {
-    "city": "ahmedabad",
-    "forecast_for_date": "2026-09-23",
-    "reference_date": "2026-09-22",
-    "predicted_aqi": 114.6,
-    "predicted_category": "Unhealthy for Sensitive Groups",
-    "reference_aqi": 114.6,
-    "model_version": "v1.0.0",
-    "mae": 12.0,
-    "naive_baseline_mae": 15.0,
-    "delta_vs_baseline_pct": 20.0,
-    "beats_baseline": true,
-    "predicted_at": "2026-09-23T11:28:58.120926+00:00"
+    "predicted_at": "2026-09-23T17:01:53.202040+00:00"
   }
 ]
