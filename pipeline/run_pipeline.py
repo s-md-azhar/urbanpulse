@@ -125,10 +125,28 @@ def generate_dbt_docs() -> None:
     subprocess.run(cmd, capture_output=True, text=True, env=_prepare_dbt_env())
 
 
+def _sanitize_for_json(obj: Any) -> Any:
+    """
+    Recursively replaces NaN, Infinity, and -Infinity values with None
+    so that json.dump produces standard-compliant JSON null literals
+    (matching RFC 8259, strictly compatible with browser JSON.parse and response.json()).
+    """
+    import math
+    if isinstance(obj, float):
+        if math.isnan(obj) or math.isinf(obj):
+            return None
+        return obj
+    elif isinstance(obj, dict):
+        return {k: _sanitize_for_json(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_sanitize_for_json(item) for item in obj]
+    return obj
+
+
 def export_dashboard_snapshots() -> Dict[str, Any]:
     """
     Export Gold layer and ML forecast results into flat JSON snapshots
-    for the Next.js static dashboard.
+    for the Next.js static dashboard. Guarantees RFC 8259 JSON compliance (no NaN).
     """
     logger.info("Exporting JSON snapshots for dashboard...")
     DASHBOARD_DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -172,7 +190,7 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
         metrics_df = con.execute(metrics_query).df()
         # Convert date to string
         metrics_df["metric_date"] = metrics_df["metric_date"].astype(str)
-        metrics_data = metrics_df.to_dict(orient="records")
+        metrics_data = _sanitize_for_json(metrics_df.to_dict(orient="records"))
 
         # 3. Latest City Summary
         summary_query = """
@@ -192,7 +210,7 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
         """
         summary_df = con.execute(summary_query).df()
         summary_df["metric_date"] = summary_df["metric_date"].astype(str)
-        city_summary = summary_df.to_dict(orient="records")
+        city_summary = _sanitize_for_json(summary_df.to_dict(orient="records"))
 
     finally:
         con.close()
@@ -206,7 +224,7 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
                 pred_df = pred_df.sort_values("predicted_at").groupby("city", as_index=False).last()
             pred_df["forecast_for_date"] = pred_df["forecast_for_date"].astype(str)
             pred_df["reference_date"] = pred_df["reference_date"].astype(str)
-            predictions_data = pred_df.to_dict(orient="records")
+            predictions_data = _sanitize_for_json(pred_df.to_dict(orient="records"))
         except Exception as e:
             logger.warning("Failed to read predictions table: %s", e)
 
@@ -272,11 +290,11 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
 
     # Write snapshots to both dashboard/public/data and data/sample/
     files_to_export = {
-        "cities.json": cities_data,
-        "metrics.json": metrics_data,
-        "summary.json": city_summary,
-        "predictions.json": predictions_data,
-        "pipeline_meta.json": meta_info,
+        "cities.json": _sanitize_for_json(cities_data),
+        "metrics.json": _sanitize_for_json(metrics_data),
+        "summary.json": _sanitize_for_json(city_summary),
+        "predictions.json": _sanitize_for_json(predictions_data),
+        "pipeline_meta.json": _sanitize_for_json(meta_info),
     }
 
     for filename, payload in files_to_export.items():
@@ -284,10 +302,10 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
         sample_file = SAMPLE_DATA_DIR / filename
 
         with open(dash_file, "w", encoding="utf-8") as f:
-            json.dump(payload, f, default=str, indent=2)
+            json.dump(payload, f, default=str, indent=2, allow_nan=False)
 
         with open(sample_file, "w", encoding="utf-8") as f:
-            json.dump(payload, f, default=str, indent=2)
+            json.dump(payload, f, default=str, indent=2, allow_nan=False)
 
     logger.info("Successfully exported %d JSON snapshots to dashboard and sample folders.", len(files_to_export))
     return meta_info

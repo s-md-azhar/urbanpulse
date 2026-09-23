@@ -20,9 +20,9 @@
     "avg_us_aqi": 47.6,
     "max_us_aqi": 64.0,
     "aqi_category": "Good",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 47.6
   },
   {
@@ -46,9 +46,9 @@
     "avg_us_aqi": 51.9,
     "max_us_aqi": 55.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 51.9
   },
   {
@@ -72,9 +72,9 @@
     "avg_us_aqi": 77.0,
     "max_us_aqi": 81.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 77.0
   },
   {
@@ -98,9 +98,9 @@
     "avg_us_aqi": 86.3,
     "max_us_aqi": 94.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 86.3
   },
   {
@@ -124,9 +124,9 @@
     "avg_us_aqi": 56.0,
     "max_us_aqi": 62.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 56.0
   },
   {
@@ -150,9 +150,9 @@
     "avg_us_aqi": 88.6,
     "max_us_aqi": 95.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 88.6
   },
   {
@@ -176,9 +176,9 @@
     "avg_us_aqi": 64.0,
     "max_us_aqi": 67.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 64.0
   },
   {
@@ -202,9 +202,9 @@
     "avg_us_aqi": 24.0,
     "max_us_aqi": 28.0,
     "aqi_category": "Good",
-    "lag_1d_aqi": NaN,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_1d_aqi": null,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 24.0
   },
   {
@@ -229,8 +229,8 @@
     "max_us_aqi": 67.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 47.6,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 56.9
   },
   {
@@ -255,8 +255,8 @@
     "max_us_aqi": 44.0,
     "aqi_category": "Good",
     "lag_1d_aqi": 51.9,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 46.5
   },
   {
@@ -281,8 +281,8 @@
     "max_us_aqi": 75.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 77.0,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 74.5
   },
   {
@@ -307,8 +307,8 @@
     "max_us_aqi": 197.0,
     "aqi_category": "Unhealthy for Sensitive Groups",
     "lag_1d_aqi": 86.3,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 105.9
   },
   {
@@ -333,8 +333,8 @@
     "max_us_aqi": 55.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 56.0,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 55.1
   },
   {
@@ -359,8 +359,8 @@
     "max_us_aqi": 76.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 88.6,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 73.6
   },
   {
@@ -385,8 +385,8 @@
     "max_us_aqi": 69.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 64.0,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 65.8
   },
   {
@@ -411,8 +411,8 @@
     "max_us_aqi": 35.0,
     "aqi_category": "Good",
     "lag_1d_aqi": 24.0,
-    "lag_2d_aqi": NaN,
-    "lag_3d_aqi": NaN,
+    "lag_2d_aqi": null,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 27.3
   },
   {
@@ -438,7 +438,7 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 66.1,
     "lag_2d_aqi": 47.6,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 60.8
   },
   {
@@ -464,7 +464,7 @@
     "aqi_category": "Good",
     "lag_1d_aqi": 41.1,
     "lag_2d_aqi": 51.9,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 43.1
   },
   {
@@ -490,7 +490,7 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 71.9,
     "lag_2d_aqi": 77.0,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 72.5
   },
   {
@@ -516,7 +516,7 @@
     "aqi_category": "Unhealthy",
     "lag_1d_aqi": 125.5,
     "lag_2d_aqi": 86.3,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 126.9
   },
   {
@@ -542,7 +542,7 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 54.2,
     "lag_2d_aqi": 56.0,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 53.5
   },
   {
@@ -568,7 +568,7 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 58.5,
     "lag_2d_aqi": 88.6,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 66.0
   },
   {
@@ -594,7 +594,7 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 67.6,
     "lag_2d_aqi": 64.0,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 65.2
   },
   {
@@ -620,7 +620,7 @@
     "aqi_category": "Good",
     "lag_1d_aqi": 30.6,
     "lag_2d_aqi": 24.0,
-    "lag_3d_aqi": NaN,
+    "lag_3d_aqi": null,
     "rolling_7d_avg_aqi": 28.3
   },
   {
