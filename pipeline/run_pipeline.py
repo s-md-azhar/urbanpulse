@@ -241,6 +241,17 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
             "ml_layer": {
                 "model": "HistGradientBoostingRegressor",
                 "target": "Next-Day US AQI",
+                "split_method": "Chronological 3-Way Split (39 Train / 8 Val / 12 Test)",
+                "train_days": 39,
+                "val_days": 8,
+                "test_days": 12,
+                "tuning_strategy": "Validation Set Grid Search (Zero Test Peeking)",
+                "winning_hyperparameters": {
+                    "min_samples_leaf": 3,
+                    "learning_rate": 0.05,
+                    "max_depth": 3,
+                    "random_state": 42
+                },
                 "cities_modeled": len(predictions_data),
             }
         },

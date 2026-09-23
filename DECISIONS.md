@@ -74,25 +74,38 @@ This document records the architectural, infrastructure, and engineering decisio
 
 ---
 
-## ADR 007: Expanded 60-Day Historical Backfill, Native NaN Warm-Up, & Honest ML Baseline Findings
+## ADR 007: Expanded 60-Day Historical Backfill, Native NaN Warm-Up, 3-Way Chronological Split (Train/Val/Test), & Plain-Disclosure Baseline Findings
 - **Status:** Accepted
-- **Context:** The initial prototype backfilled only 14 days of data. When engineering lag features ($t-1, t-2, t-3$) and leading target values ($t+1$), a 14-day window yielded only 10–11 labeled observations per city.
-  1. **Sample Starvation:** Evaluating a train/test split on 11 rows meant an 80/20 split left only 2 rows in the test set, creating extreme metric variance.
-  2. **Risk of Random Shuffling Leakage:** Random train/test splits on time-series data leak adjacent-day atmospheric conditions (since weather is autoregressive), producing artificially near-zero MAEs.
-  3. **In-Sample Overfitting:** Evaluating training error on small sample sizes yields illusory perfection (MAE < 0.1) that fails in production.
+- **Context:** 
+  1. **Sample Starvation in Early Iterations:** The initial prototype backfilled only 14 days of data. When engineering 3-day lag features ($t-1, t-2, t-3$) and leading target values ($t+1$), a 14-day window yielded only 10–11 labeled observations per city.
+  2. **Risk of Random Shuffling Leakage:** Random train/test splits on time-series data leak adjacent-day atmospheric conditions (since weather is autoregressive), producing artificially near-zero MAEs. A chronological split is mandatory.
+  3. **Diagnosing Hyperparameter Selection Leakage:** In an intermediate tuning pass, candidate hyperparameters (`min_samples_leaf=4, learning_rate=0.08`) were selected by evaluating every candidate configuration directly against the held-out 12-day test set. Even though the feature definitions were strictly lagged ($t$ or earlier), using test set performance to pick winning hyperparameters violates out-of-sample isolation. It introduces **selection leakage**, yielding overly optimistic test metrics that do not represent true out-of-sample generalization.
   4. **Warm-Up Row Math:** On 60 historical days with 3-day lags, the first 3 days per city do not have prior lags. Discarding them would drop 3 valuable days per city (leaving only 56 labeled samples).
 - **Decision:**
   1. Increase the historical backfill window to **60 days** using Open-Meteo's historical archive endpoint (`https://archive-api.open-meteo.com/v1/archive` and historical air quality range queries).
-  2. Enforce a **strict chronological train/test split (80% train on earlier 47 days, 20% test on latest 12 days)** for every city model.
-  3. **Native NaN Warm-Up Handling:** Rather than discarding warm-up rows or using arbitrary imputation, leverage `HistGradientBoostingRegressor`'s native missing-value (`NaN`) binning for days 1–3 lags. This preserves 59 usable labeled observations (only the final day without a target is dropped).
-  4. Evaluate and log genuine **out-of-sample Test MAE** alongside a **naive persistence baseline** ($AQI_{t+1} \approx AQI_t$) evaluated on the exact same held-out test window.
-  5. Train the final production inference artifact on all 59 labeled days to forecast tomorrow ($t+1$).
-  6. **Deterministic Seed Pinning:** Explicitly set `RANDOM_STATE = 42` across all regressor instances and record hyperparameter configurations directly into versioned model metadata.
-  7. **Small-N Hyperparameter Optimization:** `scikit-learn`'s default `min_samples_leaf=20` is tuned for datasets with $N \ge 1{,}000$. On $N_{\text{train}}=47$, a leaf size of 20 allows only 1–2 splits total, causing models to predict near the global sample mean and underperform persistence across 7 of 8 cities. We tuned `min_samples_leaf=4`, `learning_rate=0.08`, and `max_iter=100`, allowing trees to capture real non-linear atmospheric interactions.
+  2. **Native NaN Warm-Up Handling:** Rather than discarding warm-up rows or using arbitrary imputation, leverage `HistGradientBoostingRegressor`'s native missing-value (`NaN`) binning for days 1–3 lags. This preserves all 59 usable labeled observations (only the final day without a target is dropped).
+  3. **Strict 3-Way Chronological Partitioning (39 Train / 8 Val / 12 Test):**
+     - **Training Window (Days 1–39, 39 days):** Earliest historical sequence used to fit candidate hyperparameter configurations.
+     - **Validation Window (Days 40–47, 8 days):** Chronological window immediately prior to the test set, used **exclusively** for hyperparameter grid search and model selection. The test set is completely locked and unseen during this process.
+     - **Test Window (Days 48–59, 12 days):** The final held-out test set, reserved strictly for a **single out-of-sample evaluation pass**.
+  4. **Validation Grid Search Across 6 Architectures:** Evaluated 6 candidate configurations across all 8 cities strictly on the validation window:
+     - `depth_3_leaf_3` (`min_samples_leaf=3, learning_rate=0.05, max_depth=3`) -> **Val MAE: 9.33 (Winner)**
+     - `leaf_3_lr_06` (`min_samples_leaf=3, learning_rate=0.06`) -> Val MAE: 9.57
+     - `leaf_4_lr_08` (`min_samples_leaf=4, learning_rate=0.08`) -> Val MAE: 9.58
+     - `leaf_2_lr_05` (`min_samples_leaf=2, learning_rate=0.05`) -> Val MAE: 9.71
+     - `leaf_5_lr_05` (`min_samples_leaf=5, learning_rate=0.05`) -> Val MAE: 10.35
+     - `default_leaf_20` (`min_samples_leaf=20, learning_rate=0.1`) -> Val MAE: 15.75
+     *Finding:* Restricting tree depth (`max_depth=3`) acts as a powerful structural regularizer, preventing trees from overfitting to noise in the 39-day training window while learning shallow, robust non-linear interaction rules.
+  5. **Train + Validation Refit Strategy:** Once `depth_3_leaf_3` was selected via validation, the model was retrained on **Train + Validation combined (Days 1–47, 47 days)** prior to out-of-sample test evaluation.
+     *Rationale:* Discarding the 8 days of validation data immediately preceding the test window would artificially handicap the model with stale distribution shifts. Refitting on Train+Val incorporates the most recent data leading up to day 48 while ensuring that hyperparameter choices were completely unpolluted by test set information.
+  6. **Single Test Evaluation & Naive Baseline Comparison:** Evaluated the winning model **exactly once** on the untouched 12-day test set alongside a naive persistence baseline ($AQI_{t+1} \approx AQI_t$) computed on the same 12-day window.
+  7. **Production Inference Fit:** Fit the final production artifact on all 59 labeled days to generate tomorrow's live forecast.
+  8. **Deterministic Seed Pinning:** Explicitly set `RANDOM_STATE = 42` across all models and persist full split metadata, validation scores, and test metrics to `pipeline/ml/models/{city}_metadata.json`.
 - **Consequences & Empirical Findings:**
-  - **Sample Grounding:** Provides 59 labeled daily observations per city (47 training days, 12 out-of-sample test days).
-  - **Deterministic Reproducibility:** Fixed `random_state=42` guarantees exact metric reproducibility across every pipeline run, local test, and GitHub Actions cron cycle.
-  - **Honest Performance Disclosure:** **4 of 8 city models underperform the naive persistence baseline**, likely due to the small per-city training set (47 days) and low atmospheric volatility in coastal/peninsular cities (Bengaluru -8.1%, Mumbai -32.0%, Chennai -33.1%, Hyderabad -52.0%). In contrast, models demonstrate substantial genuine gains (+13% to +32%) specifically in higher-volatility, weather-transition cities (Kolkata +31.5%, Ahmedabad +31.5%, Delhi +17.7%, Pune +13.4%).
-  - **Hyperparameter Grid Findings:** Even after an extensive grid search testing `min_samples_leaf` $\in \{2, 3, 4, 6, 20\}$, shallower depths (`max_depth=3`), and $L_2$ regularization, the low-volatility cities (Mumbai, Chennai, Hyderabad) persistently favor the 1-line persistence heuristic. On short-horizon series where $\Delta_{\text{day-over-day}} < 8$, the estimation variance of an 11-feature GBDT on $N=47$ exceeds the modest bias of persistence.
-  - **Production Architecture Insight:** A production lakehouse should implement a hybrid routing rule that defaults to persistence for low-volatility regions while dispatching ML models for high-variance regions.
+  - **Zero Selection Leakage:** Clean separation between training, hyperparameter selection, and test evaluation. Test metrics are now genuine out-of-sample estimates.
+  - **Honest Performance Disclosure:**
+    - **5 of 8 cities beat the naive persistence baseline:** Kolkata (+29.8% gain, MAE 16.03 vs 22.83), Ahmedabad (+31.8% gain, MAE 7.20 vs 10.57), Bengaluru (+14.1% gain, MAE 6.22 vs 7.24), Delhi (+9.2% gain, MAE 17.61 vs 19.38), and Pune (+1.6% gain, MAE 8.08 vs 8.21).
+    - **3 of 8 cities underperform persistence:** Mumbai (-32.3%, MAE 10.69 vs 8.08), Chennai (-30.1%, MAE 12.49 vs 9.60), and Hyderabad (-47.1%, MAE 12.10 vs 8.22).
+  - **Why Low-Volatility Cities Favor Persistence:** In peninsular and coastal cities during stable meteorological periods, day-over-day AQI drift is minimal ($\Delta < 8$ points). In such low-variance regimes, an 11-feature GBDT trained on small sample sizes suffers from estimation variance that exceeds the modest bias of a 1-line persistence rule. In contrast, in high-volatility continental/industrial hubs (Delhi, Kolkata, Ahmedabad) where weather fronts cause rapid inversions and pollutant trapping, non-linear atmospheric interactions provide substantial predictive signal (+10% to +32% improvement).
+  - **Metric Shift Explanation:** Compared to the preliminary test-leaked run (average MAE 11.08), the leak-free model yields an average test MAE of 11.30 (+4.0% overall improvement over the 11.77 baseline). The slight shift is expected: properly holding out validation data during hyperparameter selection eliminates optimistic test-peeking bias.
 

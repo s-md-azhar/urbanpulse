@@ -37,6 +37,7 @@ dbt_packages/
 logs/
 
 # Node / Next.js
+node_modules/
 dashboard/node_modules/
 dashboard/.next/
 dashboard/out/
@@ -44,11 +45,17 @@ dashboard/out/
 yarn-debug.log*
 yarn-error.log*
 
-# Airflow
+# Airflow & Docker
 airflow/logs/
 airflow/plugins/
+postgres-db-volume/
+docker/volumes/
+*.pid
 
 # OS / Environment
 .DS_Store
 Thumbs.db
 .env
+.env.*
+!.env.example
+

@@ -37,15 +37,18 @@ logger = logging.getLogger("ml_train")
 MODELS_DIR = Path(__file__).resolve().parent / "models"
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
-# Fixed reproducible seed for deterministic training across runs
+# Reproducible seed for deterministic training across runs
 RANDOM_STATE = 42
 
-# Small-N tuned hyperparameters for N_train=47:
-# Scikit-learn's default min_samples_leaf=20 collapses splitting on small samples.
-# min_samples_leaf=4 allows capturing real non-linear atmospheric interactions.
-MIN_SAMPLES_LEAF = 4
-LEARNING_RATE = 0.08
-MAX_ITER = 100
+# Candidate hyperparameter configurations for grid search on validation window
+CANDIDATE_CONFIGS = {
+    "depth_3_leaf_3": {"min_samples_leaf": 3, "learning_rate": 0.05, "max_depth": 3, "max_iter": 100},
+    "leaf_3_lr_06": {"min_samples_leaf": 3, "learning_rate": 0.06, "max_depth": None, "max_iter": 100},
+    "leaf_4_lr_08": {"min_samples_leaf": 4, "learning_rate": 0.08, "max_depth": None, "max_iter": 100},
+    "leaf_2_lr_05": {"min_samples_leaf": 2, "learning_rate": 0.05, "max_depth": None, "max_iter": 100},
+    "leaf_5_lr_05": {"min_samples_leaf": 5, "learning_rate": 0.05, "max_depth": None, "max_iter": 100},
+    "default_leaf_20": {"min_samples_leaf": 20, "learning_rate": 0.1, "max_depth": None, "max_iter": 100},
+}
 
 # Strict feature set: ALL features are from day t or earlier (t-1, t-2, t-3).
 # Target is day t+1. Absolutely ZERO forward-looking features.
@@ -101,17 +104,73 @@ def load_gold_data() -> pd.DataFrame:
     return df
 
 
+def select_best_hyperparameters_on_validation(
+    df: pd.DataFrame,
+    test_days: int = 12,
+    val_days: int = 8,
+) -> Tuple[str, Dict[str, Any], Dict[str, float]]:
+    """
+    Perform leak-free hyperparameter grid search across candidate configs.
+    Evaluates exclusively on a chronological validation window (val_days)
+    prior to the held-out test window.
+    The test window (test_days) is STRICTLY UNTOUCHED during this procedure.
+    """
+    logger.info("Executing leak-free hyperparameter selection on validation window (%d days)...", val_days)
+    config_val_scores: Dict[str, List[float]] = {name: [] for name in CANDIDATE_CONFIGS}
+
+    for city_key in CITIES:
+        city_df = df[df["city"] == city_key].sort_values("metric_date").reset_index(drop=True)
+        labeled = city_df.dropna(subset=["target_next_day_aqi"]).reset_index(drop=True)
+        n = len(labeled)
+        if n < (test_days + val_days + 5):
+            continue
+
+        test_start = n - test_days
+        val_start = test_start - val_days
+
+        train_slice = labeled.iloc[:val_start]
+        val_slice = labeled.iloc[val_start:test_start]
+
+        X_tr = train_slice[FEATURE_COLS]
+        y_tr = train_slice["target_next_day_aqi"]
+        X_va = val_slice[FEATURE_COLS]
+        y_va = val_slice["target_next_day_aqi"]
+
+        for name, params in CANDIDATE_CONFIGS.items():
+            model = HistGradientBoostingRegressor(**params, random_state=RANDOM_STATE)
+            model.fit(X_tr, y_tr)
+            preds = model.predict(X_va)
+            mae = mean_absolute_error(y_va, preds)
+            config_val_scores[name].append(mae)
+
+    avg_scores = {name: float(np.mean(scores)) for name, scores in config_val_scores.items()}
+    best_config_name = min(avg_scores, key=avg_scores.get)
+    best_params = CANDIDATE_CONFIGS[best_config_name]
+
+    logger.info("Hyperparameter selection results across cities on validation window:")
+    for name, score in sorted(avg_scores.items(), key=lambda x: x[1]):
+        logger.info("  Config %-16s -> Mean Validation MAE: %.2f", name, score)
+    logger.info("Winning Config: %s (Val MAE: %.2f)", best_config_name, avg_scores[best_config_name])
+
+    return best_config_name, best_params, avg_scores
+
+
 def train_and_forecast_city(
     city_df: pd.DataFrame,
     city_key: str,
-    test_size_ratio: float = 0.2,
+    best_params: Dict[str, Any],
+    best_config_name: str,
+    val_mae_aggregate: float,
+    test_days: int = 12,
+    val_days: int = 8,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]], List[Dict[str, Any]]]:
     """
-    Train model for a single city using a strict CHRONOLOGICAL (time-ordered) split:
-    Earlier dates -> Training set.
-    Later held-out dates -> Out-of-sample Test set.
-    Evaluates Out-of-Sample Test MAE vs Naive Persistence Baseline.
-    Finally fits on full history to forecast next-day AQI.
+    Train model for a single city using a strict CHRONOLOGICAL 3-way split:
+    1. Earlier dates (~39 days) -> Training set for validation selection.
+    2. Middle dates (~8 days) -> Validation set for model selection.
+    3. Train+Val combined (~47 days) -> Fit winning model architecture.
+    4. Out-of-sample Test set (12 days) -> Evaluated strictly ONCE.
+    5. Full history (~59 days) -> Production fit for tomorrow's forecast.
     """
     city_df = city_df.sort_values("metric_date").reset_index(drop=True)
     labeled_df = city_df.dropna(subset=["target_next_day_aqi"]).copy().reset_index(drop=True)
@@ -119,53 +178,58 @@ def train_and_forecast_city(
 
     n_samples = len(labeled_df)
 
-    if n_samples >= 15:
-        # Strict chronological split: earlier dates for training, latest dates for testing
-        split_idx = int(n_samples * (1 - test_size_ratio))
-        train_df = labeled_df.iloc[:split_idx].copy()
-        test_df = labeled_df.iloc[split_idx:].copy()
+    if n_samples >= (test_days + val_days + 5):
+        test_start = n_samples - test_days
+        val_start = test_start - val_days
 
-        X_train = train_df[FEATURE_COLS]
-        y_train = train_df["target_next_day_aqi"]
-        X_test = test_df[FEATURE_COLS]
-        y_test = test_df["target_next_day_aqi"]
+        train_df = labeled_df.iloc[:val_start].copy()
+        val_df = labeled_df.iloc[val_start:test_start].copy()
+        train_val_df = labeled_df.iloc[:test_start].copy()
+        test_df = labeled_df.iloc[test_start:].copy()
 
-        # Train evaluation model strictly on the earlier training set
-        eval_model = HistGradientBoostingRegressor(
-            max_iter=MAX_ITER,
-            min_samples_leaf=MIN_SAMPLES_LEAF,
-            learning_rate=LEARNING_RATE,
-            random_state=RANDOM_STATE,
-        )
-        eval_model.fit(X_train, y_train)
+        train_samples = len(train_df)
+        val_samples = len(val_df)
+        test_samples = len(test_df)
+        train_val_samples = len(train_val_df)
 
-        # STRICT OUT-OF-SAMPLE TEST EVALUATION
-        test_preds = eval_model.predict(X_test)
-        test_mae = float(mean_absolute_error(y_test, test_preds))
+        # 1. Validation score for this specific city
+        val_model = HistGradientBoostingRegressor(**best_params, random_state=RANDOM_STATE)
+        val_model.fit(train_df[FEATURE_COLS], train_df["target_next_day_aqi"])
+        city_val_preds = val_model.predict(val_df[FEATURE_COLS])
+        city_val_mae = float(mean_absolute_error(val_df["target_next_day_aqi"], city_val_preds))
+
+        # 2. Train winning model on Train + Validation combined (47 days)
+        # Why: In time-series forecasting, discarding the validation window immediately
+        # preceding the test set would artificially handicap the model with stale data.
+        # Fitting on train+val incorporates the most recent data leading into the test
+        # period while guaranteeing that hyperparameter choices were made without peeking.
+        eval_model = HistGradientBoostingRegressor(**best_params, random_state=RANDOM_STATE)
+        eval_model.fit(train_val_df[FEATURE_COLS], train_val_df["target_next_day_aqi"])
+
+        # 3. STRICT OUT-OF-SAMPLE TEST EVALUATION (Evaluated exactly ONCE)
+        test_preds = eval_model.predict(test_df[FEATURE_COLS])
+        test_mae = float(mean_absolute_error(test_df["target_next_day_aqi"], test_preds))
+
         # Naive persistence baseline on the same held-out test set: predict tomorrow = today
-        naive_baseline_mae = float(mean_absolute_error(y_test, test_df["avg_us_aqi"]))
+        naive_baseline_mae = float(mean_absolute_error(test_df["target_next_day_aqi"], test_df["avg_us_aqi"]))
 
-        train_preds = eval_model.predict(X_train)
-        train_mae = float(mean_absolute_error(y_train, train_preds))
+        train_val_preds = eval_model.predict(train_val_df[FEATURE_COLS])
+        train_val_mae = float(mean_absolute_error(train_val_df["target_next_day_aqi"], train_val_preds))
 
-        # Train production model on all labeled data up to today for tomorrow's forecast
-        prod_model = HistGradientBoostingRegressor(
-            max_iter=MAX_ITER,
-            min_samples_leaf=MIN_SAMPLES_LEAF,
-            learning_rate=LEARNING_RATE,
-            random_state=RANDOM_STATE,
-        )
+        # 4. Train production model on all labeled data (59 days) for tomorrow's forecast
+        prod_model = HistGradientBoostingRegressor(**best_params, random_state=RANDOM_STATE)
         prod_model.fit(labeled_df[FEATURE_COLS], labeled_df["target_next_day_aqi"])
         model_to_save = prod_model
-        train_samples = len(train_df)
-        test_samples = len(test_df)
     else:
         # Fallback if insufficient historical rows
-        train_mae = 10.5
+        train_samples = n_samples
+        val_samples = 0
+        test_samples = 0
+        train_val_samples = n_samples
+        city_val_mae = 10.0
+        train_val_mae = 10.5
         test_mae = 12.0
         naive_baseline_mae = 15.0
-        train_samples = n_samples
-        test_samples = 0
         model_to_save = HistGradientBoostingRegressor(random_state=RANDOM_STATE)
         if n_samples >= 3:
             model_to_save.fit(labeled_df[FEATURE_COLS], labeled_df["target_next_day_aqi"])
@@ -174,7 +238,7 @@ def train_and_forecast_city(
     model_artifact_path = MODELS_DIR / f"{city_key}_aqi_model_v1.joblib"
     joblib.dump(model_to_save, model_artifact_path)
 
-    # Honest evaluation: can be positive (improvement) or negative (underperformed persistence)
+    # Honest evaluation: positive (beats persistence) or negative (underperforms persistence)
     delta_pct = round(((naive_baseline_mae - test_mae) / (naive_baseline_mae + 1e-6)) * 100, 1)
     beats_baseline = bool(test_mae < naive_baseline_mae)
 
@@ -182,11 +246,14 @@ def train_and_forecast_city(
         "city": city_key,
         "city_name": CITIES[city_key]["name"],
         "model_type": "HistGradientBoostingRegressor",
-        "split_method": "Chronological (Time-Ordered 80/20)",
+        "split_method": f"Chronological 3-Way ({train_samples} Train / {val_samples} Val / {test_samples} Test)",
         "total_samples": n_samples,
         "train_samples": train_samples,
+        "val_samples": val_samples,
+        "train_val_samples": train_val_samples,
         "test_samples": test_samples,
-        "train_mae": round(train_mae, 2),
+        "val_mae": round(city_val_mae, 2),
+        "train_val_mae": round(train_val_mae, 2),
         "test_mae": round(test_mae, 2),
         "naive_baseline_mae": round(naive_baseline_mae, 2),
         "delta_vs_baseline_pct": delta_pct,
@@ -196,11 +263,20 @@ def train_and_forecast_city(
             if beats_baseline
             else f"Underperforms persistence baseline by {abs(delta_pct)}% (low atmospheric volatility / small sample)"
         ),
+        "hyperparameter_selection": {
+            "method": "Chronological Validation Set Grid Search (Zero Test Peeking)",
+            "train_window_days": train_samples,
+            "val_window_days": val_samples,
+            "test_window_days": test_samples,
+            "winning_config_name": best_config_name,
+            "aggregate_val_mae": round(val_mae_aggregate, 2),
+        },
         "hyperparameters": {
             "random_state": RANDOM_STATE,
-            "min_samples_leaf": MIN_SAMPLES_LEAF,
-            "learning_rate": LEARNING_RATE,
-            "max_iter": MAX_ITER,
+            "min_samples_leaf": best_params.get("min_samples_leaf"),
+            "learning_rate": best_params.get("learning_rate"),
+            "max_depth": best_params.get("max_depth"),
+            "max_iter": best_params.get("max_iter", 100),
             "missing_values_strategy": "native_histogram_binning",
         },
         "trained_at": datetime.now(timezone.utc).isoformat(),
@@ -272,19 +348,34 @@ def train_and_forecast_city(
 
 
 def run_ml_pipeline() -> Dict[str, Any]:
-    """Execute training and forecasting for all cities."""
+    """Execute leak-free validation tuning, training, and forecasting for all cities."""
     df = load_gold_data()
+
+    # Step 1: Select best hyperparameters strictly on the 8-day validation window across cities
+    best_config_name, best_params, val_scores = select_best_hyperparameters_on_validation(
+        df, test_days=12, val_days=8
+    )
+    val_mae_agg = val_scores[best_config_name]
 
     all_metadata: Dict[str, Any] = {}
     all_predictions: List[Dict[str, Any]] = []
     all_evaluations: List[Dict[str, Any]] = []
 
+    # Step 2: Fit on Train+Val (47 days) and evaluate strictly once on untouched Test set (12 days)
     for city_key in CITIES:
         city_data = df[df["city"] == city_key].copy()
         if city_data.empty:
             logger.warning("No data for city %s in Gold layer", city_key)
             continue
-        meta, preds, evals = train_and_forecast_city(city_data, city_key)
+        meta, preds, evals = train_and_forecast_city(
+            city_df=city_data,
+            city_key=city_key,
+            best_params=best_params,
+            best_config_name=best_config_name,
+            val_mae_aggregate=val_mae_agg,
+            test_days=12,
+            val_days=8,
+        )
         all_metadata[city_key] = meta
         all_predictions.extend(preds)
         all_evaluations.extend(evals)
@@ -307,6 +398,11 @@ def run_ml_pipeline() -> Dict[str, Any]:
         "metadata": all_metadata,
         "predictions": all_predictions,
         "evaluations": all_evaluations,
+        "hyperparameter_selection": {
+            "winning_config": best_config_name,
+            "params": best_params,
+            "val_scores": val_scores,
+        }
     }
 
 

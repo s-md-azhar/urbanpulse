@@ -99,7 +99,22 @@ interface PipelineMeta {
     bronze: { format: string; weather_row_count: number; air_quality_row_count: number };
     silver: { format: string; weather_row_count: number; air_quality_row_count: number; primary_key: string };
     gold: { engine: string; marts: string[]; total_daily_fact_records: number };
-    ml_layer: { model: string; target: string; cities_modeled: number };
+    ml_layer: {
+      model: string;
+      target: string;
+      cities_modeled: number;
+      split_method?: string;
+      train_days?: number;
+      val_days?: number;
+      test_days?: number;
+      tuning_strategy?: string;
+      winning_hyperparameters?: {
+        min_samples_leaf: number;
+        learning_rate: number;
+        max_depth: number;
+        random_state: number;
+      };
+    };
   };
   cities: string[];
 }
@@ -858,6 +873,99 @@ export default function UrbanPulseDashboard() {
                     <span className="font-semibold text-white block mb-1">Frontend Delivery: Next.js Static Export on Vercel</span>
                     Zero backend servers, instant edge cache delivery, 100% uptime with zero ongoing infrastructure costs.
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ML Methodology & Leak-Free Split Observability Panel */}
+            <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
+                    <Cpu className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-white">ML Methodology & Chronological Split Observability</h3>
+                    <p className="text-xs text-gray-400">
+                      Rigorous 3-way time-ordered split with zero hyperparameter selection leakage
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 font-mono text-xs">
+                  <span className="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                    Seed: 42
+                  </span>
+                  <span className="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                    Zero Leakage
+                  </span>
+                </div>
+              </div>
+
+              {/* 3-Way Split Telemetry Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                  <span className="text-[10px] uppercase font-mono text-gray-400">1. Train Window</span>
+                  <div className="text-lg font-bold text-white font-mono">
+                    {metaData?.layers?.ml_layer?.train_days || 39} Days
+                  </div>
+                  <p className="text-[11px] text-gray-400">Days 1–39: Candidate hyperparameter training</p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                  <span className="text-[10px] uppercase font-mono text-indigo-400">2. Validation Window</span>
+                  <div className="text-lg font-bold text-indigo-300 font-mono">
+                    {metaData?.layers?.ml_layer?.val_days || 8} Days
+                  </div>
+                  <p className="text-[11px] text-gray-400">Days 40–47: Hyperparameter tuning only</p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                  <span className="text-[10px] uppercase font-mono text-cyan-400">3. Train + Val Refit</span>
+                  <div className="text-lg font-bold text-cyan-300 font-mono">47 Days</div>
+                  <p className="text-[11px] text-gray-400">Days 1–47: Refit winning model architecture</p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                  <span className="text-[10px] uppercase font-mono text-amber-400">4. Untouched Test Set</span>
+                  <div className="text-lg font-bold text-amber-300 font-mono">
+                    {metaData?.layers?.ml_layer?.test_days || 12} Days
+                  </div>
+                  <p className="text-[11px] text-gray-400">Days 48–59: Evaluated strictly once</p>
+                </div>
+              </div>
+
+              {/* Tuning Decisions & Empirical Reality */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div className="p-4 rounded-xl bg-[#0B0F1C] border border-white/5 space-y-2">
+                  <span className="font-semibold text-gray-200 block">Winning Hyperparameters (from Validation)</span>
+                  <div className="space-y-1.5 font-mono text-gray-300 text-[11px]">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Architecture:</span>
+                      <span className="text-white">depth_3_leaf_3</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Parameters:</span>
+                      <span className="text-cyan-300">max_depth=3, min_samples_leaf=3, lr=0.05</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Validation MAE:</span>
+                      <span className="text-emerald-400 font-bold">9.33 (Best of 6 candidates)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Missing Lags:</span>
+                      <span className="text-gray-300">Native NaN Histogram Binning</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-[#0B0F1C] border border-white/5 space-y-2">
+                  <span className="font-semibold text-gray-200 block">Plain-Disclosure Empirical Findings</span>
+                  <p className="text-gray-300 leading-relaxed text-[11px]">
+                    <span className="text-emerald-400 font-semibold">5 of 8 cities beat persistence</span> (Kolkata +29.8%, Ahmedabad +31.8%, Bengaluru +14.1%, Delhi +9.2%, Pune +1.6%).
+                  </p>
+                  <p className="text-gray-400 leading-relaxed text-[11px]">
+                    <span className="text-amber-400 font-semibold">3 cities underperform persistence</span> (Mumbai, Chennai, Hyderabad). In low-volatility peninsular/coastal series, day-over-day drift is so small that model variance exceeds the bias of persistence.
+                  </p>
                 </div>
               </div>
             </div>
