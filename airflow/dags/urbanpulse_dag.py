@@ -19,6 +19,44 @@ if PIPELINE_ROOT not in sys.path:
     sys.path.insert(0, PIPELINE_ROOT)
 
 
+def pipeline_failure_callback(context):
+    """Structured failure observability callback for automated incident logging."""
+    import json
+    import logging
+    from datetime import datetime
+    from pipeline.config import DATA_DIR
+
+    logger = logging.getLogger("urbanpulse.observability")
+    ti = context.get("task_instance")
+    task_id = ti.task_id if ti else "unknown"
+    dag_id = ti.dag_id if ti else "urbanpulse_daily_pipeline"
+    run_id = str(context.get("run_id", "unknown"))
+    execution_date = str(context.get("logical_date") or context.get("execution_date"))
+    exception = str(context.get("exception", "No exception details provided"))
+
+    alert_payload = {
+        "event": "PIPELINE_TASK_FAILURE",
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "dag_id": dag_id,
+        "task_id": task_id,
+        "run_id": run_id,
+        "execution_date": execution_date,
+        "try_number": getattr(ti, "try_number", 1),
+        "error": exception[:500],
+        "severity": "CRITICAL" if task_id == "data_quality_hard_gate" else "ERROR",
+    }
+    logger.error("PIPELINE_ALERT: %s", json.dumps(alert_payload))
+
+    # Persist structured failure log to disk for observability auditing
+    alert_log = DATA_DIR / "lakehouse_alerts.log"
+    try:
+        alert_log.parent.mkdir(parents=True, exist_ok=True)
+        with open(alert_log, "a", encoding="utf-8") as f:
+            f.write(json.dumps(alert_payload) + "\n")
+    except Exception as log_err:
+        logger.warning("Failed writing to lakehouse_alerts.log: %s", log_err)
+
+
 default_args = {
     "owner": "urbanpulse-data-platform",
     "depends_on_past": False,
@@ -26,6 +64,7 @@ default_args = {
     "email_on_retry": False,
     "retries": 2,
     "retry_delay": timedelta(minutes=3),
+    "on_failure_callback": pipeline_failure_callback,
 }
 
 
@@ -144,10 +183,12 @@ with DAG(
     dag_id="urbanpulse_daily_pipeline",
     default_args=default_args,
     description="Daily ingestion, Medallion processing, quality gating, and ML forecasting for UrbanPulse",
-    schedule_interval="0 3 * * *",
+    schedule="0 3 * * *",
     start_date=datetime(2026, 9, 1),
     catchup=False,
     max_active_runs=1,
+    dagrun_timeout=timedelta(minutes=60),
+    on_failure_callback=pipeline_failure_callback,
     tags=["lakehouse", "medallion", "weather", "air-quality", "ml"],
 ) as dag:
 

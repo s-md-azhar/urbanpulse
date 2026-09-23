@@ -105,7 +105,23 @@ This document records the architectural, infrastructure, and engineering decisio
   - **Zero Selection Leakage:** Clean separation between training, hyperparameter selection, and test evaluation. Test metrics are now genuine out-of-sample estimates.
   - **Honest Performance Disclosure:**
     - **5 of 8 cities beat the naive persistence baseline:** Kolkata (+29.8% gain, MAE 16.03 vs 22.83), Ahmedabad (+31.8% gain, MAE 7.20 vs 10.57), Bengaluru (+14.1% gain, MAE 6.22 vs 7.24), Delhi (+9.2% gain, MAE 17.61 vs 19.38), and Pune (+1.6% gain, MAE 8.08 vs 8.21).
-    - **3 of 8 cities underperform persistence:** Mumbai (-32.3%, MAE 10.69 vs 8.08), Chennai (-30.1%, MAE 12.49 vs 9.60), and Hyderabad (-47.1%, MAE 12.10 vs 8.22).
+    - **3 of 8 cities underperform persistence:** Mumbai (-32.3%, MAE 10.69 vs 8.08), Chennai (-30.1%, MAE 12.49 vs 9.60), and Hyderabad (-48.5%, MAE 12.21 vs 8.22).
   - **Why Low-Volatility Cities Favor Persistence:** In peninsular and coastal cities during stable meteorological periods, day-over-day AQI drift is minimal ($\Delta < 8$ points). In such low-variance regimes, an 11-feature GBDT trained on small sample sizes suffers from estimation variance that exceeds the modest bias of a 1-line persistence rule. In contrast, in high-volatility continental/industrial hubs (Delhi, Kolkata, Ahmedabad) where weather fronts cause rapid inversions and pollutant trapping, non-linear atmospheric interactions provide substantial predictive signal (+10% to +32% improvement).
   - **Metric Shift Explanation:** Compared to the preliminary test-leaked run (average MAE 11.08), the leak-free model yields an average test MAE of 11.30 (+4.0% overall improvement over the 11.77 baseline). The slight shift is expected: properly holding out validation data during hyperparameter selection eliminates optimistic test-peeking bias.
+
+---
+
+## ADR 008: Diagnosis and Resolution of Airflow Task Timeline Gap (Catalog Path Parity & Retry Intervals)
+- **Status:** Accepted
+- **Context:** In the initial manual DAG run (`manual__2026-09-23T10:48:47+00:00`), the Airflow Gantt/Grid view displayed an apparent 8–10 minute timeline gap between `silver_idempotent_transform` finishing and `data_quality_hard_gate` succeeding, resulting in a total DAG duration of 22 minutes 51 seconds despite active task execution bars accounting for only ~3 minutes.
+- **Investigation & Root Cause Analysis:**
+  - **Hypothesis (dbt cold-start overhead):** Investigated whether dbt package resolution or Python environment startup caused the delay. Found to be false — `dbt-duckdb` operates on zero external packages (`packages.yml` is empty), and warm CLI startup takes < 2 seconds.
+  - **Empirical Reality (Task Attempt 1 Failure + Retry Delay):** Task logs revealed that `data_quality_hard_gate` failed on Attempt 1 at 10:59:13 UTC. The DuckDB database file (`urbanpulse.duckdb`) retained staging view definitions (`stg_weather`, `stg_air_quality`) registered with Windows host absolute paths (`c:\Users\VICTUS\...`) from prior standalone test executions outside Docker. Inside Linux Docker containers, DuckDB failed to resolve the Windows drive letters.
+  - Per the DAG's `default_args` (`retries: 2, retry_delay: timedelta(minutes=5)`), Airflow placed the task in `up_for_retry` state and initiated a 5-minute wait before Attempt 2.
+  - During that 5-minute retry delay window, the orchestrator DAG definition was patched live to ensure staging views are dynamically created using container-relative POSIX paths (`/opt/airflow/data/delta/...`) prior to invoking dbt tests. The task was cleared at 11:04:29 UTC and succeeded cleanly on Attempt 2 in 4.7 seconds.
+- **Resolution & Hardening:**
+  1. `urbanpulse_dag.py` now dynamically inspects and mounts Delta tables using container-normalized paths (`DATA_DIR / "delta" / ...`) inside `ensure_staging_views()`, preventing host/container path mismatches.
+  2. Clean pipeline runs now progress from `silver_idempotent_transform` directly to `data_quality_hard_gate` in < 2 seconds without entering retry states.
+  3. Total end-to-end DAG execution across all 8 tasks is now ~2 to 2.5 minutes, well within the 60-minute `dagrun_timeout`.
+
 

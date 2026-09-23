@@ -197,11 +197,13 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
     finally:
         con.close()
 
-    # 4. Predictions from Delta table
+    # 4. Predictions from Delta table (latest per city)
     predictions_data = []
     if (PREDICTIONS_PATH / "_delta_log").exists():
         try:
             pred_df = pl.read_delta(str(PREDICTIONS_PATH)).to_pandas()
+            if "predicted_at" in pred_df.columns:
+                pred_df = pred_df.sort_values("predicted_at").groupby("city", as_index=False).last()
             pred_df["forecast_for_date"] = pred_df["forecast_for_date"].astype(str)
             pred_df["reference_date"] = pred_df["reference_date"].astype(str)
             predictions_data = pred_df.to_dict(orient="records")

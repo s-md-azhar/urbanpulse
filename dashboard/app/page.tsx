@@ -248,56 +248,64 @@ export default function UrbanPulseDashboard() {
   return (
     <div className="min-h-screen bg-[#070B13] text-gray-100 flex flex-col">
       {/* Top Navbar */}
-      <header className="sticky top-0 z-50 bg-[#090D18]/80 backdrop-blur-xl border-b border-white/10 px-4 lg:px-8 py-3.5">
+      <header className="sticky top-0 z-50 bg-[#090D18]/90 backdrop-blur-xl border-b border-white/10 px-3 sm:px-4 lg:px-8 py-3">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-500 p-0.5 shadow-lg shadow-cyan-500/20">
-              <div className="w-full h-full bg-[#090D18] rounded-[10px] flex items-center justify-center">
-                <Activity className="w-5 h-5 text-cyan-400" />
+          <div className="flex items-center justify-between w-full sm:w-auto">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-500 p-0.5 shadow-lg shadow-cyan-500/20 shrink-0">
+                <div className="w-full h-full bg-[#090D18] rounded-[10px] flex items-center justify-center">
+                  <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h1 className="text-base sm:text-lg font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                    UrbanPulse
+                  </h1>
+                  <span className="px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] uppercase font-semibold tracking-wider rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                    Lakehouse
+                  </span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-gray-400 hidden sm:block">
+                  Multi-City Weather & Air Quality Intelligence Platform
+                </p>
               </div>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                  UrbanPulse
-                </h1>
-                <span className="px-2 py-0.5 text-[10px] uppercase font-semibold tracking-wider rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
-                  Lakehouse Engine
-                </span>
-              </div>
-              <p className="text-xs text-gray-400 hidden sm:block">
-                Multi-City Weather & Air Quality Intelligence Platform
-              </p>
+
+            {/* Mobile-only status badge */}
+            <div className="flex sm:hidden items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-400 font-medium shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Healthy</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-400 font-medium">
+          <div className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto overflow-x-auto">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-400 font-medium shrink-0">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Lakehouse Healthy</span>
             </div>
 
-            <div className="flex bg-[#111827] rounded-lg p-1 border border-white/10 text-xs">
+            <div className="flex w-full sm:w-auto overflow-x-auto no-scrollbar bg-[#111827] rounded-lg p-1 border border-white/10 text-xs shrink-0">
               <button
                 onClick={() => setViewTab('matrix')}
-                className={`px-3 py-1 rounded-md transition-colors ${
-                  viewTab === 'matrix' ? 'bg-cyan-500 text-white font-medium' : 'text-gray-400 hover:text-white'
+                className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap text-center text-xs ${
+                  viewTab === 'matrix' ? 'bg-cyan-500 text-white font-medium shadow' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 City Matrix
               </button>
               <button
                 onClick={() => setViewTab('deepdive')}
-                className={`px-3 py-1 rounded-md transition-colors ${
-                  viewTab === 'deepdive' ? 'bg-cyan-500 text-white font-medium' : 'text-gray-400 hover:text-white'
+                className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap text-center text-xs ${
+                  viewTab === 'deepdive' ? 'bg-cyan-500 text-white font-medium shadow' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 Forecast Deep Dive
               </button>
               <button
                 onClick={() => setViewTab('observability')}
-                className={`px-3 py-1 rounded-md transition-colors ${
-                  viewTab === 'observability' ? 'bg-cyan-500 text-white font-medium' : 'text-gray-400 hover:text-white'
+                className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap text-center text-xs ${
+                  viewTab === 'observability' ? 'bg-cyan-500 text-white font-medium shadow' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 Platform Health
@@ -308,76 +316,76 @@ export default function UrbanPulseDashboard() {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-4 lg:px-8 py-5 sm:py-6 space-y-6">
         {/* KPI Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          <div className="glass-panel p-3.5 rounded-xl border border-white/5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
+          <div className="glass-panel p-3 sm:p-3.5 rounded-xl border border-white/5 min-w-0">
             <div className="flex items-center justify-between text-gray-400 text-xs">
-              <span>Cities Monitored</span>
-              <Layers className="w-4 h-4 text-cyan-400" />
+              <span className="truncate">Cities</span>
+              <Layers className="w-4 h-4 text-cyan-400 shrink-0 ml-1" />
             </div>
-            <div className="text-xl font-bold mt-1 text-white">8 Hubs</div>
-            <div className="text-[11px] text-gray-500 mt-0.5">Delhi, Mumbai, BLR...</div>
+            <div className="text-lg sm:text-xl font-bold mt-1 text-white truncate">8 Hubs</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5 truncate">Delhi, Mumbai, BLR...</div>
           </div>
 
-          <div className="glass-panel p-3.5 rounded-xl border border-white/5">
+          <div className="glass-panel p-3 sm:p-3.5 rounded-xl border border-white/5 min-w-0">
             <div className="flex items-center justify-between text-gray-400 text-xs">
-              <span>Bronze Delta Ingest</span>
-              <ShieldCheck className="w-4 h-4 text-indigo-400" />
+              <span className="truncate">Bronze Delta</span>
+              <ShieldCheck className="w-4 h-4 text-indigo-400 shrink-0 ml-1" />
             </div>
-            <div className="text-xl font-bold mt-1 text-white">
+            <div className="text-lg sm:text-xl font-bold mt-1 text-white truncate">
               {metaData ? (metaData.layers.bronze.weather_row_count + metaData.layers.bronze.air_quality_row_count).toLocaleString() : '5,376'}
             </div>
-            <div className="text-[11px] text-gray-500 mt-0.5">ACID Append Log</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5 truncate">ACID Append Log</div>
           </div>
 
-          <div className="glass-panel p-3.5 rounded-xl border border-white/5">
+          <div className="glass-panel p-3 sm:p-3.5 rounded-xl border border-white/5 min-w-0">
             <div className="flex items-center justify-between text-gray-400 text-xs">
-              <span>Silver Cleaned Rows</span>
-              <RefreshCw className="w-4 h-4 text-emerald-400" />
+              <span className="truncate">Silver Cleaned</span>
+              <RefreshCw className="w-4 h-4 text-emerald-400 shrink-0 ml-1" />
             </div>
-            <div className="text-xl font-bold mt-1 text-white">
+            <div className="text-lg sm:text-xl font-bold mt-1 text-white truncate">
               {metaData ? (metaData.layers.silver.weather_row_count + metaData.layers.silver.air_quality_row_count).toLocaleString() : '5,376'}
             </div>
-            <div className="text-[11px] text-gray-500 mt-0.5">Idempotent Upserted</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5 truncate">Idempotent Upserted</div>
           </div>
 
-          <div className="glass-panel p-3.5 rounded-xl border border-white/5">
+          <div className="glass-panel p-3.5 rounded-xl border border-white/5 min-w-0">
             <div className="flex items-center justify-between text-gray-400 text-xs">
-              <span>Gold Analytical Marts</span>
-              <DatabaseIcon className="w-4 h-4 text-amber-400" />
+              <span className="truncate">Gold Marts</span>
+              <DatabaseIcon className="w-4 h-4 text-amber-400 shrink-0 ml-1" />
             </div>
-            <div className="text-xl font-bold mt-1 text-white">
+            <div className="text-lg sm:text-xl font-bold mt-1 text-white truncate">
               {metaData ? metaData.layers.gold.total_daily_fact_records : '112'} Fact Days
             </div>
-            <div className="text-[11px] text-gray-500 mt-0.5">DuckDB + dbt-core</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5 truncate">DuckDB + dbt-core</div>
           </div>
 
-          <div className="glass-panel p-3.5 rounded-xl border border-white/5">
+          <div className="glass-panel p-3.5 rounded-xl border border-white/5 min-w-0">
             <div className="flex items-center justify-between text-gray-400 text-xs">
-              <span>ML Forecaster</span>
-              <Cpu className="w-4 h-4 text-purple-400" />
+              <span className="truncate">ML Forecaster</span>
+              <Cpu className="w-4 h-4 text-purple-400 shrink-0 ml-1" />
             </div>
-            <div className="text-xl font-bold mt-1 text-white">HistGradient</div>
-            <div className="text-[11px] text-gray-500 mt-0.5">Lagged Weather+AQI</div>
+            <div className="text-lg sm:text-xl font-bold mt-1 text-white truncate">HistGradient</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5 truncate">Lagged Weather+AQI</div>
           </div>
 
-          <div className="glass-panel p-3.5 rounded-xl border border-white/5">
+          <div className="glass-panel p-3.5 rounded-xl border border-white/5 min-w-0">
             <div className="flex items-center justify-between text-gray-400 text-xs">
-              <span>Data Quality Gates</span>
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <span className="truncate">Quality Gates</span>
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ml-1" />
             </div>
-            <div className="text-xl font-bold mt-1 text-emerald-400">100% Passed</div>
-            <div className="text-[11px] text-gray-500 mt-0.5">dbt schema & sanity</div>
+            <div className="text-lg sm:text-xl font-bold mt-1 text-emerald-400 truncate">100% Passed</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5 truncate">dbt schema & sanity</div>
           </div>
         </div>
 
         {/* View Tab 1: City Matrix Overview */}
         {viewTab === 'matrix' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <h2 className="text-lg font-bold text-white tracking-tight">
+                <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
                   Indian Megacities — Air Quality & Forecast Matrix
                 </h2>
                 <p className="text-xs text-gray-400">
@@ -390,7 +398,7 @@ export default function UrbanPulseDashboard() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {summaryData.map((cityItem) => {
                 const style = getAqiStyle(cityItem.avg_us_aqi);
                 const pred = predictionsData.find((p) => p.city === cityItem.city);
@@ -405,7 +413,7 @@ export default function UrbanPulseDashboard() {
                       setSelectedCity(cityItem.city);
                       setViewTab('deepdive');
                     }}
-                    className={`glass-panel glass-panel-hover p-5 rounded-2xl cursor-pointer border ${
+                    className={`glass-panel glass-panel-hover p-4 sm:p-5 rounded-2xl cursor-pointer border ${
                       isSelected ? 'border-cyan-500 ring-2 ring-cyan-500/20' : 'border-white/5'
                     } flex flex-col justify-between`}
                   >
@@ -445,18 +453,18 @@ export default function UrbanPulseDashboard() {
                       </div>
 
                       {/* Pollutant and weather strip */}
-                      <div className="mt-4 pt-3 border-t border-white/5 grid grid-cols-3 gap-2 text-[11px]">
-                        <div className="bg-white/[0.02] p-2 rounded-lg text-center">
-                          <span className="text-gray-400 block text-[10px]">PM2.5</span>
-                          <span className="font-semibold text-gray-200">{cityItem.avg_pm2_5} µg</span>
+                      <div className="mt-4 pt-3 border-t border-white/5 grid grid-cols-3 gap-1.5 sm:gap-2 text-[11px]">
+                        <div className="bg-white/[0.02] p-2 rounded-lg text-center min-w-0">
+                          <span className="text-gray-400 block text-[10px] truncate">PM2.5</span>
+                          <span className="font-semibold text-gray-200 truncate block">{cityItem.avg_pm2_5} µg</span>
                         </div>
-                        <div className="bg-white/[0.02] p-2 rounded-lg text-center">
-                          <span className="text-gray-400 block text-[10px]">Temp</span>
-                          <span className="font-semibold text-gray-200">{cityItem.avg_temperature_c}°C</span>
+                        <div className="bg-white/[0.02] p-2 rounded-lg text-center min-w-0">
+                          <span className="text-gray-400 block text-[10px] truncate">Temp</span>
+                          <span className="font-semibold text-gray-200 truncate block">{cityItem.avg_temperature_c}°C</span>
                         </div>
-                        <div className="bg-white/[0.02] p-2 rounded-lg text-center">
-                          <span className="text-gray-400 block text-[10px]">Wind</span>
-                          <span className="font-semibold text-gray-200">{cityItem.avg_wind_speed_kmh} km/h</span>
+                        <div className="bg-white/[0.02] p-2 rounded-lg text-center min-w-0">
+                          <span className="text-gray-400 block text-[10px] truncate">Wind</span>
+                          <span className="font-semibold text-gray-200 truncate block">{cityItem.avg_wind_speed_kmh} km/h</span>
                         </div>
                       </div>
                     </div>
@@ -476,12 +484,12 @@ export default function UrbanPulseDashboard() {
         {viewTab === 'deepdive' && (
           <div className="space-y-6">
             {/* City Selector Pills */}
-            <div className="flex flex-wrap gap-2 pb-1 overflow-x-auto">
+            <div className="flex gap-2 pb-1 overflow-x-auto no-scrollbar py-0.5">
               {summaryData.map((c) => (
                 <button
                   key={c.city}
                   onClick={() => setSelectedCity(c.city)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all shrink-0 min-h-[36px] ${
                     selectedCity === c.city
                       ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/25 ring-1 ring-white/20'
                       : 'bg-surface hover:bg-surface-elevated text-gray-300 border border-white/5'
@@ -494,13 +502,13 @@ export default function UrbanPulseDashboard() {
 
             {/* Selected City Hero Card */}
             {activeCitySummary && (
-              <div className="glass-panel p-6 rounded-2xl border border-white/10 relative overflow-hidden">
+              <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/10 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
 
-                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-6">
                   <div>
-                    <div className="flex items-center gap-3">
-                      <h2 className="text-2xl font-black tracking-tight text-white">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                      <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
                         {activeCitySummary.city_name}
                       </h2>
                       <span className="text-xs text-gray-400 bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
@@ -515,88 +523,88 @@ export default function UrbanPulseDashboard() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    <div className={`p-4 rounded-xl border ${aqiStyle.bg} ${aqiStyle.border} text-center min-w-[130px]`}>
-                      <span className="text-[11px] uppercase font-semibold text-gray-300 block">Current AQI</span>
-                      <span className={`text-3xl font-extrabold ${aqiStyle.text}`}>
+                  <div className="flex items-stretch gap-3 w-full sm:w-auto">
+                    <div className={`p-3 sm:p-4 rounded-xl border ${aqiStyle.bg} ${aqiStyle.border} text-center flex-1 sm:flex-initial sm:min-w-[130px]`}>
+                      <span className="text-[10px] sm:text-[11px] uppercase font-semibold text-gray-300 block">Current AQI</span>
+                      <span className={`text-2xl sm:text-3xl font-extrabold ${aqiStyle.text}`}>
                         {Math.round(activeCitySummary.avg_us_aqi)}
                       </span>
-                      <span className={`block text-[11px] font-semibold mt-0.5 ${aqiStyle.text}`}>{aqiStyle.label}</span>
+                      <span className={`block text-[10px] sm:text-[11px] font-semibold mt-0.5 ${aqiStyle.text}`}>{aqiStyle.label}</span>
                     </div>
 
-                    <div className={`p-4 rounded-xl border ${predStyle.bg} ${predStyle.border} text-center min-w-[150px]`}>
-                      <span className="text-[11px] uppercase font-semibold text-gray-300 block">Tomorrow Forecast</span>
-                      <span className={`text-3xl font-extrabold ${predStyle.text}`}>
+                    <div className={`p-3 sm:p-4 rounded-xl border ${predStyle.bg} ${predStyle.border} text-center flex-1 sm:flex-initial sm:min-w-[150px]`}>
+                      <span className="text-[10px] sm:text-[11px] uppercase font-semibold text-gray-300 block">Tomorrow Forecast</span>
+                      <span className={`text-2xl sm:text-3xl font-extrabold ${predStyle.text}`}>
                         {activeCityPred ? activeCityPred.predicted_aqi : '--'}
                       </span>
-                      <span className={`block text-[11px] font-semibold mt-0.5 ${predStyle.text}`}>
+                      <span className={`block text-[10px] sm:text-[11px] font-semibold mt-0.5 ${predStyle.text}`}>
                         {activeCityPred ? activeCityPred.predicted_category : 'Model Inference'}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3 text-xs">
-                  <div className="bg-white/[0.03] p-3 rounded-xl">
-                    <span className="text-gray-400 flex items-center gap-1 text-[11px]">
-                      <Thermometer className="w-3.5 h-3.5 text-amber-400" /> Temperature
+                <div className="mt-6 pt-4 border-t border-white/5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 text-xs">
+                  <div className="bg-white/[0.03] p-2.5 sm:p-3 rounded-xl min-w-0">
+                    <span className="text-gray-400 flex items-center gap-1 text-[10px] sm:text-[11px] truncate">
+                      <Thermometer className="w-3.5 h-3.5 text-amber-400 shrink-0" /> Temperature
                     </span>
-                    <span className="text-base font-bold text-white mt-1 block">
+                    <span className="text-sm sm:text-base font-bold text-white mt-1 block truncate">
                       {activeCitySummary.avg_temperature_c}°C
                     </span>
-                    <span className="text-[10px] text-gray-500">
+                    <span className="text-[9px] sm:text-[10px] text-gray-500 truncate block">
                       Min: {activeCitySummary.min_temperature_c}° / Max: {activeCitySummary.max_temperature_c}°
                     </span>
                   </div>
 
-                  <div className="bg-white/[0.03] p-3 rounded-xl">
-                    <span className="text-gray-400 flex items-center gap-1 text-[11px]">
-                      <Droplets className="w-3.5 h-3.5 text-cyan-400" /> Humidity
+                  <div className="bg-white/[0.03] p-2.5 sm:p-3 rounded-xl min-w-0">
+                    <span className="text-gray-400 flex items-center gap-1 text-[10px] sm:text-[11px] truncate">
+                      <Droplets className="w-3.5 h-3.5 text-cyan-400 shrink-0" /> Humidity
                     </span>
-                    <span className="text-base font-bold text-white mt-1 block">
+                    <span className="text-sm sm:text-base font-bold text-white mt-1 block truncate">
                       {activeCitySummary.avg_humidity_pct}%
                     </span>
-                    <span className="text-[10px] text-gray-500">Relative humidity</span>
+                    <span className="text-[9px] sm:text-[10px] text-gray-500 truncate block">Relative humidity</span>
                   </div>
 
-                  <div className="bg-white/[0.03] p-3 rounded-xl">
-                    <span className="text-gray-400 flex items-center gap-1 text-[11px]">
-                      <Wind className="w-3.5 h-3.5 text-indigo-400" /> Wind Speed
+                  <div className="bg-white/[0.03] p-2.5 sm:p-3 rounded-xl min-w-0">
+                    <span className="text-gray-400 flex items-center gap-1 text-[10px] sm:text-[11px] truncate">
+                      <Wind className="w-3.5 h-3.5 text-indigo-400 shrink-0" /> Wind Speed
                     </span>
-                    <span className="text-base font-bold text-white mt-1 block">
+                    <span className="text-sm sm:text-base font-bold text-white mt-1 block truncate">
                       {activeCitySummary.avg_wind_speed_kmh} km/h
                     </span>
-                    <span className="text-[10px] text-gray-500">Max: {activeCitySummary.max_wind_speed_kmh} km/h</span>
+                    <span className="text-[9px] sm:text-[10px] text-gray-500 truncate block">Max: {activeCitySummary.max_wind_speed_kmh} km/h</span>
                   </div>
 
-                  <div className="bg-white/[0.03] p-3 rounded-xl">
-                    <span className="text-gray-400 flex items-center gap-1 text-[11px]">
-                      <Activity className="w-3.5 h-3.5 text-rose-400" /> PM2.5 Fine
+                  <div className="bg-white/[0.03] p-2.5 sm:p-3 rounded-xl min-w-0">
+                    <span className="text-gray-400 flex items-center gap-1 text-[10px] sm:text-[11px] truncate">
+                      <Activity className="w-3.5 h-3.5 text-rose-400 shrink-0" /> PM2.5 Fine
                     </span>
-                    <span className="text-base font-bold text-white mt-1 block">
+                    <span className="text-sm sm:text-base font-bold text-white mt-1 block truncate">
                       {activeCitySummary.avg_pm2_5} µg/m³
                     </span>
-                    <span className="text-[10px] text-gray-500">Peak: {activeCitySummary.max_pm2_5} µg/m³</span>
+                    <span className="text-[9px] sm:text-[10px] text-gray-500 truncate block">Peak: {activeCitySummary.max_pm2_5} µg/m³</span>
                   </div>
 
-                  <div className="bg-white/[0.03] p-3 rounded-xl">
-                    <span className="text-gray-400 flex items-center gap-1 text-[11px]">
-                      <Layers className="w-3.5 h-3.5 text-purple-400" /> PM10 Coarse
+                  <div className="bg-white/[0.03] p-2.5 sm:p-3 rounded-xl min-w-0">
+                    <span className="text-gray-400 flex items-center gap-1 text-[10px] sm:text-[11px] truncate">
+                      <Layers className="w-3.5 h-3.5 text-purple-400 shrink-0" /> PM10 Coarse
                     </span>
-                    <span className="text-base font-bold text-white mt-1 block">
+                    <span className="text-sm sm:text-base font-bold text-white mt-1 block truncate">
                       {activeCitySummary.avg_pm10} µg/m³
                     </span>
-                    <span className="text-[10px] text-gray-500">Peak: {activeCitySummary.max_pm10} µg/m³</span>
+                    <span className="text-[9px] sm:text-[10px] text-gray-500 truncate block">Peak: {activeCitySummary.max_pm10} µg/m³</span>
                   </div>
 
-                  <div className="bg-white/[0.03] p-3 rounded-xl">
-                    <span className="text-gray-400 flex items-center gap-1 text-[11px]">
-                      <Cpu className="w-3.5 h-3.5 text-emerald-400" /> Model MAE
+                  <div className="bg-white/[0.03] p-2.5 sm:p-3 rounded-xl min-w-0">
+                    <span className="text-gray-400 flex items-center gap-1 text-[10px] sm:text-[11px] truncate">
+                      <Cpu className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Model MAE
                     </span>
-                    <span className="text-base font-bold text-emerald-400 mt-1 block">
+                    <span className="text-sm sm:text-base font-bold text-emerald-400 mt-1 block truncate">
                       ±{activeCityPred ? activeCityPred.mae : '7.2'} pts
                     </span>
-                    <span className="text-[10px] text-gray-500">Mean Absolute Error</span>
+                    <span className="text-[9px] sm:text-[10px] text-gray-500 truncate block">Mean Absolute Error</span>
                   </div>
                 </div>
               </div>
@@ -604,15 +612,15 @@ export default function UrbanPulseDashboard() {
 
             {/* Time Series Recharts Area */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 glass-panel p-6 rounded-2xl border border-white/5 space-y-4">
-                <div className="flex items-center justify-between">
+              <div className="lg:col-span-2 glass-panel p-4 sm:p-6 rounded-2xl border border-white/5 space-y-4 min-w-0">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
                     <h3 className="text-base font-bold text-white">Historical AQI vs Model Prediction</h3>
                     <p className="text-xs text-gray-400">
                       14-day Gold mart history with rolling 7-day baseline and next-day machine learning projection
                     </p>
                   </div>
-                  <div className="flex items-center gap-3 text-xs font-mono">
+                  <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
                     <div className="flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
                       <span className="text-gray-300">Actual AQI</span>
@@ -624,7 +632,7 @@ export default function UrbanPulseDashboard() {
                   </div>
                 </div>
 
-                <div className="h-72 w-full pt-2">
+                <div className="h-64 sm:h-72 w-full pt-2">
                   <ResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={chartData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" vertical={false} />
@@ -670,11 +678,11 @@ export default function UrbanPulseDashboard() {
               </div>
 
               {/* Pollutants Breakdown Bar Chart */}
-              <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-4">
+              <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/5 space-y-4 min-w-0">
                 <h3 className="text-base font-bold text-white">Major Pollutant Levels</h3>
                 <p className="text-xs text-gray-400">Average concentration in air (µg/m³)</p>
 
-                <div className="h-72 w-full pt-2">
+                <div className="h-64 sm:h-72 w-full pt-2">
                   {activeCitySummary && (
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
@@ -750,12 +758,12 @@ export default function UrbanPulseDashboard() {
             </div>
 
             {/* Medallion Pipeline Architecture Visual */}
-            <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-6">
+            <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/5 space-y-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-400">
                 Medallion Architecture Lineage Flow
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 relative">
                 {/* Raw */}
                 <div className="bg-[#0D1322] p-4 rounded-xl border border-white/5 space-y-2">
                   <div className="flex items-center justify-between text-xs">
@@ -815,10 +823,10 @@ export default function UrbanPulseDashboard() {
             </div>
 
             {/* Data Quality & Test Suite Summary */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-3">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+              <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/5 space-y-3">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                  <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
                   <h3 className="text-base font-bold text-white">dbt Data Quality Test Suite</h3>
                 </div>
                 <p className="text-xs text-gray-400">
@@ -826,32 +834,32 @@ export default function UrbanPulseDashboard() {
                 </p>
 
                 <div className="space-y-2 mt-4 text-xs font-mono">
-                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-300">stg_weather.unique_key(city, date, hour)</span>
-                    <span className="text-emerald-400 font-bold">PASSED</span>
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-1 sm:gap-2 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs">
+                    <span className="text-gray-300 break-all sm:break-normal">stg_weather.unique_key(city, date, hour)</span>
+                    <span className="text-emerald-400 font-bold shrink-0 ml-auto sm:ml-0">PASSED</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-300">stg_weather.not_null(temperature_c)</span>
-                    <span className="text-emerald-400 font-bold">PASSED</span>
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-1 sm:gap-2 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs">
+                    <span className="text-gray-300 break-all sm:break-normal">stg_weather.not_null(temperature_c)</span>
+                    <span className="text-emerald-400 font-bold shrink-0 ml-auto sm:ml-0">PASSED</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-300">stg_air_quality.not_null(us_aqi)</span>
-                    <span className="text-emerald-400 font-bold">PASSED</span>
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-1 sm:gap-2 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs">
+                    <span className="text-gray-300 break-all sm:break-normal">stg_air_quality.not_null(us_aqi)</span>
+                    <span className="text-emerald-400 font-bold shrink-0 ml-auto sm:ml-0">PASSED</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-300">custom.test_aqi_sanity [0, 500 bounds]</span>
-                    <span className="text-emerald-400 font-bold">PASSED</span>
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-1 sm:gap-2 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs">
+                    <span className="text-gray-300 break-all sm:break-normal">custom.test_aqi_sanity [0, 500 bounds]</span>
+                    <span className="text-emerald-400 font-bold shrink-0 ml-auto sm:ml-0">PASSED</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-300">fct_daily_city_metrics.accepted_values(aqi_category)</span>
-                    <span className="text-emerald-400 font-bold">PASSED</span>
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-1 sm:gap-2 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs">
+                    <span className="text-gray-300 break-all sm:break-normal">fct_daily_city_metrics.accepted_values(aqi_category)</span>
+                    <span className="text-emerald-400 font-bold shrink-0 ml-auto sm:ml-0">PASSED</span>
                   </div>
                 </div>
               </div>
 
-              <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-3">
+              <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/5 space-y-3">
                 <div className="flex items-center gap-2">
-                  <RefreshCw className="w-5 h-5 text-cyan-400" />
+                  <RefreshCw className="w-5 h-5 text-cyan-400 shrink-0" />
                   <h3 className="text-base font-bold text-white">Orchestration & Deployment Story</h3>
                 </div>
                 <p className="text-xs text-gray-400">
@@ -878,10 +886,10 @@ export default function UrbanPulseDashboard() {
             </div>
 
             {/* ML Methodology & Leak-Free Split Observability Panel */}
-            <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-5">
+            <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/5 space-y-5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
+                  <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
                     <Cpu className="w-4 h-4" />
                   </div>
                   <div>
@@ -902,41 +910,41 @@ export default function UrbanPulseDashboard() {
               </div>
 
               {/* 3-Way Split Telemetry Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
                   <span className="text-[10px] uppercase font-mono text-gray-400">1. Train Window</span>
-                  <div className="text-lg font-bold text-white font-mono">
+                  <div className="text-base sm:text-lg font-bold text-white font-mono">
                     {metaData?.layers?.ml_layer?.train_days || 39} Days
                   </div>
-                  <p className="text-[11px] text-gray-400">Days 1–39: Candidate hyperparameter training</p>
+                  <p className="text-[10px] sm:text-[11px] text-gray-400">Days 1–39: Candidate tuning train</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
                   <span className="text-[10px] uppercase font-mono text-indigo-400">2. Validation Window</span>
-                  <div className="text-lg font-bold text-indigo-300 font-mono">
+                  <div className="text-base sm:text-lg font-bold text-indigo-300 font-mono">
                     {metaData?.layers?.ml_layer?.val_days || 8} Days
                   </div>
-                  <p className="text-[11px] text-gray-400">Days 40–47: Hyperparameter tuning only</p>
+                  <p className="text-[10px] sm:text-[11px] text-gray-400">Days 40–47: Hparam selection only</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
                   <span className="text-[10px] uppercase font-mono text-cyan-400">3. Train + Val Refit</span>
-                  <div className="text-lg font-bold text-cyan-300 font-mono">47 Days</div>
-                  <p className="text-[11px] text-gray-400">Days 1–47: Refit winning model architecture</p>
+                  <div className="text-base sm:text-lg font-bold text-cyan-300 font-mono">47 Days</div>
+                  <p className="text-[10px] sm:text-[11px] text-gray-400">Days 1–47: Refit winning model</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
-                  <span className="text-[10px] uppercase font-mono text-amber-400">4. Untouched Test Set</span>
-                  <div className="text-lg font-bold text-amber-300 font-mono">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                  <span className="text-[10px] uppercase font-mono text-amber-400">4. Untouched Test</span>
+                  <div className="text-base sm:text-lg font-bold text-amber-300 font-mono">
                     {metaData?.layers?.ml_layer?.test_days || 12} Days
                   </div>
-                  <p className="text-[11px] text-gray-400">Days 48–59: Evaluated strictly once</p>
+                  <p className="text-[10px] sm:text-[11px] text-gray-400">Days 48–59: Evaluated once</p>
                 </div>
               </div>
 
               {/* Tuning Decisions & Empirical Reality */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                <div className="p-4 rounded-xl bg-[#0B0F1C] border border-white/5 space-y-2">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 text-xs">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-[#0B0F1C] border border-white/5 space-y-2">
                   <span className="font-semibold text-gray-200 block">Winning Hyperparameters (from Validation)</span>
                   <div className="space-y-1.5 font-mono text-gray-300 text-[11px]">
                     <div className="flex justify-between">
@@ -958,7 +966,7 @@ export default function UrbanPulseDashboard() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0B0F1C] border border-white/5 space-y-2">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-[#0B0F1C] border border-white/5 space-y-2">
                   <span className="font-semibold text-gray-200 block">Plain-Disclosure Empirical Findings</span>
                   <p className="text-gray-300 leading-relaxed text-[11px]">
                     <span className="text-emerald-400 font-semibold">5 of 8 cities beat persistence</span> (Kolkata +29.8%, Ahmedabad +31.8%, Bengaluru +14.1%, Delhi +9.2%, Pune +1.6%).

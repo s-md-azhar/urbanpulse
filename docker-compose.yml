@@ -17,6 +17,7 @@ x-airflow-common:
     - ./airflow/logs:/opt/airflow/logs
     - ./pipeline:/opt/airflow/pipeline
     - ./data:/opt/airflow/data
+    - ./dashboard:/opt/airflow/dashboard
     - ./requirements.txt:/opt/airflow/requirements.txt
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
