@@ -67,33 +67,63 @@ def dbt_quality_gate_op(**context):
     Runs dbt tests against Silver staging views. If any test fails, raises exception
     and immediately halts downstream Gold mart generation.
     """
+    import os
     import subprocess
+    from pipeline.config import DUCKDB_PATH, DELTA_DATA_DIR
+    DUCKDB_PATH.parent.mkdir(parents=True, exist_ok=True)
+
     dbt_dir = Path(__file__).resolve().parent.parent.parent / "pipeline" / "dbt_project"
     if not dbt_dir.exists():
         dbt_dir = Path("/opt/airflow/pipeline/dbt_project")
 
-    res = subprocess.run(
+    env = os.environ.copy()
+    env["DUCKDB_PATH"] = str(DUCKDB_PATH.resolve())
+    env["DELTA_DATA_PATH"] = str(DELTA_DATA_DIR.resolve())
+
+    # First refresh staging views to match latest silver delta tables
+    run_res = subprocess.run(
+        ["dbt", "run", "--select", "staging", "--profiles-dir", str(dbt_dir)],
+        cwd=str(dbt_dir),
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+    if run_res.returncode != 0:
+        raise RuntimeError(f"STAGING MATERIALIZATION FAILED:\n{run_res.stdout}\n{run_res.stderr}")
+
+    # Next execute hard quality gate tests
+    test_res = subprocess.run(
         ["dbt", "test", "--select", "staging", "--profiles-dir", str(dbt_dir)],
         cwd=str(dbt_dir),
         capture_output=True,
         text=True,
+        env=env,
     )
-    if res.returncode != 0:
-        raise RuntimeError(f"HARD QUALITY GATE FAILED:\n{res.stdout}\n{res.stderr}")
+    if test_res.returncode != 0:
+        raise RuntimeError(f"HARD QUALITY GATE FAILED:\n{test_res.stdout}\n{test_res.stderr}")
     return "Data quality gate passed successfully."
 
 
 def dbt_gold_marts_op(**context):
+    import os
     import subprocess
+    from pipeline.config import DUCKDB_PATH, DELTA_DATA_DIR
+    DUCKDB_PATH.parent.mkdir(parents=True, exist_ok=True)
+
     dbt_dir = Path(__file__).resolve().parent.parent.parent / "pipeline" / "dbt_project"
     if not dbt_dir.exists():
         dbt_dir = Path("/opt/airflow/pipeline/dbt_project")
+
+    env = os.environ.copy()
+    env["DUCKDB_PATH"] = str(DUCKDB_PATH.resolve())
+    env["DELTA_DATA_PATH"] = str(DELTA_DATA_DIR.resolve())
 
     res = subprocess.run(
         ["dbt", "run", "--select", "marts", "--profiles-dir", str(dbt_dir)],
         cwd=str(dbt_dir),
         capture_output=True,
         text=True,
+        env=env,
     )
     if res.returncode != 0:
         raise RuntimeError(f"dbt run marts failed:\n{res.stdout}\n{res.stderr}")

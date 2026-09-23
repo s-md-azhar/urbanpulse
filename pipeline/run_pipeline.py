@@ -200,17 +200,27 @@ def export_dashboard_snapshots() -> Dict[str, Any]:
     # 4. Predictions from Delta table
     predictions_data = []
     if (PREDICTIONS_PATH / "_delta_log").exists():
-        pred_dt = DeltaTable(str(PREDICTIONS_PATH))
-        pred_df = pl.from_arrow(pred_dt.to_pyarrow_table()).to_pandas()
-        pred_df["forecast_for_date"] = pred_df["forecast_for_date"].astype(str)
-        pred_df["reference_date"] = pred_df["reference_date"].astype(str)
-        predictions_data = pred_df.to_dict(orient="records")
+        try:
+            pred_df = pl.read_delta(str(PREDICTIONS_PATH)).to_pandas()
+            pred_df["forecast_for_date"] = pred_df["forecast_for_date"].astype(str)
+            pred_df["reference_date"] = pred_df["reference_date"].astype(str)
+            predictions_data = pred_df.to_dict(orient="records")
+        except Exception as e:
+            logger.warning("Failed to read predictions table: %s", e)
 
     # 5. Row counts and pipeline observability metadata
-    bronze_w_rows = len(DeltaTable(str(DELTA_DATA_DIR / "bronze_weather")).to_pyarrow_table()) if (DELTA_DATA_DIR / "bronze_weather" / "_delta_log").exists() else 0
-    bronze_aq_rows = len(DeltaTable(str(DELTA_DATA_DIR / "bronze_air_quality")).to_pyarrow_table()) if (DELTA_DATA_DIR / "bronze_air_quality" / "_delta_log").exists() else 0
-    silver_w_rows = len(DeltaTable(str(SILVER_WEATHER_PATH)).to_pyarrow_table()) if (SILVER_WEATHER_PATH / "_delta_log").exists() else 0
-    silver_aq_rows = len(DeltaTable(str(SILVER_AQ_PATH)).to_pyarrow_table()) if (SILVER_AQ_PATH / "_delta_log").exists() else 0
+    def _count_delta(p: Path) -> int:
+        if (p / "_delta_log").exists():
+            try:
+                return pl.read_delta(str(p)).height
+            except Exception:
+                return 0
+        return 0
+
+    bronze_w_rows = _count_delta(DELTA_DATA_DIR / "bronze_weather")
+    bronze_aq_rows = _count_delta(DELTA_DATA_DIR / "bronze_air_quality")
+    silver_w_rows = _count_delta(SILVER_WEATHER_PATH)
+    silver_aq_rows = _count_delta(SILVER_AQ_PATH)
 
     meta_info = {
         "pipeline_name": "UrbanPulse Lakehouse",
