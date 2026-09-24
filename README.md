@@ -1,6 +1,6 @@
 # UrbanPulse — Multi-City Weather & Air Quality Intelligence Lakehouse
 
-🔗 **Live Demo:** [[placeholder — will be filled in manually](https://urbanpulse-delta.vercel.app/)]
+🔗 **Live Demo:** [[UrbanPulse Delta](https://urbanpulse-delta.vercel.app/)]
 
 [![Daily Lakehouse Refresh](https://github.com/s-md-azhar/urbanpulse/actions/workflows/daily_refresh.yml/badge.svg)](https://github.com/s-md-azhar/urbanpulse/actions/workflows/daily_refresh.yml)
 [![Vercel Ready](https://img.shields.io/badge/Vercel-Deployment%20Ready-black?logo=vercel)](https://vercel.com)
