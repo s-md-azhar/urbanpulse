@@ -1,6 +1,6 @@
 {
   "pipeline_name": "UrbanPulse Lakehouse",
-  "last_refresh_timestamp": "2026-09-24T08:21:36.809841Z",
+  "last_refresh_timestamp": "2026-09-24T11:14:54.013773Z",
   "status": "HEALTHY",
   "quality_gate_passed": true,
   "layers": {
@@ -10,13 +10,16 @@
     },
     "bronze": {
       "format": "Delta Lake (ACID Append-Only)",
-      "weather_row_count": 576,
-      "air_quality_row_count": 576
+      "weather_row_count": 238464,
+      "air_quality_row_count": 238464,
+      "total_row_count": 476928
     },
     "silver": {
       "format": "Delta Lake (ACID Idempotent Upsert)",
-      "weather_row_count": 576,
-      "air_quality_row_count": 576,
+      "weather_row_count": 11520,
+      "air_quality_row_count": 11520,
+      "observations_per_stream": 11520,
+      "total_cleaned_records": 23040,
       "primary_key": "(city, date, hour)"
     },
     "gold": {
@@ -25,7 +28,7 @@
         "dim_city",
         "fct_daily_city_metrics"
       ],
-      "total_daily_fact_records": 24
+      "total_daily_fact_records": 480
     },
     "ml_layer": {
       "model": "HistGradientBoostingRegressor",

@@ -28,6 +28,7 @@ ENV/
 data/raw/
 data/delta/
 data/gold/
+data/*.log
 *.duckdb
 *.duckdb.wal
 

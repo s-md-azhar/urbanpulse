@@ -32,8 +32,8 @@ jobs:
 
       - name: Run End-to-End Lakehouse Pipeline
         run: |
-          # Runs today's ingestion, bronze, silver idempotent merge, dbt quality gates, gold marts, and ML forecast
-          python pipeline/run_pipeline.py --backfill-days 3
+          # Runs full 60-day ingestion, bronze, silver idempotent merge, dbt quality gates, gold marts, and ML forecast
+          python pipeline/run_pipeline.py --backfill-days 60
 
       - name: Commit and Push Updated Snapshots
         run: |
