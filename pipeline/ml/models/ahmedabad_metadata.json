@@ -8,20 +8,20 @@
   "val_samples": 8,
   "train_val_samples": 47,
   "test_samples": 12,
-  "val_mae": 5.85,
-  "train_val_mae": 0.52,
-  "test_mae": 7.59,
-  "naive_baseline_mae": 14.09,
-  "delta_vs_baseline_pct": 46.1,
+  "val_mae": 7.31,
+  "train_val_mae": 0.5,
+  "test_mae": 6.91,
+  "naive_baseline_mae": 12.03,
+  "delta_vs_baseline_pct": 42.6,
   "beats_baseline": true,
-  "performance_summary": "Beats persistence baseline by 46.1%",
+  "performance_summary": "Beats persistence baseline by 42.6%",
   "hyperparameter_selection": {
     "method": "Chronological Validation Set Grid Search (Zero Test Peeking)",
     "train_window_days": 39,
     "val_window_days": 8,
     "test_window_days": 12,
     "winning_config_name": "leaf_5_lr_05",
-    "aggregate_val_mae": 11.55
+    "aggregate_val_mae": 11.06
   },
   "hyperparameters": {
     "random_state": 42,
@@ -31,7 +31,7 @@
     "max_iter": 100,
     "missing_values_strategy": "native_histogram_binning"
   },
-  "trained_at": "2026-10-02T09:37:25.293059+00:00",
+  "trained_at": "2026-10-03T09:03:32.756137+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",
