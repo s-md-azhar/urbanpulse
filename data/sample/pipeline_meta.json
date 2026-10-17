@@ -1,6 +1,6 @@
 {
   "pipeline_name": "UrbanPulse Lakehouse",
-  "last_refresh_timestamp": "2026-10-16T08:04:04.874520Z",
+  "last_refresh_timestamp": "2026-10-17T07:41:48.877213Z",
   "status": "HEALTHY",
   "quality_gate_passed": true,
   "layers": {
