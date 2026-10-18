@@ -8,20 +8,20 @@
   "val_samples": 8,
   "train_val_samples": 47,
   "test_samples": 12,
-  "val_mae": 25.32,
-  "train_val_mae": 0.57,
-  "test_mae": 8.61,
-  "naive_baseline_mae": 8.58,
-  "delta_vs_baseline_pct": -0.4,
+  "val_mae": 25.38,
+  "train_val_mae": 0.58,
+  "test_mae": 9.21,
+  "naive_baseline_mae": 7.94,
+  "delta_vs_baseline_pct": -16.0,
   "beats_baseline": false,
-  "performance_summary": "Underperforms persistence baseline by 0.4% (low atmospheric volatility / small sample)",
+  "performance_summary": "Underperforms persistence baseline by 16.0% (low atmospheric volatility / small sample)",
   "hyperparameter_selection": {
     "method": "Chronological Validation Set Grid Search (Zero Test Peeking)",
     "train_window_days": 39,
     "val_window_days": 8,
     "test_window_days": 12,
     "winning_config_name": "leaf_4_lr_08",
-    "aggregate_val_mae": 23.49
+    "aggregate_val_mae": 25.57
   },
   "hyperparameters": {
     "random_state": 42,
@@ -31,7 +31,7 @@
     "max_iter": 100,
     "missing_values_strategy": "native_histogram_binning"
   },
-  "trained_at": "2026-10-17T07:41:46.519768+00:00",
+  "trained_at": "2026-10-18T07:57:25.293392+00:00",
   "features": [
     "avg_us_aqi",
     "lag_1d_aqi",
