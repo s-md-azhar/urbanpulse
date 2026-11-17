@@ -1,214 +1,6 @@
 [
   {
     "city": "ahmedabad",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 28.19,
-    "min_temperature_c": 25.4,
-    "max_temperature_c": 32.1,
-    "avg_humidity_pct": 78.46,
-    "total_precipitation_mm": 3.5,
-    "avg_wind_speed_kmh": 8.82,
-    "max_wind_speed_kmh": 14.7,
-    "avg_pm2_5": 10.76,
-    "max_pm2_5": 17.2,
-    "avg_pm10": 12.55,
-    "max_pm10": 19.3,
-    "avg_carbon_monoxide": 276.67,
-    "avg_nitrogen_dioxide": 14.08,
-    "avg_sulphur_dioxide": 6.95,
-    "avg_ozone": 54.71,
-    "avg_us_aqi": 57.7,
-    "max_us_aqi": 59.0,
-    "aqi_category": "Moderate",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 57.7
-  },
-  {
-    "city": "bengaluru",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 25.24,
-    "min_temperature_c": 20.5,
-    "max_temperature_c": 30.5,
-    "avg_humidity_pct": 70.08,
-    "total_precipitation_mm": 5.8,
-    "avg_wind_speed_kmh": 8.75,
-    "max_wind_speed_kmh": 11.7,
-    "avg_pm2_5": 10.12,
-    "max_pm2_5": 18.2,
-    "avg_pm10": 11.6,
-    "max_pm10": 20.0,
-    "avg_carbon_monoxide": 496.38,
-    "avg_nitrogen_dioxide": 14.25,
-    "avg_sulphur_dioxide": 5.61,
-    "avg_ozone": 70.21,
-    "avg_us_aqi": 64.5,
-    "max_us_aqi": 69.0,
-    "aqi_category": "Moderate",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 64.5
-  },
-  {
-    "city": "chennai",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 30.81,
-    "min_temperature_c": 26.7,
-    "max_temperature_c": 36.0,
-    "avg_humidity_pct": 71.42,
-    "total_precipitation_mm": 7.4,
-    "avg_wind_speed_kmh": 8.68,
-    "max_wind_speed_kmh": 13.5,
-    "avg_pm2_5": 21.6,
-    "max_pm2_5": 31.0,
-    "avg_pm10": 25.23,
-    "max_pm10": 35.9,
-    "avg_carbon_monoxide": 293.46,
-    "avg_nitrogen_dioxide": 9.51,
-    "avg_sulphur_dioxide": 11.72,
-    "avg_ozone": 133.46,
-    "avg_us_aqi": 108.5,
-    "max_us_aqi": 164.0,
-    "aqi_category": "Unhealthy for Sensitive Groups",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 108.5
-  },
-  {
-    "city": "delhi",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 29.17,
-    "min_temperature_c": 24.8,
-    "max_temperature_c": 32.5,
-    "avg_humidity_pct": 68.75,
-    "total_precipitation_mm": 2.0,
-    "avg_wind_speed_kmh": 5.86,
-    "max_wind_speed_kmh": 13.5,
-    "avg_pm2_5": 55.32,
-    "max_pm2_5": 103.1,
-    "avg_pm10": 63.09,
-    "max_pm10": 109.4,
-    "avg_carbon_monoxide": 590.42,
-    "avg_nitrogen_dioxide": 28.12,
-    "avg_sulphur_dioxide": 25.95,
-    "avg_ozone": 124.25,
-    "avg_us_aqi": 166.4,
-    "max_us_aqi": 204.0,
-    "aqi_category": "Unhealthy",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 166.4
-  },
-  {
-    "city": "hyderabad",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 29.96,
-    "min_temperature_c": 26.0,
-    "max_temperature_c": 33.4,
-    "avg_humidity_pct": 55.92,
-    "total_precipitation_mm": 2.1,
-    "avg_wind_speed_kmh": 6.72,
-    "max_wind_speed_kmh": 10.7,
-    "avg_pm2_5": 23.58,
-    "max_pm2_5": 51.8,
-    "avg_pm10": 25.1,
-    "max_pm10": 53.4,
-    "avg_carbon_monoxide": 525.17,
-    "avg_nitrogen_dioxide": 21.11,
-    "avg_sulphur_dioxide": 9.88,
-    "avg_ozone": 84.75,
-    "avg_us_aqi": 96.3,
-    "max_us_aqi": 109.0,
-    "aqi_category": "Moderate",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 96.3
-  },
-  {
-    "city": "kolkata",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 28.82,
-    "min_temperature_c": 27.4,
-    "max_temperature_c": 32.8,
-    "avg_humidity_pct": 83.63,
-    "total_precipitation_mm": 11.8,
-    "avg_wind_speed_kmh": 5.1,
-    "max_wind_speed_kmh": 8.8,
-    "avg_pm2_5": 34.71,
-    "max_pm2_5": 49.5,
-    "avg_pm10": 36.21,
-    "max_pm10": 50.1,
-    "avg_carbon_monoxide": 552.29,
-    "avg_nitrogen_dioxide": 10.75,
-    "avg_sulphur_dioxide": 10.62,
-    "avg_ozone": 81.13,
-    "avg_us_aqi": 87.5,
-    "max_us_aqi": 97.0,
-    "aqi_category": "Moderate",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 87.5
-  },
-  {
-    "city": "mumbai",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 28.03,
-    "min_temperature_c": 26.1,
-    "max_temperature_c": 29.9,
-    "avg_humidity_pct": 80.38,
-    "total_precipitation_mm": 1.6,
-    "avg_wind_speed_kmh": 9.03,
-    "max_wind_speed_kmh": 14.3,
-    "avg_pm2_5": 14.87,
-    "max_pm2_5": 20.5,
-    "avg_pm10": 21.64,
-    "max_pm10": 30.2,
-    "avg_carbon_monoxide": 324.21,
-    "avg_nitrogen_dioxide": 12.37,
-    "avg_sulphur_dioxide": 12.08,
-    "avg_ozone": 57.83,
-    "avg_us_aqi": 60.6,
-    "max_us_aqi": 64.0,
-    "aqi_category": "Moderate",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 60.6
-  },
-  {
-    "city": "pune",
-    "metric_date": "2026-09-17",
-    "avg_temperature_c": 24.82,
-    "min_temperature_c": 22.3,
-    "max_temperature_c": 29.3,
-    "avg_humidity_pct": 81.5,
-    "total_precipitation_mm": 9.3,
-    "avg_wind_speed_kmh": 8.83,
-    "max_wind_speed_kmh": 13.6,
-    "avg_pm2_5": 7.61,
-    "max_pm2_5": 9.7,
-    "avg_pm10": 9.91,
-    "max_pm10": 13.9,
-    "avg_carbon_monoxide": 197.42,
-    "avg_nitrogen_dioxide": 10.15,
-    "avg_sulphur_dioxide": 8.29,
-    "avg_ozone": 50.79,
-    "avg_us_aqi": 44.3,
-    "max_us_aqi": 46.0,
-    "aqi_category": "Good",
-    "lag_1d_aqi": null,
-    "lag_2d_aqi": null,
-    "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 44.3
-  },
-  {
-    "city": "ahmedabad",
     "metric_date": "2026-09-18",
     "avg_temperature_c": 26.74,
     "min_temperature_c": 24.7,
@@ -228,10 +20,10 @@
     "avg_us_aqi": 44.0,
     "max_us_aqi": 53.0,
     "aqi_category": "Good",
-    "lag_1d_aqi": 57.7,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 50.9
+    "rolling_7d_avg_aqi": 44.0
   },
   {
     "city": "bengaluru",
@@ -254,10 +46,10 @@
     "avg_us_aqi": 50.3,
     "max_us_aqi": 54.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": 64.5,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 57.4
+    "rolling_7d_avg_aqi": 50.3
   },
   {
     "city": "chennai",
@@ -280,10 +72,10 @@
     "avg_us_aqi": 96.1,
     "max_us_aqi": 150.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": 108.5,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 102.3
+    "rolling_7d_avg_aqi": 96.1
   },
   {
     "city": "delhi",
@@ -306,10 +98,10 @@
     "avg_us_aqi": 126.5,
     "max_us_aqi": 163.0,
     "aqi_category": "Unhealthy for Sensitive Groups",
-    "lag_1d_aqi": 166.4,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 146.5
+    "rolling_7d_avg_aqi": 126.5
   },
   {
     "city": "hyderabad",
@@ -332,10 +124,10 @@
     "avg_us_aqi": 66.0,
     "max_us_aqi": 78.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": 96.3,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 81.2
+    "rolling_7d_avg_aqi": 66.0
   },
   {
     "city": "kolkata",
@@ -358,10 +150,10 @@
     "avg_us_aqi": 129.2,
     "max_us_aqi": 177.0,
     "aqi_category": "Unhealthy for Sensitive Groups",
-    "lag_1d_aqi": 87.5,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 108.4
+    "rolling_7d_avg_aqi": 129.2
   },
   {
     "city": "mumbai",
@@ -384,10 +176,10 @@
     "avg_us_aqi": 57.8,
     "max_us_aqi": 61.0,
     "aqi_category": "Moderate",
-    "lag_1d_aqi": 60.6,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 59.2
+    "rolling_7d_avg_aqi": 57.8
   },
   {
     "city": "pune",
@@ -410,10 +202,10 @@
     "avg_us_aqi": 39.9,
     "max_us_aqi": 42.0,
     "aqi_category": "Good",
-    "lag_1d_aqi": 44.3,
+    "lag_1d_aqi": null,
     "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 42.1
+    "rolling_7d_avg_aqi": 39.9
   },
   {
     "city": "ahmedabad",
@@ -437,9 +229,9 @@
     "max_us_aqi": 79.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 44.0,
-    "lag_2d_aqi": 57.7,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 53.0
+    "rolling_7d_avg_aqi": 50.7
   },
   {
     "city": "bengaluru",
@@ -463,9 +255,9 @@
     "max_us_aqi": 54.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 50.3,
-    "lag_2d_aqi": 64.5,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 56.3
+    "rolling_7d_avg_aqi": 52.2
   },
   {
     "city": "chennai",
@@ -489,9 +281,9 @@
     "max_us_aqi": 156.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 96.1,
-    "lag_2d_aqi": 108.5,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 100.7
+    "rolling_7d_avg_aqi": 96.9
   },
   {
     "city": "delhi",
@@ -501,7 +293,7 @@
     "max_temperature_c": 32.8,
     "avg_humidity_pct": 68.71,
     "total_precipitation_mm": 0.0,
-    "avg_wind_speed_kmh": 3.82,
+    "avg_wind_speed_kmh": 3.83,
     "max_wind_speed_kmh": 5.8,
     "avg_pm2_5": 57.32,
     "max_pm2_5": 115.0,
@@ -515,9 +307,9 @@
     "max_us_aqi": 181.0,
     "aqi_category": "Unhealthy for Sensitive Groups",
     "lag_1d_aqi": 126.5,
-    "lag_2d_aqi": 166.4,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 140.2
+    "rolling_7d_avg_aqi": 127.1
   },
   {
     "city": "hyderabad",
@@ -541,9 +333,9 @@
     "max_us_aqi": 85.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 66.0,
-    "lag_2d_aqi": 96.3,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 76.7
+    "rolling_7d_avg_aqi": 67.0
   },
   {
     "city": "kolkata",
@@ -567,9 +359,9 @@
     "max_us_aqi": 201.0,
     "aqi_category": "Unhealthy",
     "lag_1d_aqi": 129.2,
-    "lag_2d_aqi": 87.5,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 127.1
+    "rolling_7d_avg_aqi": 146.9
   },
   {
     "city": "mumbai",
@@ -593,9 +385,9 @@
     "max_us_aqi": 108.0,
     "aqi_category": "Moderate",
     "lag_1d_aqi": 57.8,
-    "lag_2d_aqi": 60.6,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 62.3
+    "rolling_7d_avg_aqi": 63.1
   },
   {
     "city": "pune",
@@ -619,9 +411,9 @@
     "max_us_aqi": 51.0,
     "aqi_category": "Good",
     "lag_1d_aqi": 39.9,
-    "lag_2d_aqi": 44.3,
+    "lag_2d_aqi": null,
     "lag_3d_aqi": null,
-    "rolling_7d_avg_aqi": 42.4
+    "rolling_7d_avg_aqi": 41.5
   },
   {
     "city": "ahmedabad",
@@ -646,8 +438,8 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 57.3,
     "lag_2d_aqi": 44.0,
-    "lag_3d_aqi": 57.7,
-    "rolling_7d_avg_aqi": 63.5
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 65.4
   },
   {
     "city": "bengaluru",
@@ -672,8 +464,8 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 54.0,
     "lag_2d_aqi": 50.3,
-    "lag_3d_aqi": 64.5,
-    "rolling_7d_avg_aqi": 56.1
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 53.3
   },
   {
     "city": "chennai",
@@ -698,8 +490,8 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 97.6,
     "lag_2d_aqi": 96.1,
-    "lag_3d_aqi": 108.5,
-    "rolling_7d_avg_aqi": 97.3
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 93.5
   },
   {
     "city": "delhi",
@@ -724,8 +516,8 @@
     "aqi_category": "Unhealthy",
     "lag_1d_aqi": 127.6,
     "lag_2d_aqi": 126.5,
-    "lag_3d_aqi": 166.4,
-    "rolling_7d_avg_aqi": 147.4
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 141.0
   },
   {
     "city": "hyderabad",
@@ -750,8 +542,8 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 67.9,
     "lag_2d_aqi": 66.0,
-    "lag_3d_aqi": 96.3,
-    "rolling_7d_avg_aqi": 76.1
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 69.4
   },
   {
     "city": "kolkata",
@@ -776,8 +568,8 @@
     "aqi_category": "Unhealthy for Sensitive Groups",
     "lag_1d_aqi": 164.5,
     "lag_2d_aqi": 129.2,
-    "lag_3d_aqi": 87.5,
-    "rolling_7d_avg_aqi": 127.3
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 140.6
   },
   {
     "city": "mumbai",
@@ -802,8 +594,8 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 68.4,
     "lag_2d_aqi": 57.8,
-    "lag_3d_aqi": 60.6,
-    "rolling_7d_avg_aqi": 68.0
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 70.4
   },
   {
     "city": "pune",
@@ -828,8 +620,8 @@
     "aqi_category": "Moderate",
     "lag_1d_aqi": 43.0,
     "lag_2d_aqi": 39.9,
-    "lag_3d_aqi": 44.3,
-    "rolling_7d_avg_aqi": 46.7
+    "lag_3d_aqi": null,
+    "rolling_7d_avg_aqi": 47.5
   },
   {
     "city": "ahmedabad",
@@ -855,7 +647,7 @@
     "lag_1d_aqi": 94.8,
     "lag_2d_aqi": 57.3,
     "lag_3d_aqi": 44.0,
-    "rolling_7d_avg_aqi": 68.8
+    "rolling_7d_avg_aqi": 71.6
   },
   {
     "city": "bengaluru",
@@ -881,7 +673,7 @@
     "lag_1d_aqi": 55.5,
     "lag_2d_aqi": 54.0,
     "lag_3d_aqi": 50.3,
-    "rolling_7d_avg_aqi": 55.4
+    "rolling_7d_avg_aqi": 53.2
   },
   {
     "city": "chennai",
@@ -907,7 +699,7 @@
     "lag_1d_aqi": 86.9,
     "lag_2d_aqi": 97.6,
     "lag_3d_aqi": 96.1,
-    "rolling_7d_avg_aqi": 96.7
+    "rolling_7d_avg_aqi": 93.8
   },
   {
     "city": "delhi",
@@ -933,7 +725,7 @@
     "lag_1d_aqi": 168.9,
     "lag_2d_aqi": 127.6,
     "lag_3d_aqi": 126.5,
-    "rolling_7d_avg_aqi": 151.6
+    "rolling_7d_avg_aqi": 147.9
   },
   {
     "city": "hyderabad",
@@ -959,7 +751,7 @@
     "lag_1d_aqi": 74.3,
     "lag_2d_aqi": 67.9,
     "lag_3d_aqi": 66.0,
-    "rolling_7d_avg_aqi": 79.6
+    "rolling_7d_avg_aqi": 75.4
   },
   {
     "city": "kolkata",
@@ -985,7 +777,7 @@
     "lag_1d_aqi": 128.0,
     "lag_2d_aqi": 164.5,
     "lag_3d_aqi": 129.2,
-    "rolling_7d_avg_aqi": 117.2
+    "rolling_7d_avg_aqi": 124.6
   },
   {
     "city": "mumbai",
@@ -1011,7 +803,7 @@
     "lag_1d_aqi": 85.0,
     "lag_2d_aqi": 68.4,
     "lag_3d_aqi": 57.8,
-    "rolling_7d_avg_aqi": 76.5
+    "rolling_7d_avg_aqi": 80.4
   },
   {
     "city": "pune",
@@ -1037,7 +829,7 @@
     "lag_1d_aqi": 59.7,
     "lag_2d_aqi": 43.0,
     "lag_3d_aqi": 39.9,
-    "rolling_7d_avg_aqi": 52.6
+    "rolling_7d_avg_aqi": 54.7
   },
   {
     "city": "ahmedabad",
@@ -1063,7 +855,7 @@
     "lag_1d_aqi": 90.2,
     "lag_2d_aqi": 94.8,
     "lag_3d_aqi": 57.3,
-    "rolling_7d_avg_aqi": 76.4
+    "rolling_7d_avg_aqi": 80.2
   },
   {
     "city": "bengaluru",
@@ -1089,7 +881,7 @@
     "lag_1d_aqi": 52.9,
     "lag_2d_aqi": 55.5,
     "lag_3d_aqi": 54.0,
-    "rolling_7d_avg_aqi": 54.4
+    "rolling_7d_avg_aqi": 52.3
   },
   {
     "city": "chennai",
@@ -1115,7 +907,7 @@
     "lag_1d_aqi": 94.6,
     "lag_2d_aqi": 86.9,
     "lag_3d_aqi": 97.6,
-    "rolling_7d_avg_aqi": 92.8
+    "rolling_7d_avg_aqi": 89.6
   },
   {
     "city": "delhi",
@@ -1125,7 +917,7 @@
     "max_temperature_c": 35.8,
     "avg_humidity_pct": 58.08,
     "total_precipitation_mm": 0.0,
-    "avg_wind_speed_kmh": 3.67,
+    "avg_wind_speed_kmh": 3.68,
     "max_wind_speed_kmh": 10.1,
     "avg_pm2_5": 68.77,
     "max_pm2_5": 107.8,
@@ -1141,7 +933,7 @@
     "lag_1d_aqi": 168.7,
     "lag_2d_aqi": 168.9,
     "lag_3d_aqi": 127.6,
-    "rolling_7d_avg_aqi": 155.1
+    "rolling_7d_avg_aqi": 152.8
   },
   {
     "city": "hyderabad",
@@ -1167,7 +959,7 @@
     "lag_1d_aqi": 93.4,
     "lag_2d_aqi": 74.3,
     "lag_3d_aqi": 67.9,
-    "rolling_7d_avg_aqi": 82.6
+    "rolling_7d_avg_aqi": 79.9
   },
   {
     "city": "kolkata",
@@ -1193,7 +985,7 @@
     "lag_1d_aqi": 76.8,
     "lag_2d_aqi": 128.0,
     "lag_3d_aqi": 164.5,
-    "rolling_7d_avg_aqi": 108.3
+    "rolling_7d_avg_aqi": 112.5
   },
   {
     "city": "mumbai",
@@ -1219,7 +1011,7 @@
     "lag_1d_aqi": 110.5,
     "lag_2d_aqi": 85.0,
     "lag_3d_aqi": 68.4,
-    "rolling_7d_avg_aqi": 79.7
+    "rolling_7d_avg_aqi": 83.5
   },
   {
     "city": "pune",
@@ -1245,7 +1037,7 @@
     "lag_1d_aqi": 76.2,
     "lag_2d_aqi": 59.7,
     "lag_3d_aqi": 43.0,
-    "rolling_7d_avg_aqi": 56.5
+    "rolling_7d_avg_aqi": 59.0
   },
   {
     "city": "ahmedabad",
@@ -1271,7 +1063,7 @@
     "lag_1d_aqi": 114.6,
     "lag_2d_aqi": 90.2,
     "lag_3d_aqi": 94.8,
-    "rolling_7d_avg_aqi": 79.3
+    "rolling_7d_avg_aqi": 82.9
   },
   {
     "city": "bengaluru",
@@ -1297,7 +1089,7 @@
     "lag_1d_aqi": 49.0,
     "lag_2d_aqi": 52.9,
     "lag_3d_aqi": 55.5,
-    "rolling_7d_avg_aqi": 54.3
+    "rolling_7d_avg_aqi": 52.6
   },
   {
     "city": "chennai",
@@ -1307,7 +1099,7 @@
     "max_temperature_c": 33.5,
     "avg_humidity_pct": 68.58,
     "total_precipitation_mm": 3.7,
-    "avg_wind_speed_kmh": 13.82,
+    "avg_wind_speed_kmh": 13.83,
     "max_wind_speed_kmh": 18.7,
     "avg_pm2_5": 14.25,
     "max_pm2_5": 24.3,
@@ -1323,7 +1115,7 @@
     "lag_1d_aqi": 73.0,
     "lag_2d_aqi": 94.6,
     "lag_3d_aqi": 86.9,
-    "rolling_7d_avg_aqi": 88.9
+    "rolling_7d_avg_aqi": 85.7
   },
   {
     "city": "delhi",
@@ -1349,7 +1141,7 @@
     "lag_1d_aqi": 172.3,
     "lag_2d_aqi": 168.7,
     "lag_3d_aqi": 168.9,
-    "rolling_7d_avg_aqi": 156.8
+    "rolling_7d_avg_aqi": 155.2
   },
   {
     "city": "hyderabad",
@@ -1375,7 +1167,7 @@
     "lag_1d_aqi": 97.8,
     "lag_2d_aqi": 93.4,
     "lag_3d_aqi": 74.3,
-    "rolling_7d_avg_aqi": 83.4
+    "rolling_7d_avg_aqi": 81.2
   },
   {
     "city": "kolkata",
@@ -1401,7 +1193,7 @@
     "lag_1d_aqi": 63.8,
     "lag_2d_aqi": 76.8,
     "lag_3d_aqi": 128.0,
-    "rolling_7d_avg_aqi": 98.4
+    "rolling_7d_avg_aqi": 100.3
   },
   {
     "city": "mumbai",
@@ -1427,7 +1219,7 @@
     "lag_1d_aqi": 95.7,
     "lag_2d_aqi": 110.5,
     "lag_3d_aqi": 85.0,
-    "rolling_7d_avg_aqi": 80.4
+    "rolling_7d_avg_aqi": 83.7
   },
   {
     "city": "pune",
@@ -1453,7 +1245,7 @@
     "lag_1d_aqi": 76.1,
     "lag_2d_aqi": 76.2,
     "lag_3d_aqi": 59.7,
-    "rolling_7d_avg_aqi": 59.9
+    "rolling_7d_avg_aqi": 62.5
   },
   {
     "city": "ahmedabad",
@@ -1640,7 +1432,7 @@
   {
     "city": "pune",
     "metric_date": "2026-09-24",
-    "avg_temperature_c": 25.68,
+    "avg_temperature_c": 25.67,
     "min_temperature_c": 22.9,
     "max_temperature_c": 30.7,
     "avg_humidity_pct": 79.5,
@@ -1649,7 +1441,7 @@
     "max_wind_speed_kmh": 15.4,
     "avg_pm2_5": 28.61,
     "max_pm2_5": 39.1,
-    "avg_pm10": 32.93,
+    "avg_pm10": 32.92,
     "max_pm10": 46.9,
     "avg_carbon_monoxide": 255.17,
     "avg_nitrogen_dioxide": 9.13,
@@ -1705,7 +1497,7 @@
     "max_pm10": 9.8,
     "avg_carbon_monoxide": 322.79,
     "avg_nitrogen_dioxide": 9.17,
-    "avg_sulphur_dioxide": 3.47,
+    "avg_sulphur_dioxide": 3.48,
     "avg_ozone": 64.71,
     "avg_us_aqi": 37.0,
     "max_us_aqi": 48.0,
@@ -1753,7 +1545,7 @@
     "max_wind_speed_kmh": 12.7,
     "avg_pm2_5": 35.47,
     "max_pm2_5": 72.4,
-    "avg_pm10": 101.87,
+    "avg_pm10": 101.88,
     "max_pm10": 175.6,
     "avg_carbon_monoxide": 420.92,
     "avg_nitrogen_dioxide": 26.72,
@@ -1808,7 +1600,7 @@
     "avg_pm10": 8.67,
     "max_pm10": 13.4,
     "avg_carbon_monoxide": 216.88,
-    "avg_nitrogen_dioxide": 4.37,
+    "avg_nitrogen_dioxide": 4.38,
     "avg_sulphur_dioxide": 4.48,
     "avg_ozone": 61.96,
     "avg_us_aqi": 33.6,
@@ -1829,7 +1621,7 @@
     "total_precipitation_mm": 5.0,
     "avg_wind_speed_kmh": 8.78,
     "max_wind_speed_kmh": 16.5,
-    "avg_pm2_5": 28.43,
+    "avg_pm2_5": 28.42,
     "max_pm2_5": 32.5,
     "avg_pm10": 46.16,
     "max_pm10": 55.2,
@@ -1874,7 +1666,7 @@
   {
     "city": "ahmedabad",
     "metric_date": "2026-09-26",
-    "avg_temperature_c": 29.83,
+    "avg_temperature_c": 29.82,
     "min_temperature_c": 25.5,
     "max_temperature_c": 34.8,
     "avg_humidity_pct": 64.71,
@@ -2217,7 +2009,7 @@
     "max_temperature_c": 33.2,
     "avg_humidity_pct": 79.38,
     "total_precipitation_mm": 0.4,
-    "avg_wind_speed_kmh": 3.47,
+    "avg_wind_speed_kmh": 3.48,
     "max_wind_speed_kmh": 5.7,
     "avg_pm2_5": 29.88,
     "max_pm2_5": 66.8,
@@ -2563,7 +2355,7 @@
     "max_pm10": 50.1,
     "avg_carbon_monoxide": 320.63,
     "avg_nitrogen_dioxide": 9.88,
-    "avg_sulphur_dioxide": 14.23,
+    "avg_sulphur_dioxide": 14.22,
     "avg_ozone": 134.54,
     "avg_us_aqi": 126.5,
     "max_us_aqi": 195.0,
@@ -2966,7 +2758,7 @@
   {
     "city": "chennai",
     "metric_date": "2026-10-01",
-    "avg_temperature_c": 30.03,
+    "avg_temperature_c": 30.02,
     "min_temperature_c": 26.5,
     "max_temperature_c": 33.6,
     "avg_humidity_pct": 70.13,
@@ -3105,7 +2897,7 @@
     "max_wind_speed_kmh": 10.5,
     "avg_pm2_5": 44.57,
     "max_pm2_5": 77.8,
-    "avg_pm10": 55.72,
+    "avg_pm10": 55.73,
     "max_pm10": 82.0,
     "avg_carbon_monoxide": 504.29,
     "avg_nitrogen_dioxide": 21.22,
@@ -3543,7 +3335,7 @@
     "max_temperature_c": 36.2,
     "avg_humidity_pct": 42.21,
     "total_precipitation_mm": 0.0,
-    "avg_wind_speed_kmh": 6.78,
+    "avg_wind_speed_kmh": 6.77,
     "max_wind_speed_kmh": 9.3,
     "avg_pm2_5": 20.45,
     "max_pm2_5": 48.5,
@@ -3706,7 +3498,7 @@
     "avg_pm10": 40.97,
     "max_pm10": 55.8,
     "avg_carbon_monoxide": 424.5,
-    "avg_nitrogen_dioxide": 16.73,
+    "avg_nitrogen_dioxide": 16.72,
     "avg_sulphur_dioxide": 22.58,
     "avg_ozone": 159.38,
     "avg_us_aqi": 149.0,
@@ -3967,7 +3759,7 @@
     "max_pm10": 90.3,
     "avg_carbon_monoxide": 295.79,
     "avg_nitrogen_dioxide": 37.53,
-    "avg_sulphur_dioxide": 13.92,
+    "avg_sulphur_dioxide": 13.93,
     "avg_ozone": 69.5,
     "avg_us_aqi": 95.0,
     "max_us_aqi": 111.0,
@@ -4174,7 +3966,7 @@
     "avg_pm10": 65.22,
     "max_pm10": 84.3,
     "avg_carbon_monoxide": 474.08,
-    "avg_nitrogen_dioxide": 32.17,
+    "avg_nitrogen_dioxide": 32.18,
     "avg_sulphur_dioxide": 21.79,
     "avg_ozone": 116.88,
     "avg_us_aqi": 148.0,
@@ -4349,7 +4141,7 @@
     "max_temperature_c": 33.7,
     "avg_humidity_pct": 55.88,
     "total_precipitation_mm": 0.0,
-    "avg_wind_speed_kmh": 6.83,
+    "avg_wind_speed_kmh": 6.82,
     "max_wind_speed_kmh": 16.0,
     "avg_pm2_5": 44.54,
     "max_pm2_5": 76.6,
@@ -4370,7 +4162,7 @@
   {
     "city": "ahmedabad",
     "metric_date": "2026-10-08",
-    "avg_temperature_c": 32.58,
+    "avg_temperature_c": 32.57,
     "min_temperature_c": 27.7,
     "max_temperature_c": 37.6,
     "avg_humidity_pct": 42.75,
@@ -4637,7 +4429,7 @@
     "total_precipitation_mm": 0.2,
     "avg_wind_speed_kmh": 6.49,
     "max_wind_speed_kmh": 11.8,
-    "avg_pm2_5": 18.22,
+    "avg_pm2_5": 18.23,
     "max_pm2_5": 22.1,
     "avg_pm10": 25.61,
     "max_pm10": 29.3,
@@ -4656,7 +4448,7 @@
   {
     "city": "delhi",
     "metric_date": "2026-10-09",
-    "avg_temperature_c": 27.78,
+    "avg_temperature_c": 27.77,
     "min_temperature_c": 24.4,
     "max_temperature_c": 34.0,
     "avg_humidity_pct": 69.79,
@@ -4847,7 +4639,7 @@
     "max_wind_speed_kmh": 14.3,
     "avg_pm2_5": 19.55,
     "max_pm2_5": 26.0,
-    "avg_pm10": 28.52,
+    "avg_pm10": 28.53,
     "max_pm10": 39.7,
     "avg_carbon_monoxide": 211.29,
     "avg_nitrogen_dioxide": 6.02,
@@ -5124,7 +4916,7 @@
   {
     "city": "kolkata",
     "metric_date": "2026-10-11",
-    "avg_temperature_c": 28.67,
+    "avg_temperature_c": 28.68,
     "min_temperature_c": 25.0,
     "max_temperature_c": 32.5,
     "avg_humidity_pct": 71.17,
@@ -5176,7 +4968,7 @@
   {
     "city": "pune",
     "metric_date": "2026-10-11",
-    "avg_temperature_c": 29.17,
+    "avg_temperature_c": 29.18,
     "min_temperature_c": 24.0,
     "max_temperature_c": 33.9,
     "avg_humidity_pct": 45.58,
@@ -5604,7 +5396,7 @@
     "avg_pm10": 33.07,
     "max_pm10": 37.7,
     "avg_carbon_monoxide": 338.54,
-    "avg_nitrogen_dioxide": 12.87,
+    "avg_nitrogen_dioxide": 12.88,
     "avg_sulphur_dioxide": 8.53,
     "avg_ozone": 98.21,
     "avg_us_aqi": 97.3,
@@ -5731,7 +5523,7 @@
     "max_wind_speed_kmh": 13.5,
     "avg_pm2_5": 39.45,
     "max_pm2_5": 52.7,
-    "avg_pm10": 48.68,
+    "avg_pm10": 48.67,
     "max_pm10": 65.0,
     "avg_carbon_monoxide": 401.67,
     "avg_nitrogen_dioxide": 10.08,
@@ -5805,7 +5597,7 @@
     "max_temperature_c": 32.9,
     "avg_humidity_pct": 44.67,
     "total_precipitation_mm": 0.0,
-    "avg_wind_speed_kmh": 8.18,
+    "avg_wind_speed_kmh": 8.17,
     "max_wind_speed_kmh": 15.8,
     "avg_pm2_5": 28.35,
     "max_pm2_5": 38.6,
@@ -5930,7 +5722,7 @@
   {
     "city": "hyderabad",
     "metric_date": "2026-10-15",
-    "avg_temperature_c": 28.88,
+    "avg_temperature_c": 28.87,
     "min_temperature_c": 24.6,
     "max_temperature_c": 33.9,
     "avg_humidity_pct": 50.46,
@@ -6017,7 +5809,7 @@
     "max_wind_speed_kmh": 13.8,
     "avg_pm2_5": 32.23,
     "max_pm2_5": 47.1,
-    "avg_pm10": 37.08,
+    "avg_pm10": 37.07,
     "max_pm10": 50.9,
     "avg_carbon_monoxide": 368.29,
     "avg_nitrogen_dioxide": 13.02,
@@ -6099,7 +5891,7 @@
     "max_pm10": 15.3,
     "avg_carbon_monoxide": 424.79,
     "avg_nitrogen_dioxide": 14.22,
-    "avg_sulphur_dioxide": 15.73,
+    "avg_sulphur_dioxide": 15.72,
     "avg_ozone": 64.63,
     "avg_us_aqi": 41.0,
     "max_us_aqi": 54.0,
@@ -6294,7 +6086,7 @@
   {
     "city": "chennai",
     "metric_date": "2026-10-17",
-    "avg_temperature_c": 27.23,
+    "avg_temperature_c": 27.22,
     "min_temperature_c": 25.1,
     "max_temperature_c": 31.1,
     "avg_humidity_pct": 87.71,
@@ -6537,7 +6329,7 @@
     "max_wind_speed_kmh": 7.4,
     "avg_pm2_5": 58.4,
     "max_pm2_5": 84.1,
-    "avg_pm10": 171.38,
+    "avg_pm10": 171.37,
     "max_pm10": 385.6,
     "avg_carbon_monoxide": 1085.25,
     "avg_nitrogen_dioxide": 37.15,
@@ -6767,7 +6559,7 @@
     "max_temperature_c": 32.6,
     "avg_humidity_pct": 59.29,
     "total_precipitation_mm": 0.0,
-    "avg_wind_speed_kmh": 6.72,
+    "avg_wind_speed_kmh": 6.73,
     "max_wind_speed_kmh": 13.6,
     "avg_pm2_5": 35.13,
     "max_pm2_5": 53.0,
@@ -6814,7 +6606,7 @@
   {
     "city": "mumbai",
     "metric_date": "2026-10-19",
-    "avg_temperature_c": 31.47,
+    "avg_temperature_c": 31.48,
     "min_temperature_c": 27.2,
     "max_temperature_c": 36.6,
     "avg_humidity_pct": 64.29,
@@ -6892,7 +6684,7 @@
   {
     "city": "bengaluru",
     "metric_date": "2026-10-20",
-    "avg_temperature_c": 24.27,
+    "avg_temperature_c": 24.28,
     "min_temperature_c": 20.7,
     "max_temperature_c": 28.7,
     "avg_humidity_pct": 75.42,
@@ -6904,7 +6696,7 @@
     "avg_pm10": 14.22,
     "max_pm10": 19.4,
     "avg_carbon_monoxide": 481.63,
-    "avg_nitrogen_dioxide": 17.63,
+    "avg_nitrogen_dioxide": 17.62,
     "avg_sulphur_dioxide": 9.41,
     "avg_ozone": 70.04,
     "avg_us_aqi": 56.3,
@@ -7003,7 +6795,7 @@
     "total_precipitation_mm": 0.0,
     "avg_wind_speed_kmh": 6.43,
     "max_wind_speed_kmh": 9.3,
-    "avg_pm2_5": 76.52,
+    "avg_pm2_5": 76.53,
     "max_pm2_5": 112.2,
     "avg_pm10": 82.39,
     "max_pm10": 115.9,
@@ -7034,7 +6826,7 @@
     "avg_pm10": 91.73,
     "max_pm10": 126.7,
     "avg_carbon_monoxide": 649.08,
-    "avg_nitrogen_dioxide": 24.27,
+    "avg_nitrogen_dioxide": 24.28,
     "avg_sulphur_dioxide": 42.05,
     "avg_ozone": 238.63,
     "avg_us_aqi": 227.2,
@@ -7528,7 +7320,7 @@
     "avg_pm10": 10.75,
     "max_pm10": 19.3,
     "avg_carbon_monoxide": 623.67,
-    "avg_nitrogen_dioxide": 24.32,
+    "avg_nitrogen_dioxide": 24.33,
     "avg_sulphur_dioxide": 7.3,
     "avg_ozone": 33.83,
     "avg_us_aqi": 50.1,
@@ -7620,7 +7412,7 @@
   {
     "city": "kolkata",
     "metric_date": "2026-10-23",
-    "avg_temperature_c": 27.88,
+    "avg_temperature_c": 27.87,
     "min_temperature_c": 24.9,
     "max_temperature_c": 31.6,
     "avg_humidity_pct": 67.42,
@@ -7750,12 +7542,12 @@
   {
     "city": "chennai",
     "metric_date": "2026-10-24",
-    "avg_temperature_c": 28.02,
+    "avg_temperature_c": 28.03,
     "min_temperature_c": 25.4,
     "max_temperature_c": 30.9,
     "avg_humidity_pct": 80.58,
     "total_precipitation_mm": 4.9,
-    "avg_wind_speed_kmh": 6.38,
+    "avg_wind_speed_kmh": 6.37,
     "max_wind_speed_kmh": 12.5,
     "avg_pm2_5": 8.12,
     "max_pm2_5": 11.1,
@@ -8123,7 +7915,7 @@
     "max_wind_speed_kmh": 8.6,
     "avg_pm2_5": 42.74,
     "max_pm2_5": 56.7,
-    "avg_pm10": 59.02,
+    "avg_pm10": 59.03,
     "max_pm10": 77.8,
     "avg_carbon_monoxide": 492.96,
     "avg_nitrogen_dioxide": 37.3,
@@ -8244,7 +8036,7 @@
   {
     "city": "kolkata",
     "metric_date": "2026-10-26",
-    "avg_temperature_c": 28.37,
+    "avg_temperature_c": 28.38,
     "min_temperature_c": 23.6,
     "max_temperature_c": 32.9,
     "avg_humidity_pct": 64.25,
@@ -8738,14 +8530,14 @@
   {
     "city": "ahmedabad",
     "metric_date": "2026-10-29",
-    "avg_temperature_c": 28.52,
+    "avg_temperature_c": 28.53,
     "min_temperature_c": 24.1,
     "max_temperature_c": 34.1,
     "avg_humidity_pct": 40.33,
     "total_precipitation_mm": 0.6,
     "avg_wind_speed_kmh": 9.43,
     "max_wind_speed_kmh": 13.2,
-    "avg_pm2_5": 24.38,
+    "avg_pm2_5": 24.37,
     "max_pm2_5": 34.1,
     "avg_pm10": 32.2,
     "max_pm10": 44.4,
@@ -8979,7 +8771,7 @@
     "total_precipitation_mm": 0.0,
     "avg_wind_speed_kmh": 6.18,
     "max_wind_speed_kmh": 10.7,
-    "avg_pm2_5": 33.18,
+    "avg_pm2_5": 33.17,
     "max_pm2_5": 49.1,
     "avg_pm10": 36.62,
     "max_pm10": 54.0,
@@ -9322,7 +9114,7 @@
     "avg_pm10": 51.94,
     "max_pm10": 73.3,
     "avg_carbon_monoxide": 593.25,
-    "avg_nitrogen_dioxide": 20.67,
+    "avg_nitrogen_dioxide": 20.68,
     "avg_sulphur_dioxide": 33.28,
     "avg_ozone": 162.29,
     "avg_us_aqi": 156.5,
@@ -9549,7 +9341,7 @@
     "max_temperature_c": 30.1,
     "avg_humidity_pct": 68.88,
     "total_precipitation_mm": 0.8,
-    "avg_wind_speed_kmh": 7.38,
+    "avg_wind_speed_kmh": 7.37,
     "max_wind_speed_kmh": 13.6,
     "avg_pm2_5": 31.75,
     "max_pm2_5": 48.3,
@@ -9679,7 +9471,7 @@
     "max_temperature_c": 28.5,
     "avg_humidity_pct": 75.79,
     "total_precipitation_mm": 0.2,
-    "avg_wind_speed_kmh": 9.22,
+    "avg_wind_speed_kmh": 9.23,
     "max_wind_speed_kmh": 15.6,
     "avg_pm2_5": 22.2,
     "max_pm2_5": 35.4,
@@ -10012,7 +9804,7 @@
   {
     "city": "bengaluru",
     "metric_date": "2026-11-04",
-    "avg_temperature_c": 23.03,
+    "avg_temperature_c": 23.02,
     "min_temperature_c": 19.8,
     "max_temperature_c": 28.0,
     "avg_humidity_pct": 82.75,
@@ -10097,7 +9889,7 @@
     "total_precipitation_mm": 0.0,
     "avg_wind_speed_kmh": 9.33,
     "max_wind_speed_kmh": 14.9,
-    "avg_pm2_5": 7.37,
+    "avg_pm2_5": 7.38,
     "max_pm2_5": 9.5,
     "avg_pm10": 7.64,
     "max_pm10": 10.1,
@@ -10173,7 +9965,7 @@
     "max_temperature_c": 31.0,
     "avg_humidity_pct": 61.33,
     "total_precipitation_mm": 0.6,
-    "avg_wind_speed_kmh": 4.57,
+    "avg_wind_speed_kmh": 4.58,
     "max_wind_speed_kmh": 8.7,
     "avg_pm2_5": 41.92,
     "max_pm2_5": 57.4,
@@ -10662,7 +10454,7 @@
   {
     "city": "chennai",
     "metric_date": "2026-11-07",
-    "avg_temperature_c": 27.42,
+    "avg_temperature_c": 27.43,
     "min_temperature_c": 25.1,
     "max_temperature_c": 29.6,
     "avg_humidity_pct": 83.17,
@@ -10844,7 +10636,7 @@
   {
     "city": "bengaluru",
     "metric_date": "2026-11-08",
-    "avg_temperature_c": 23.47,
+    "avg_temperature_c": 23.48,
     "min_temperature_c": 20.1,
     "max_temperature_c": 28.3,
     "avg_humidity_pct": 75.13,
@@ -10961,7 +10753,7 @@
     "max_pm10": 186.3,
     "avg_carbon_monoxide": 778.75,
     "avg_nitrogen_dioxide": 21.05,
-    "avg_sulphur_dioxide": 30.93,
+    "avg_sulphur_dioxide": 30.92,
     "avg_ozone": 105.83,
     "avg_us_aqi": 203.3,
     "max_us_aqi": 212.0,
@@ -11137,7 +10929,7 @@
     "total_precipitation_mm": 0.0,
     "avg_wind_speed_kmh": 8.3,
     "max_wind_speed_kmh": 10.9,
-    "avg_pm2_5": 33.67,
+    "avg_pm2_5": 33.68,
     "max_pm2_5": 38.9,
     "avg_pm10": 41.39,
     "max_pm10": 45.5,
@@ -11169,7 +10961,7 @@
     "max_pm10": 145.3,
     "avg_carbon_monoxide": 863.08,
     "avg_nitrogen_dioxide": 25.29,
-    "avg_sulphur_dioxide": 30.67,
+    "avg_sulphur_dioxide": 30.68,
     "avg_ozone": 107.04,
     "avg_us_aqi": 171.7,
     "max_us_aqi": 186.0,
@@ -11428,7 +11220,7 @@
     "avg_pm10": 39.12,
     "max_pm10": 47.6,
     "avg_carbon_monoxide": 398.83,
-    "avg_nitrogen_dioxide": 13.52,
+    "avg_nitrogen_dioxide": 13.53,
     "avg_sulphur_dioxide": 9.85,
     "avg_ozone": 95.67,
     "avg_us_aqi": 101.1,
@@ -11605,7 +11397,7 @@
     "total_precipitation_mm": 0.0,
     "avg_wind_speed_kmh": 7.79,
     "max_wind_speed_kmh": 11.7,
-    "avg_pm2_5": 50.02,
+    "avg_pm2_5": 50.03,
     "max_pm2_5": 75.2,
     "avg_pm10": 56.0,
     "max_pm10": 80.8,
@@ -11737,7 +11529,7 @@
     "max_wind_speed_kmh": 5.4,
     "avg_pm2_5": 174.95,
     "max_pm2_5": 273.8,
-    "avg_pm10": 209.77,
+    "avg_pm10": 209.78,
     "max_pm10": 311.1,
     "avg_carbon_monoxide": 2056.0,
     "avg_nitrogen_dioxide": 52.7,
@@ -11974,7 +11766,7 @@
     "avg_pm10": 55.68,
     "max_pm10": 77.1,
     "avg_carbon_monoxide": 486.88,
-    "avg_nitrogen_dioxide": 11.48,
+    "avg_nitrogen_dioxide": 11.47,
     "avg_sulphur_dioxide": 17.08,
     "avg_ozone": 120.79,
     "avg_us_aqi": 129.9,
@@ -12255,7 +12047,7 @@
     "total_precipitation_mm": 0.0,
     "avg_wind_speed_kmh": 4.12,
     "max_wind_speed_kmh": 8.4,
-    "avg_pm2_5": 42.83,
+    "avg_pm2_5": 42.82,
     "max_pm2_5": 75.7,
     "avg_pm10": 48.06,
     "max_pm10": 84.1,
@@ -12305,7 +12097,7 @@
     "max_temperature_c": 27.0,
     "avg_humidity_pct": 61.46,
     "total_precipitation_mm": 0.0,
-    "avg_wind_speed_kmh": 6.62,
+    "avg_wind_speed_kmh": 6.63,
     "max_wind_speed_kmh": 8.4,
     "avg_pm2_5": 32.35,
     "max_pm2_5": 54.8,
@@ -12335,7 +12127,7 @@
     "max_wind_speed_kmh": 16.6,
     "avg_pm2_5": 32.6,
     "max_pm2_5": 42.7,
-    "avg_pm10": 38.62,
+    "avg_pm10": 38.63,
     "max_pm10": 48.9,
     "avg_carbon_monoxide": 368.58,
     "avg_nitrogen_dioxide": 4.05,
@@ -12478,5 +12270,213 @@
     "lag_2d_aqi": 107.1,
     "lag_3d_aqi": 100.3,
     "rolling_7d_avg_aqi": 108.9
+  },
+  {
+    "city": "ahmedabad",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 28.53,
+    "min_temperature_c": 23.3,
+    "max_temperature_c": 33.4,
+    "avg_humidity_pct": 43.46,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 4.26,
+    "max_wind_speed_kmh": 7.8,
+    "avg_pm2_5": 30.84,
+    "max_pm2_5": 61.2,
+    "avg_pm10": 40.93,
+    "max_pm10": 73.1,
+    "avg_carbon_monoxide": 449.54,
+    "avg_nitrogen_dioxide": 25.46,
+    "avg_sulphur_dioxide": 10.33,
+    "avg_ozone": 73.46,
+    "avg_us_aqi": 86.5,
+    "max_us_aqi": 103.0,
+    "aqi_category": "Moderate",
+    "lag_1d_aqi": 119.7,
+    "lag_2d_aqi": 146.0,
+    "lag_3d_aqi": 148.8,
+    "rolling_7d_avg_aqi": 109.1
+  },
+  {
+    "city": "bengaluru",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 23.01,
+    "min_temperature_c": 18.9,
+    "max_temperature_c": 27.8,
+    "avg_humidity_pct": 56.42,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 8.08,
+    "max_wind_speed_kmh": 10.9,
+    "avg_pm2_5": 38.78,
+    "max_pm2_5": 52.9,
+    "avg_pm10": 39.97,
+    "max_pm10": 53.8,
+    "avg_carbon_monoxide": 606.83,
+    "avg_nitrogen_dioxide": 40.22,
+    "avg_sulphur_dioxide": 17.97,
+    "avg_ozone": 76.17,
+    "avg_us_aqi": 105.4,
+    "max_us_aqi": 111.0,
+    "aqi_category": "Unhealthy for Sensitive Groups",
+    "lag_1d_aqi": 92.8,
+    "lag_2d_aqi": 76.2,
+    "lag_3d_aqi": 93.3,
+    "rolling_7d_avg_aqi": 100.7
+  },
+  {
+    "city": "chennai",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 27.41,
+    "min_temperature_c": 25.0,
+    "max_temperature_c": 30.5,
+    "avg_humidity_pct": 72.25,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 12.9,
+    "max_wind_speed_kmh": 17.2,
+    "avg_pm2_5": 48.58,
+    "max_pm2_5": 65.7,
+    "avg_pm10": 56.2,
+    "max_pm10": 81.7,
+    "avg_carbon_monoxide": 388.33,
+    "avg_nitrogen_dioxide": 5.33,
+    "avg_sulphur_dioxide": 14.95,
+    "avg_ozone": 149.25,
+    "avg_us_aqi": 114.2,
+    "max_us_aqi": 139.0,
+    "aqi_category": "Unhealthy for Sensitive Groups",
+    "lag_1d_aqi": 94.2,
+    "lag_2d_aqi": 62.8,
+    "lag_3d_aqi": 73.9,
+    "rolling_7d_avg_aqi": 106.9
+  },
+  {
+    "city": "delhi",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 20.51,
+    "min_temperature_c": 16.1,
+    "max_temperature_c": 26.4,
+    "avg_humidity_pct": 64.04,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 7.36,
+    "max_wind_speed_kmh": 12.7,
+    "avg_pm2_5": 82.6,
+    "max_pm2_5": 124.8,
+    "avg_pm10": 96.45,
+    "max_pm10": 141.1,
+    "avg_carbon_monoxide": 1042.08,
+    "avg_nitrogen_dioxide": 29.87,
+    "avg_sulphur_dioxide": 22.9,
+    "avg_ozone": 59.96,
+    "avg_us_aqi": 174.0,
+    "max_us_aqi": 179.0,
+    "aqi_category": "Unhealthy",
+    "lag_1d_aqi": 163.0,
+    "lag_2d_aqi": 199.0,
+    "lag_3d_aqi": 272.8,
+    "rolling_7d_avg_aqi": 205.4
+  },
+  {
+    "city": "hyderabad",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 25.1,
+    "min_temperature_c": 20.5,
+    "max_temperature_c": 29.6,
+    "avg_humidity_pct": 42.0,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 6.98,
+    "max_wind_speed_kmh": 11.2,
+    "avg_pm2_5": 59.3,
+    "max_pm2_5": 70.8,
+    "avg_pm10": 74.57,
+    "max_pm10": 94.5,
+    "avg_carbon_monoxide": 423.17,
+    "avg_nitrogen_dioxide": 13.53,
+    "avg_sulphur_dioxide": 18.17,
+    "avg_ozone": 108.88,
+    "avg_us_aqi": 133.0,
+    "max_us_aqi": 152.0,
+    "aqi_category": "Unhealthy for Sensitive Groups",
+    "lag_1d_aqi": 111.2,
+    "lag_2d_aqi": 118.3,
+    "lag_3d_aqi": 129.9,
+    "rolling_7d_avg_aqi": 114.2
+  },
+  {
+    "city": "kolkata",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 25.51,
+    "min_temperature_c": 21.8,
+    "max_temperature_c": 29.7,
+    "avg_humidity_pct": 71.08,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 4.07,
+    "max_wind_speed_kmh": 8.1,
+    "avg_pm2_5": 182.31,
+    "max_pm2_5": 270.1,
+    "avg_pm10": 208.73,
+    "max_pm10": 299.0,
+    "avg_carbon_monoxide": 1153.58,
+    "avg_nitrogen_dioxide": 29.0,
+    "avg_sulphur_dioxide": 41.19,
+    "avg_ozone": 97.83,
+    "avg_us_aqi": 276.0,
+    "max_us_aqi": 285.0,
+    "aqi_category": "Very Unhealthy",
+    "lag_1d_aqi": 231.0,
+    "lag_2d_aqi": 177.8,
+    "lag_3d_aqi": 149.3,
+    "rolling_7d_avg_aqi": 184.8
+  },
+  {
+    "city": "mumbai",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 27.65,
+    "min_temperature_c": 22.7,
+    "max_temperature_c": 33.5,
+    "avg_humidity_pct": 54.79,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 6.28,
+    "max_wind_speed_kmh": 13.5,
+    "avg_pm2_5": 73.45,
+    "max_pm2_5": 81.5,
+    "avg_pm10": 81.9,
+    "max_pm10": 88.0,
+    "avg_carbon_monoxide": 585.42,
+    "avg_nitrogen_dioxide": 15.02,
+    "avg_sulphur_dioxide": 25.31,
+    "avg_ozone": 163.33,
+    "avg_us_aqi": 178.9,
+    "max_us_aqi": 210.0,
+    "aqi_category": "Unhealthy",
+    "lag_1d_aqi": 193.6,
+    "lag_2d_aqi": 187.5,
+    "lag_3d_aqi": 167.4,
+    "rolling_7d_avg_aqi": 181.4
+  },
+  {
+    "city": "pune",
+    "metric_date": "2026-11-16",
+    "avg_temperature_c": 24.05,
+    "min_temperature_c": 17.7,
+    "max_temperature_c": 29.9,
+    "avg_humidity_pct": 43.46,
+    "total_precipitation_mm": 0.0,
+    "avg_wind_speed_kmh": 3.69,
+    "max_wind_speed_kmh": 9.3,
+    "avg_pm2_5": 56.95,
+    "max_pm2_5": 82.0,
+    "avg_pm10": 65.7,
+    "max_pm10": 89.2,
+    "avg_carbon_monoxide": 506.75,
+    "avg_nitrogen_dioxide": 26.54,
+    "avg_sulphur_dioxide": 17.28,
+    "avg_ozone": 88.92,
+    "avg_us_aqi": 149.7,
+    "max_us_aqi": 152.0,
+    "aqi_category": "Unhealthy for Sensitive Groups",
+    "lag_1d_aqi": 146.7,
+    "lag_2d_aqi": 117.4,
+    "lag_3d_aqi": 107.1,
+    "rolling_7d_avg_aqi": 116.9
   }
 ]
